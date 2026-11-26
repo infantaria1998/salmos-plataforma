@@ -6,6 +6,7 @@
   <title>SALMOS — Uma jornada de profundidade e fé</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
@@ -465,7 +466,7 @@
       <div id="authSection" class="max-w-md mx-auto surface-card rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
         <div class="space-y-1 text-center">
           <h1 id="authHeading" class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Entrar na sua conta</h1>
-          <p class="text-xs" style="color: var(--text-muted);">MVP local — na Fase 6 esta área será conectada ao banco de dados Supabase.</p>
+          <p class="text-xs" style="color: var(--text-muted);">Sua conta, favoritos e reflexões ficam salvos na nuvem com proteção LGPD.</p>
         </div>
 
         <div class="grid grid-cols-3 gap-1 p-1 rounded-xl surface-sand text-xs font-medium">
@@ -501,7 +502,7 @@
             <div>
               <h1 id="profileName" class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Usuário</h1>
               <p id="profileEmail" class="text-xs sm:text-sm" style="color: var(--text-muted);"></p>
-              <span class="inline-block mt-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full surface-sand" style="color: var(--gold);">Plano Gratuito (MVP Local)</span>
+              <span id="profilePlanBadge" class="inline-block mt-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full surface-sand" style="color: var(--gold);">Plano Gratuito • Sincronizado na Nuvem</span>
             </div>
           </div>
           <button id="logoutBtn" type="button" class="btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold">
@@ -791,6 +792,12 @@
       };
     });
 
+    const SUPABASE_URL = "https://rkoyyhjdxnbqiqcsvpar.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_-mhOJ97QoJeYVek1RODF4g_bqpJZW9_";
+    const supabaseClient = (window.supabase && window.supabase.createClient)
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
+      : null;
+
     const STORAGE_KEY = "salmos_mvp_state_v1";
     const state = {
       view: "home",
@@ -799,6 +806,7 @@
       libTheme: "Todos",
       onlyReady: false,
       authMode: "login",
+      authLoading: false,
       speaking: false,
       user: null,
       favoriteChapters: [],
@@ -806,27 +814,169 @@
       notes: {}
     };
 
-    function loadState() {
+    let noteSaveTimer = null;
+
+    function loadLocalState() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
         const data = JSON.parse(raw);
-        if (data.user) state.user = data.user;
         if (Array.isArray(data.favoriteChapters)) state.favoriteChapters = data.favoriteChapters;
         if (Array.isArray(data.favoriteVerses)) state.favoriteVerses = data.favoriteVerses;
         if (data.notes && typeof data.notes === "object") state.notes = data.notes;
       } catch (e) {}
     }
 
-    function saveState() {
+    function saveLocalState() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
-          user: state.user,
           favoriteChapters: state.favoriteChapters,
           favoriteVerses: state.favoriteVerses,
           notes: state.notes
         }));
       } catch (e) {}
+    }
+
+    async function loadCloudUserData(authUser) {
+      if (!supabaseClient || !authUser) return;
+      try {
+        const defaultName = (authUser.user_metadata && authUser.user_metadata.full_name)
+          || (authUser.email ? authUser.email.split("@")[0] : "Usuário");
+
+        const { data: profile } = await supabaseClient
+          .from("profiles")
+          .select("full_name, plan")
+          .eq("id", authUser.id)
+          .maybeSingle();
+
+        if (!profile) {
+          await supabaseClient.from("profiles").upsert({
+            id: authUser.id,
+            full_name: defaultName,
+            plan: "free"
+          });
+        }
+
+        state.user = {
+          id: authUser.id,
+          name: (profile && profile.full_name) ? profile.full_name : defaultName,
+          email: authUser.email || "",
+          plan: (profile && profile.plan) ? profile.plan : "free"
+        };
+
+        const { data: favs } = await supabaseClient
+          .from("favorites")
+          .select("psalm_id, verse_number, verse_text")
+          .eq("user_id", authUser.id);
+
+        state.favoriteChapters = [];
+        state.favoriteVerses = [];
+        if (Array.isArray(favs)) {
+          favs.forEach(row => {
+            if (row.verse_number === null || row.verse_number === undefined) {
+              if (!state.favoriteChapters.includes(row.psalm_id)) {
+                state.favoriteChapters.push(row.psalm_id);
+              }
+            } else {
+              state.favoriteVerses.push({
+                key: `${row.psalm_id}:${row.verse_number}`,
+                psalmId: row.psalm_id,
+                text: row.verse_text || ""
+              });
+            }
+          });
+        }
+
+        const { data: refs } = await supabaseClient
+          .from("reflections")
+          .select("psalm_id, content")
+          .eq("user_id", authUser.id);
+
+        state.notes = {};
+        if (Array.isArray(refs)) {
+          refs.forEach(row => {
+            state.notes[row.psalm_id] = row.content || "";
+          });
+        }
+      } catch (e) {
+        showToast("Conectado, mas houve atraso ao carregar dados da nuvem.");
+      }
+      renderAll();
+    }
+
+    async function syncChapterFavorite(psalmId, shouldAdd) {
+      if (!supabaseClient || !state.user || !state.user.id) {
+        saveLocalState();
+        return;
+      }
+      try {
+        if (shouldAdd) {
+          await supabaseClient.from("favorites").insert({
+            user_id: state.user.id,
+            psalm_id: psalmId,
+            verse_number: null,
+            verse_text: null
+          });
+        } else {
+          await supabaseClient
+            .from("favorites")
+            .delete()
+            .eq("user_id", state.user.id)
+            .eq("psalm_id", psalmId)
+            .is("verse_number", null);
+        }
+      } catch (e) {
+        showToast("Erro ao sincronizar favorito na nuvem.");
+      }
+    }
+
+    async function syncVerseFavorite(psalmId, verseNum, verseText, shouldAdd) {
+      if (!supabaseClient || !state.user || !state.user.id) {
+        saveLocalState();
+        return;
+      }
+      try {
+        if (shouldAdd) {
+          await supabaseClient.from("favorites").insert({
+            user_id: state.user.id,
+            psalm_id: psalmId,
+            verse_number: verseNum,
+            verse_text: verseText
+          });
+        } else {
+          await supabaseClient
+            .from("favorites")
+            .delete()
+            .eq("user_id", state.user.id)
+            .eq("psalm_id", psalmId)
+            .eq("verse_number", verseNum);
+        }
+      } catch (e) {
+        showToast("Erro ao sincronizar versículo na nuvem.");
+      }
+    }
+
+    async function syncReflection(psalmId, content) {
+      const statusEl = document.getElementById("psalmNoteSaved");
+      if (!supabaseClient || !state.user || !state.user.id) {
+        saveLocalState();
+        if (statusEl) statusEl.textContent = "Salvo neste navegador";
+        return;
+      }
+      if (statusEl) statusEl.textContent = "Salvando na nuvem...";
+      try {
+        const { error } = await supabaseClient
+          .from("reflections")
+          .upsert({
+            user_id: state.user.id,
+            psalm_id: psalmId,
+            content: content,
+            updated_at: new Date().toISOString()
+          }, { onConflict: "user_id,psalm_id" });
+        if (statusEl) statusEl.textContent = error ? "Erro ao salvar" : "Salvo na nuvem ✓";
+      } catch (e) {
+        if (statusEl) statusEl.textContent = "Erro ao salvar";
+      }
     }
 
     let toastTimer = null;
@@ -835,7 +985,7 @@
       t.textContent = msg;
       t.classList.remove("hidden");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => t.classList.add("hidden"), 2600);
+      toastTimer = setTimeout(() => t.classList.add("hidden"), 3200);
     }
 
     function stopSpeech() {
@@ -1031,9 +1181,9 @@
       }
 
       const savedNote = state.notes[id] || "";
+      const noteStatusText = state.user ? "Sincronizado na nuvem ✓" : "Salvo neste navegador (faça login para sincronizar)";
       container.innerHTML = `
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          <!-- Left: Text + Verse by Verse -->
           <div class="lg:col-span-7 space-y-6">
             <article class="surface-card rounded-3xl p-6 sm:p-8 space-y-5">
               <div class="space-y-2 border-b pb-5" style="border-color: var(--border-soft);">
@@ -1064,7 +1214,6 @@
             </article>
           </div>
 
-          <!-- Right: Structured Study Panel -->
           <aside class="lg:col-span-5 space-y-4">
             <div class="surface-card rounded-3xl p-6 space-y-4 text-sm">
               <div>
@@ -1105,11 +1254,10 @@
               </div>
             </div>
 
-            <!-- Personal Reflection Box -->
             <div class="surface-card rounded-3xl p-6 space-y-3">
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between gap-2">
                 <h2 class="font-serif-brand text-lg font-medium" style="color: var(--green-dark);">Minhas Reflexões</h2>
-                <span id="psalmNoteSaved" class="text-xs" style="color: var(--text-muted);">Salvo localmente</span>
+                <span id="psalmNoteSaved" class="text-[11px] text-right" style="color: var(--text-muted);">${noteStatusText}</span>
               </div>
               <textarea
                 id="psalmNoteInput"
@@ -1127,8 +1275,12 @@
       if (noteEl) {
         noteEl.addEventListener("input", () => {
           state.notes[id] = noteEl.value;
-          saveState();
-          document.getElementById("psalmNoteSaved").textContent = "Salvo agora";
+          const st = document.getElementById("psalmNoteSaved");
+          if (st) st.textContent = state.user ? "Salvando na nuvem..." : "Salvando...";
+          clearTimeout(noteSaveTimer);
+          noteSaveTimer = setTimeout(() => {
+            syncReflection(id, noteEl.value);
+          }, 600);
         });
       }
 
@@ -1182,12 +1334,14 @@
           reset: "Recuperar senha"
         };
         const btnMap = {
-          login: "Entrar",
-          signup: "Criar conta",
-          reset: "Enviar link de recuperação"
+          login: state.authLoading ? "Entrando..." : "Entrar",
+          signup: state.authLoading ? "Criando conta..." : "Criar conta",
+          reset: state.authLoading ? "Enviando..." : "Enviar link de recuperação"
         };
         document.getElementById("authHeading").textContent = headingMap[state.authMode];
-        document.getElementById("authSubmitBtn").textContent = btnMap[state.authMode];
+        const submitBtn = document.getElementById("authSubmitBtn");
+        submitBtn.textContent = btnMap[state.authMode];
+        submitBtn.disabled = state.authLoading;
         document.getElementById("authNameWrap").classList.toggle("hidden", state.authMode !== "signup");
         document.getElementById("authPassWrap").classList.toggle("hidden", state.authMode === "reset");
 
@@ -1203,6 +1357,12 @@
       document.getElementById("profileAvatar").textContent = state.user.name.charAt(0).toUpperCase();
       document.getElementById("profileName").textContent = state.user.name;
       document.getElementById("profileEmail").textContent = state.user.email;
+      const planBadge = document.getElementById("profilePlanBadge");
+      if (planBadge) {
+        planBadge.textContent = state.user.plan === "premium"
+          ? "Plano Premium • Sincronizado na Nuvem"
+          : "Plano Gratuito • Sincronizado na Nuvem";
+      }
 
       const favList = document.getElementById("profileFavoritesList");
       const items = [];
@@ -1211,7 +1371,7 @@
         if (p) items.push(`<div class="surface-sand rounded-xl p-3 flex items-center justify-between text-sm"><span><strong>Salmo ${p.id}</strong> — ${p.title}</span><button type="button" data-open-psalm="${p.id}" class="text-xs font-semibold underline">Abrir</button></div>`);
       });
       state.favoriteVerses.forEach(v => {
-        items.push(`<div class="surface-sand rounded-xl p-3 space-y-1 text-sm"><p class="font-serif-brand italic">“${v.text}”</p><div class="flex justify-between text-xs"><span style="color: var(--gold); font-weight:600;">Salmo ${v.key}</span><button type="button" data-open-psalm="${v.psalmId}" class="underline font-medium">Abrir</button></div></div>`);
+        items.push(`<div class="surface-sand rounded-xl p-3 space-y-1 text-sm"><p class="font-serif-brand italic">“${escapeHtml(v.text)}”</p><div class="flex justify-between text-xs"><span style="color: var(--gold); font-weight:600;">Salmo ${v.key}</span><button type="button" data-open-psalm="${v.psalmId}" class="underline font-medium">Abrir</button></div></div>`);
       });
       favList.innerHTML = items.length > 0
         ? items.join("")
@@ -1235,12 +1395,12 @@
     function openLegalModal(type) {
       const content = {
         terms: {
-          title: "Termos de Uso (Estrutura MVP)",
-          body: "<p>A plataforma SALMOS oferece recursos digitais de leitura e estudo bíblico pessoal. Os textos bíblicos utilizados nesta versão baseiam-se em traduções em domínio público (Almeida / Bíblia Livre).</p><p>Os comentários e guias de estudo são originais da plataforma e destinados ao uso pessoal ou de pequenos grupos conforme o plano contratado.</p>"
+          title: "Termos de Uso",
+          body: "<p>A plataforma SALMOS oferece recursos digitais de leitura e estudo bíblico pessoal. Os textos bíblicos utilizados baseiam-se em traduções em domínio público (Almeida / Bíblia Livre).</p><p>Os comentários e guias de estudo são originais da plataforma e destinados ao uso pessoal ou de pequenos grupos conforme o plano contratado.</p>"
         },
         privacy: {
           title: "Política de Privacidade e LGPD",
-          body: "<p>Nesta versão inicial (MVP local), suas anotações e favoritos ficam salvos apenas no navegador do seu dispositivo.</p><p>Na Fase 6, ao conectarmos o banco de dados Supabase, coletaremos apenas nome e e-mail para autenticação, com criptografia e direito total de exclusão de conta conforme a Lei Geral de Proteção de Dados (LGPD).</p>"
+          body: "<p>Coletamos apenas seu nome e e-mail para autenticação segura via Supabase. Seus favoritos e reflexões pessoais são protegidos por políticas de privacidade em nível de linha (RLS), garantindo que apenas você tenha acesso aos seus dados, conforme a LGPD.</p>"
         },
         cancel: {
           title: "Política de Cancelamento",
@@ -1313,12 +1473,13 @@
         const idx = state.favoriteChapters.indexOf(id);
         if (idx >= 0) {
           state.favoriteChapters.splice(idx, 1);
+          syncChapterFavorite(id, false);
           showToast(`Salmo ${id} removido dos favoritos.`);
         } else {
           state.favoriteChapters.push(id);
-          showToast(`Salmo ${id} salvo nos favoritos!`);
+          syncChapterFavorite(id, true);
+          showToast(state.user ? `Salmo ${id} salvo na nuvem!` : `Salmo ${id} salvo nos favoritos!`);
         }
-        saveState();
         renderPsalmDetail();
       });
 
@@ -1339,34 +1500,75 @@
         });
       });
 
-      document.getElementById("authForm").addEventListener("submit", (e) => {
+      document.getElementById("authForm").addEventListener("submit", async (e) => {
         e.preventDefault();
+        if (!supabaseClient) {
+          showToast("Erro ao carregar cliente Supabase. Recarregue a página.");
+          return;
+        }
         const email = document.getElementById("authEmail").value.trim();
         const name = document.getElementById("authName").value.trim();
         const pass = document.getElementById("authPass").value;
 
-        if (state.authMode === "reset") {
-          showToast(`Simulação MVP: instruções enviadas para ${email}.`);
-          state.authMode = "login";
+        state.authLoading = true;
+        renderAccount();
+
+        try {
+          if (state.authMode === "reset") {
+            const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+              redirectTo: window.location.origin
+            });
+            if (error) {
+              showToast(`Erro ao enviar recuperação: ${error.message}`);
+            } else {
+              showToast(`E-mail de recuperação enviado para ${email}!`);
+              state.authMode = "login";
+            }
+          } else if (state.authMode === "signup") {
+            if (pass.length < 6) {
+              showToast("Use uma senha com pelo menos 6 caracteres.");
+            } else {
+              const { data, error } = await supabaseClient.auth.signUp({
+                email,
+                password: pass,
+                options: { data: { full_name: name || email.split("@")[0] } }
+              });
+              if (error) {
+                showToast(`Erro no cadastro: ${error.message}`);
+              } else if (data.session && data.user) {
+                showToast("Conta criada e conectada com sucesso!");
+                await loadCloudUserData(data.user);
+              } else {
+                showToast("Conta criada! Confirme o link no seu e-mail e depois faça login.");
+                state.authMode = "login";
+              }
+            }
+          } else {
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
+            if (error) {
+              showToast("E-mail ou senha inválidos (ou confirme seu e-mail).");
+            } else if (data.user) {
+              showToast("Bem-vindo(a) de volta à SALMOS!");
+              await loadCloudUserData(data.user);
+            }
+          }
+        } catch (err) {
+          showToast("Falha de conexão. Tente novamente.");
+        } finally {
+          state.authLoading = false;
           renderAccount();
-          return;
         }
-        if (pass.length < 6) {
-          showToast("Use uma senha com pelo menos 6 caracteres.");
-          return;
-        }
-        state.user = {
-          name: state.authMode === "signup" && name ? name : email.split("@")[0],
-          email
-        };
-        saveState();
-        showToast("Bem-vindo(a) à plataforma SALMOS!");
-        renderAll();
       });
 
-      document.getElementById("logoutBtn").addEventListener("click", () => {
+      document.getElementById("logoutBtn").addEventListener("click", async () => {
+        if (supabaseClient) {
+          try { await supabaseClient.auth.signOut(); } catch (e) {}
+        }
         state.user = null;
-        saveState();
+        state.favoriteChapters = [];
+        state.favoriteVerses = [];
+        state.notes = {};
+        loadLocalState();
         showToast("Você saiu da sua conta.");
         renderAll();
       });
@@ -1402,18 +1604,20 @@
           const key = verseFavRow.dataset.verseFav;
           const [pidStr, vNumStr] = key.split(":");
           const pid = Number(pidStr);
-          const vIdx = Number(vNumStr) - 1;
+          const vNum = Number(vNumStr);
+          const vIdx = vNum - 1;
           const study = FULL_STUDIES[pid];
           if (!study || !study.verses[vIdx]) return;
           const existing = state.favoriteVerses.findIndex(v => v.key === key);
           if (existing >= 0) {
             state.favoriteVerses.splice(existing, 1);
+            syncVerseFavorite(pid, vNum, study.verses[vIdx].text, false);
             showToast(`Destaque removido (Salmo ${key}).`);
           } else {
             state.favoriteVerses.push({ key, psalmId: pid, text: study.verses[vIdx].text });
-            showToast(`Salmo ${key} salvo nos favoritos!`);
+            syncVerseFavorite(pid, vNum, study.verses[vIdx].text, true);
+            showToast(state.user ? `Salmo ${key} salvo na nuvem!` : `Salmo ${key} salvo nos favoritos!`);
           }
-          saveState();
           renderPsalmDetail();
           return;
         }
@@ -1437,9 +1641,21 @@
       });
     }
 
-    loadState();
-    bindEvents();
-    renderAll();
+    async function initApp() {
+      loadLocalState();
+      bindEvents();
+      renderAll();
+      if (supabaseClient) {
+        try {
+          const { data } = await supabaseClient.auth.getSession();
+          if (data && data.session && data.session.user) {
+            await loadCloudUserData(data.session.user);
+          }
+        } catch (e) {}
+      }
+    }
+
+    initApp();
   </script>
 </body>
 </html>
