@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SALMOS — Uma jornada de profundidade e fé</title>
+  <title>SALMOS — Estudo Completo dos 150 Salmos | Profundidade e Fé</title>
+  <meta name="description" content="Estude os 150 Salmos da Bíblia versículo por versículo com contexto histórico, aplicações práticas, oração guiada, diário espiritual e cartões compartilháveis." />
+  <meta name="keywords" content="estudo dos salmos, salmo 23 explicado, salmo 91 estudo, salmo 121, devocional diário, estudo bíblico online, 150 salmos" />
+  <meta name="author" content="SALMOS — Profundidade e Fé" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="SALMOS — Uma jornada de profundidade e fé" />
+  <meta property="og:description" content="Estudo versículo por versículo dos 150 Salmos, organizado por temas da vida real (ansiedade, proteção, gratidão, família e esperança)." />
+  <meta property="og:url" content="https://salmos-plataforma.charsdomatheus.workers.dev/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SALMOS — Estudo dos 150 Salmos" />
+  <meta name="twitter:description" content="Leia, estude versículo por versículo, salve reflexões e gere cartões de versículos prontos para WhatsApp e Instagram." />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
@@ -348,6 +359,14 @@
             <i id="psalmFavIcon" data-lucide="bookmark" class="w-4 h-4"></i>
             <span id="psalmFavLabel">Salvar nos Favoritos</span>
           </button>
+          <button id="openCardModalBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
+            <i data-lucide="image" class="w-4 h-4"></i>
+            <span>Cartão PNG</span>
+          </button>
+          <button id="shareWhatsAppBtn" type="button" class="btn-primary px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
+            <i data-lucide="share-2" class="w-4 h-4"></i>
+            <span>WhatsApp</span>
+          </button>
         </div>
       </div>
 
@@ -550,6 +569,47 @@
         </button>
       </div>
       <div id="modalBody" class="text-sm leading-relaxed space-y-2" style="color: var(--text-muted);"></div>
+    </div>
+  </div>
+
+  <!-- VERSE CARD GENERATOR MODAL -->
+  <div id="cardModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background-color: rgba(20, 26, 23, 0.6);">
+    <div class="surface-card rounded-3xl max-w-md w-full p-6 space-y-4 shadow-xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <h3 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Gerar Cartão de Versículo</h3>
+          <p class="text-xs" style="color: var(--text-muted);">Pronto para Status do WhatsApp, Stories e Pinterest.</p>
+        </div>
+        <button id="closeCardModalBtn" type="button" class="w-8 h-8 rounded-lg surface-sand flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-1.5">
+        <label for="cardVerseSelect" class="text-xs font-semibold uppercase tracking-wider block" style="color: var(--text-muted);">Escolha o versículo</label>
+        <select id="cardVerseSelect" class="w-full p-2.5 rounded-xl text-xs sm:text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);"></select>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2">
+        <button data-card-theme="cream" type="button" class="card-theme-btn py-2 px-2 rounded-xl text-xs font-semibold border">Creme</button>
+        <button data-card-theme="moss" type="button" class="card-theme-btn py-2 px-2 rounded-xl text-xs font-semibold border">Verde-Musgo</button>
+        <button data-card-theme="night" type="button" class="card-theme-btn py-2 px-2 rounded-xl text-xs font-semibold border">Noite Serena</button>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden border" style="border-color: var(--border-soft);">
+        <canvas id="shareCardCanvas" width="1080" height="1080" class="w-full h-auto block"></canvas>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <button id="downloadPngCardBtn" type="button" class="btn-primary py-2.5 px-3 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-1.5">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Baixar PNG</span>
+        </button>
+        <button id="copyCardTextBtn" type="button" class="btn-outline py-2.5 px-3 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-1.5">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Copiar Texto</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -992,6 +1052,8 @@
       authMode: "login",
       authLoading: false,
       speaking: false,
+      cardTheme: "cream",
+      cardVerseIdx: 0,
       user: null,
       favoriteChapters: [],
       favoriteVerses: [],
@@ -1838,6 +1900,167 @@
         } catch (e) {}
       }
     }
+
+    function wrapCanvasLines(ctx, text, maxW) {
+      const words = text.split(" ");
+      const lines = [];
+      let curr = "";
+      for (const w of words) {
+        const test = curr ? curr + " " + w : w;
+        if (ctx.measureText(test).width > maxW && curr) {
+          lines.push(curr);
+          curr = w;
+        } else {
+          curr = test;
+        }
+      }
+      if (curr) lines.push(curr);
+      return lines;
+    }
+
+    function drawShareCard() {
+      const canvas = document.getElementById("shareCardCanvas");
+      const study = FULL_STUDIES[state.activePsalmId];
+      if (!canvas || !study) return;
+      const ctx = canvas.getContext("2d");
+      const verseObj = study.verses[state.cardVerseIdx] || study.verses[0];
+      const vText = verseObj.text;
+      const ref = `SALMO ${state.activePsalmId}:${state.cardVerseIdx + 1}`;
+
+      const themes = {
+        cream: { bg1: "#FAF8F3", bg2: "#EFE8D8", text: "#1C211E", accent: "#B68940", muted: "#5A625D" },
+        moss: { bg1: "#2F4538", bg2: "#1E2E25", text: "#FAF8F3", accent: "#E2BA72", muted: "#C9D4C5" },
+        night: { bg1: "#171B19", bg2: "#0E110F", text: "#F2EFE8", accent: "#D4A85C", muted: "#9AA19C" }
+      };
+      const pal = themes[state.cardTheme] || themes.cream;
+
+      const grad = ctx.createLinearGradient(0, 0, 1080, 1080);
+      grad.addColorStop(0, pal.bg1);
+      grad.addColorStop(1, pal.bg2);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1080, 1080);
+
+      ctx.strokeStyle = pal.accent;
+      ctx.lineWidth = 3;
+      ctx.strokeRect(56, 56, 968, 968);
+
+      ctx.fillStyle = pal.accent;
+      ctx.font = "600 26px Inter, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText((study.themes[0] || "SALMOS").toUpperCase(), 540, 155);
+
+      ctx.beginPath();
+      ctx.moveTo(465, 185);
+      ctx.lineTo(615, 185);
+      ctx.strokeStyle = pal.accent;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = pal.text;
+      const fSize = vText.length > 150 ? 42 : vText.length > 90 ? 50 : 58;
+      ctx.font = `italic 500 ${fSize}px Lora, Georgia, serif`;
+      const lines = wrapCanvasLines(ctx, `“${vText}”`, 820);
+      const lh = fSize * 1.44;
+      const totalH = lines.length * lh;
+      const startY = 535 - totalH / 2 + fSize * 0.4;
+      lines.forEach((line, i) => ctx.fillText(line, 540, startY + i * lh));
+
+      ctx.fillStyle = pal.accent;
+      ctx.font = "700 32px Inter, sans-serif";
+      ctx.fillText(ref, 540, 875);
+
+      ctx.fillStyle = pal.muted;
+      ctx.font = "500 22px Inter, sans-serif";
+      ctx.fillText("SALMOS • Estudo Guiado dos 150 Salmos", 540, 955);
+    }
+
+    function updateCardThemeButtons() {
+      document.querySelectorAll(".card-theme-btn").forEach(btn => {
+        const active = btn.dataset.cardTheme === state.cardTheme;
+        btn.style.backgroundColor = active ? "var(--green-moss)" : "var(--bg-card)";
+        btn.style.color = active ? "#FFFFFF" : "var(--text-main)";
+        btn.style.borderColor = active ? "var(--green-moss)" : "var(--border-soft)";
+      });
+    }
+
+    function openCardModal() {
+      const study = FULL_STUDIES[state.activePsalmId];
+      if (!study) {
+        showToast("Abra um dos 12 estudos completos para gerar o cartão PNG.");
+        return;
+      }
+      state.cardVerseIdx = 0;
+      const select = document.getElementById("cardVerseSelect");
+      select.innerHTML = study.verses.map((v, i) => {
+        const preview = v.text.length > 65 ? v.text.slice(0, 65) + "..." : v.text;
+        return `<option value="${i}">Versículo ${i + 1}: ${escapeHtml(preview)}</option>`;
+      }).join("");
+      updateCardThemeButtons();
+      drawShareCard();
+      const modal = document.getElementById("cardModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeCardModal() {
+      const modal = document.getElementById("cardModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function copyTextFallback(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast("Texto copiado!")).catch(() => {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); showToast("Texto copiado!"); } catch (e) {}
+          document.body.removeChild(ta);
+        });
+      }
+    }
+
+    document.getElementById("openCardModalBtn").addEventListener("click", openCardModal);
+    document.getElementById("closeCardModalBtn").addEventListener("click", closeCardModal);
+    document.getElementById("cardModal").addEventListener("click", (e) => {
+      if (e.target.id === "cardModal") closeCardModal();
+    });
+    document.getElementById("cardVerseSelect").addEventListener("change", (e) => {
+      state.cardVerseIdx = Number(e.target.value);
+      drawShareCard();
+    });
+    document.querySelectorAll(".card-theme-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.cardTheme = btn.dataset.cardTheme;
+        updateCardThemeButtons();
+        drawShareCard();
+      });
+    });
+    document.getElementById("downloadPngCardBtn").addEventListener("click", () => {
+      const canvas = document.getElementById("shareCardCanvas");
+      const a = document.createElement("a");
+      a.download = `salmo-${state.activePsalmId}-${state.cardVerseIdx + 1}.png`;
+      a.href = canvas.toDataURL("image/png");
+      a.click();
+      showToast("Cartão PNG baixado!");
+    });
+    document.getElementById("copyCardTextBtn").addEventListener("click", () => {
+      const study = FULL_STUDIES[state.activePsalmId];
+      if (!study) return;
+      const v = study.verses[state.cardVerseIdx] || study.verses[0];
+      copyTextFallback(`“${v.text}” — Salmo ${state.activePsalmId}:${state.cardVerseIdx + 1}\nEstude completo em: https://salmos-plataforma.charsdomatheus.workers.dev/`);
+    });
+    document.getElementById("shareWhatsAppBtn").addEventListener("click", () => {
+      const study = FULL_STUDIES[state.activePsalmId];
+      const msg = study
+        ? `Estudo do Salmo ${state.activePsalmId} — ${study.title}: “${study.verses[0].text}” Leia o estudo completo: https://salmos-plataforma.charsdomatheus.workers.dev/`
+        : `Conheça a plataforma SALMOS — Estudo dos 150 Salmos: https://salmos-plataforma.charsdomatheus.workers.dev/`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+    });
 
     initApp();
   </script>
