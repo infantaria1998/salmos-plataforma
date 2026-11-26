@@ -1,0 +1,2890 @@
+&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;pt-BR&quot;&gt;
+
+&lt;head&gt;
+
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+
+  &lt;title&gt;SALMOS — Uma jornada de profundidade e fé&lt;/title&gt;
+
+  &lt;script src=&quot;\[suspicious link removed\]&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js&quot;&gt;&lt;/script&gt;
+
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot; /&gt;
+
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin /&gt;
+
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
+
+  &lt;style&gt;
+
+    :root {
+
+      --bg-cream: #FAF8F3;
+
+      --bg-card: #FFFFFF;
+
+      --bg-sand: #F2EDE2;
+
+      --border-soft: #E5DEC9;
+
+      --green-moss: #2F4538;
+
+      --green-dark: #1E2E25;
+
+      --gold: #B68940;
+
+      --gold-soft: #FBF3E0;
+
+      --text-main: #1C211E;
+
+      --text-muted: #5A625D;
+
+    }
+
+
+
+    body {
+
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+      background-color: var(--bg-cream);
+
+      color: var(--text-main);
+
+    }
+
+
+
+    .font-serif-brand {
+
+      font-family: 'Lora', Georgia, Cambria, serif;
+
+    }
+
+
+
+    .surface-card {
+
+      background-color: var(--bg-card);
+
+      border: 1px solid var(--border-soft);
+
+    }
+
+
+
+    .surface-sand {
+
+      background-color: var(--bg-sand);
+
+    }
+
+
+
+    .btn-primary {
+
+      background-color: var(--green-moss);
+
+      color: #FFFFFF;
+
+      transition: background-color 0.2s ease, transform 0.15s ease;
+
+    }
+
+
+
+    .btn-primary:hover {
+
+      background-color: var(--green-dark);
+
+    }
+
+
+
+    .btn-outline {
+
+      background-color: var(--bg-card);
+
+      border: 1px solid var(--border-soft);
+
+      color: var(--green-dark);
+
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    }
+
+
+
+    .btn-outline:hover {
+
+      background-color: var(--bg-sand);
+
+      border-color: var(--green-moss);
+
+    }
+
+
+
+    .nav-active {
+
+      background-color: var(--bg-sand);
+
+      color: var(--green-dark);
+
+      font-weight: 600;
+
+    }
+
+
+
+    .verse-row {
+
+      border-left: 3px solid transparent;
+
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+
+    }
+
+
+
+    .verse-row:hover {
+
+      background-color: var(--bg-sand);
+
+    }
+
+
+
+    .verse-row.favorited {
+
+      background-color: var(--gold-soft);
+
+      border-left-color: var(--gold);
+
+    }
+
+
+
+    .fade-in {
+
+      animation: fadeIn 0.22s ease forwards;
+
+    }
+
+
+
+    @keyframes fadeIn {
+
+      from { opacity: 0; transform: translateY(6px); }
+
+      to { opacity: 1; transform: translateY(0); }
+
+    }
+
+  &lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body class=&quot;min-h-screen flex flex-col antialiased selection:bg-amber-200 selection:text-stone-900&quot;&gt;
+
+  &lt;!-- HEADER --&gt;
+
+  &lt;header class=&quot;sticky top-0 z-40 border-b&quot; style=&quot;background-color: rgba(250, 248, 243, 0.94); backdrop-filter: blur(10px); border-color: var(--border-soft);&quot;&gt;
+
+    &lt;div class=&quot;max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3&quot;&gt;
+
+      &lt;button id=&quot;logoHomeBtn&quot; type=&quot;button&quot; class=&quot;flex items-center gap-2.5 text-left focus:outline-none&quot;&gt;
+
+        &lt;span class=&quot;w-10 h-10 rounded-xl flex items-center justify-center border&quot; style=&quot;background-color: var(--bg-cream); border-color: var(--border-soft);&quot;&gt;
+
+          &lt;svg viewBox=&quot;0 0 40 40&quot; class=&quot;w-7 h-7&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot;&gt;
+
+            &lt;path d=&quot;M6 12C11 10.5 16 11.5 20 14.5C24 11.5 29 10.5 34 12V28C29 26.5 24 27.5 20 30.5C16 27.5 11 26.5 6 28V12Z&quot; stroke=&quot;#B68940&quot; stroke-width=&quot;1.8&quot; stroke-linejoin=&quot;round&quot;/&gt;
+
+            &lt;path d=&quot;M20 14.5V30.5&quot; stroke=&quot;#B68940&quot; stroke-width=&quot;1.5&quot;/&gt;
+
+            &lt;path d=&quot;M16 32C18.5 24 23 17 29 10&quot; stroke=&quot;#1E2E25&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot;/&gt;
+
+            &lt;path d=&quot;M22 19C20 17 20 14.5 21.5 13C23 14.5 23 17 22 19Z&quot; fill=&quot;#1E2E25&quot;/&gt;
+
+            &lt;path d=&quot;M25.5 15.5C24.5 13 25.5 11 27.5 10.5C28 12.5 27 14.5 25.5 15.5Z&quot; fill=&quot;#1E2E25&quot;/&gt;
+
+            &lt;path d=&quot;M24 21C26.5 20.5 28.5 19 29.5 17C27.5 17 25.5 18.5 24 21Z&quot; fill=&quot;#1E2E25&quot;/&gt;
+
+          &lt;/svg&gt;
+
+        &lt;/span&gt;
+
+        &lt;div&gt;
+
+          &lt;span class=&quot;font-serif-brand font-semibold tracking-[0.14em] text-base block leading-none&quot; style=&quot;color: var(--green-dark);&quot;&gt;SALMOS&lt;/span&gt;
+
+          &lt;span class=&quot;text-[10px] tracking-wider uppercase block mt-0.5&quot; style=&quot;color: var(--text-muted);&quot;&gt;Profundidade e Fé&lt;/span&gt;
+
+        &lt;/div&gt;
+
+      &lt;/button&gt;
+
+
+
+      <!-- Desktop Nav -->
+
+      <nav class="hidden md:flex items-center gap-1 text-sm">
+
+        <button data-nav="home" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">Início</button>
+
+        <button data-nav="library" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">150 Salmos</button>
+
+        <button data-nav="themes" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">Temas</button>
+
+        <button data-nav="plans" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">Planos</button>
+
+      </nav>
+
+
+
+      <div class="flex items-center gap-2">
+
+        <button id="accountNavBtn" type="button" class="btn-outline px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
+
+          <i data-lucide="user" class="w-4 h-4"></i>
+
+          <span id="accountNavLabel">Entrar</span>
+
+        </button>
+
+        <button id="mobileMenuBtn" type="button" aria-label="Abrir menu" class="md:hidden w-9 h-9 rounded-xl btn-outline flex items-center justify-center">
+
+          <i data-lucide="menu" class="w-5 h-5"></i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Mobile Nav Drawer -->
+
+    <div id="mobileMenu" class="hidden md:hidden border-t px-4 py-3 space-y-1" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
+
+      <button data-nav="home" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Início</button>
+
+      <button data-nav="library" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Biblioteca dos 150 Salmos</button>
+
+      <button data-nav="themes" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Estudos por Temas</button>
+
+      <button data-nav="plans" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Planos</button>
+
+    </div>
+
+  &lt;/header&gt;
+
+
+
+  &lt;main class=&quot;flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-7 sm:py-10&quot;&gt;
+
+    &lt;!-- ==================== VIEW: HOME ==================== --&gt;
+
+    &lt;section id=&quot;viewHome&quot; class=&quot;space-y-12 fade-in&quot;&gt;
+
+      &lt;!-- Hero --&gt;
+
+      &lt;div class=&quot;surface-card rounded-3xl overflow-hidden shadow-sm&quot;&gt;
+
+        &lt;div class=&quot;grid grid-cols-1 lg:grid-cols-12&quot;&gt;
+
+          &lt;div class=&quot;lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between gap-6&quot;&gt;
+
+            &lt;div class=&quot;space-y-4&quot;&gt;
+
+              &lt;span class=&quot;inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium surface-sand&quot; style=&quot;color: var(--gold);&quot;&gt;
+
+                &lt;i data-lucide=&quot;book-open&quot; class=&quot;w-3.5 h-3.5&quot;&gt;&lt;/i&gt;
+
+                &lt;span&gt;Uma jornada de profundidade e fé&lt;/span&gt;
+
+              &lt;/span&gt;
+
+              &lt;h1 class=&quot;font-serif-brand text-3xl sm:text-5xl font-medium leading-[1.12]&quot; style=&quot;color: var(--green-dark);&quot;&gt;
+
+                Estude os 150 Salmos com clareza, contexto e paz.
+
+              &lt;/h1&gt;
+
+              &lt;p class=&quot;text-sm sm:text-base leading-relaxed max-w-xl&quot; style=&quot;color: var(--text-muted);&quot;&gt;
+
+                Uma plataforma dedicada ao estudo versículo por versículo do Livro de Salmos: contexto histórico confiável, aplicações práticas para o cotidiano e espaço para registrar suas reflexões e orações.
+
+              &lt;/p&gt;
+
+              &lt;div class=&quot;flex flex-wrap gap-3 pt-1&quot;&gt;
+
+                &lt;button id=&quot;heroExploreBtn&quot; type=&quot;button&quot; class=&quot;btn-primary px-5 py-3 rounded-xl text-sm font-semibold inline-flex items-center gap-2&quot;&gt;
+
+                  &lt;span&gt;Explorar os 150 Salmos&lt;/span&gt;
+
+                  &lt;i data-lucide=&quot;arrow-right&quot; class=&quot;w-4 h-4&quot;&gt;&lt;/i&gt;
+
+                &lt;/button&gt;
+
+                &lt;button id=&quot;heroThemesBtn&quot; type=&quot;button&quot; class=&quot;btn-outline px-5 py-3 rounded-xl text-sm font-semibold&quot;&gt;
+
+                  Ver estudos por tema
+
+                &lt;/button&gt;
+
+              &lt;/div&gt;
+
+            &lt;/div&gt;
+
+
+
+            <!-- Quick Stats -->
+
+            <div class="grid grid-cols-3 gap-3 pt-4 border-t" style="border-color: var(--border-soft);">
+
+              <div>
+
+                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">150</span>
+
+                <span class="text-xs" style="color: var(--text-muted);">Capítulos indexados</span>
+
+              </div>
+
+              <div>
+
+                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">11</span>
+
+                <span class="text-xs" style="color: var(--text-muted);">Temas da vida real</span>
+
+              </div>
+
+              <div>
+
+                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--gold);">6</span>
+
+                <span class="text-xs" style="color: var(--text-muted);">Estudos completos no MVP</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between text-white relative overflow-hidden" style="background: linear-gradient(155deg, #2F4538 0%, #1E2E25 100%);">
+
+            <div class="flex items-center justify-between text-xs tracking-widest uppercase" style="color: #E2BA72;">
+
+              <span>Livro dos Salmos</span>
+
+              <span>I — CL</span>
+
+            </div>
+
+            <div class="my-8 py-6 border-y space-y-4" style="border-color: rgba(226, 186, 114, 0.28);">
+
+              <svg viewBox="0 0 64 44" class="w-12 h-9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                <path d="M8 10C16 7.5 25 9 32 14C39 9 48 7.5 56 10V36C48 33.5 39 35 32 40C25 35 16 33.5 8 36V10Z" stroke="#E2BA72" stroke-width="1.8" stroke-linejoin="round"/>
+
+                <path d="M32 14V40" stroke="#E2BA72" stroke-width="1.5"/>
+
+              </svg>
+
+              <p class="font-serif-brand italic text-xl sm:text-2xl leading-relaxed text-stone-100">
+
+                “Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.”
+
+              </p>
+
+              <p class="text-xs tracking-wider uppercase" style="color: #E2BA72;">Salmo 119:105</p>
+
+            </div>
+
+            <p class="text-xs text-stone-300 leading-relaxed">
+
+              Leitura limpa, contexto histórico e caderno pessoal reunidos em um único espaço.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Salmo do Dia -->
+
+      <div class="surface-sand rounded-3xl p-6 sm:p-8 border" style="border-color: var(--border-soft);">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+
+          <div class="space-y-2.5 max-w-2xl">
+
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">
+
+              <i data-lucide="sun" class="w-4 h-4"></i>
+
+              <span>Salmo do Dia</span>
+
+            </div>
+
+            <h2 id="dailyPsalmTitle" class="font-serif-brand text-2xl sm:text-3xl font-medium" style="color: var(--green-dark);">Salmo 23 — O Senhor é o Meu Pastor</h2>
+
+            <p id="dailyPsalmQuote" class="font-serif-brand italic text-base sm:text-lg leading-relaxed" style="color: var(--text-main);">
+
+              “O Senhor é o meu pastor; nada me faltará. Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas.”
+
+            </p>
+
+            <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
+
+              Inclui texto completo, contexto histórico, explicação versículo por versículo, perguntas de reflexão e oração guiada.
+
+            </p>
+
+          </div>
+
+          <div class="shrink-0">
+
+            <button id="openDailyPsalmBtn" type="button" class="btn-primary px-5 py-3 rounded-xl text-sm font-semibold inline-flex items-center gap-2">
+
+              <span>Estudar o Salmo do Dia</span>
+
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Categorias em Destaque -->
+
+      <div class="space-y-5">
+
+        <div class="flex flex-wrap items-end justify-between gap-3">
+
+          <div>
+
+            <h2 class="font-serif-brand text-2xl sm:text-3xl font-medium" style="color: var(--green-dark);">Estude pelo momento que você vive</h2>
+
+            <p class="text-sm mt-1" style="color: var(--text-muted);">Escolha um dos 11 temas para encontrar os Salmos relacionados.</p>
+
+          </div>
+
+          <button id="homeSeeAllThemesBtn" type="button" class="text-sm font-semibold underline underline-offset-4" style="color: var(--green-moss);">
+
+            Ver todos os temas
+
+          </button>
+
+        </div>
+
+        <div id="homeThemesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+
+      </div>
+
+
+
+      <!-- Benefícios -->
+
+      <div class="space-y-5">
+
+        <div class="max-w-2xl">
+
+          <h2 class="font-serif-brand text-2xl sm:text-3xl font-medium" style="color: var(--green-dark);">Mais do que ler versículos soltos</h2>
+
+          <p class="text-sm mt-1" style="color: var(--text-muted);">Um método simples para criar constância e entender o texto com profundidade.</p>
+
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div class="surface-card rounded-2xl p-5 space-y-2.5">
+
+            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
+
+              <i data-lucide="layers" class="w-5 h-5"></i>
+
+            </span>
+
+            <h3 class="font-semibold text-base">Versículo por versículo</h3>
+
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Comentários claros que explicam metáforas, estrutura e sentido original sem jargão difícil.</p>
+
+          </div>
+
+          <div class="surface-card rounded-2xl p-5 space-y-2.5">
+
+            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
+
+              <i data-lucide="compass" class="w-5 h-5"></i>
+
+            </span>
+
+            <h3 class="font-semibold text-base">Contexto histórico</h3>
+
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Autoria, gênero literário (lamento, louvor, sabedoria) e o cenário em que cada Salmo nasceu.</p>
+
+          </div>
+
+          <div class="surface-card rounded-2xl p-5 space-y-2.5">
+
+            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
+
+              <i data-lucide="notebook-pen" class="w-5 h-5"></i>
+
+            </span>
+
+            <h3 class="font-semibold text-base">Aplicação e oração</h3>
+
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Perguntas de reflexão, aplicações práticas e espaço pessoal para salvar seus favoritos e notas.</p>
+
+          </div>
+
+          <div class="surface-card rounded-2xl p-5 space-y-2.5">
+
+            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
+
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+
+            </span>
+
+            <h3 class="font-semibold text-base">Ambiente sem distrações</h3>
+
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Leitura limpa, zero banners de anúncios e texto bíblico de domínio público (Almeida / Bíblia Livre).</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Prévia de Planos na Home -->
+
+      <div class="surface-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+
+        <div class="space-y-2 max-w-xl">
+
+          <h2 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Comece gratuitamente e evolua no seu ritmo</h2>
+
+          <p class="text-sm" style="color: var(--text-muted);">Acesse o Salmo do dia e os estudos introdutórios sem custo, ou conheça os planos Premium (mensal R$ 19,90 e anual R$ 149,90).</p>
+
+        </div>
+
+        <button id="homeSeePlansBtn" type="button" class="btn-primary px-5 py-3 rounded-xl text-sm font-semibold shrink-0">
+
+          Ver planos e benefícios
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==================== VIEW: 150 PSALMS LIBRARY ==================== -->
+
+    <section id="viewLibrary" class="hidden space-y-6 fade-in">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+
+        <div>
+
+          <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Biblioteca dos 150 Salmos</h1>
+
+          <p class="text-sm mt-1" style="color: var(--text-muted);">Pesquise por número (1 a 150), palavra-chave ou tema. Estudos completos estão destacados em verde.</p>
+
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+
+          <div class="relative w-full sm:w-64">
+
+            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" style="color: var(--text-muted);"></i>
+
+            <input
+
+              id="libSearchInput"
+
+              type="text"
+
+              placeholder="Buscar nº (ex: 91) ou tema..."
+
+              class="w-full pl-9 pr-3 py-2 text-sm rounded-xl surface-card focus:outline-none focus:ring-2"
+
+              style="--tw-ring-color: var(--green-moss);"
+
+            />
+
+          </div>
+
+          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl surface-card text-xs font-medium cursor-pointer select-none">
+
+            <input id="onlyReadyToggle" type="checkbox" class="rounded accent-emerald-800" />
+
+            <span>Só estudos completos (6)</span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+
+      <div id="libThemePills" class="flex flex-wrap gap-2"></div>
+
+      <p id="libCountText" class="text-xs font-medium" style="color: var(--text-muted);"></p>
+
+      <div id="libGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    </section>
+
+
+
+    <!-- ==================== VIEW: INDIVIDUAL PSALM ==================== -->
+
+    <section id="viewPsalm" class="hidden space-y-6 fade-in">
+
+      <div class="flex flex-wrap items-center justify-between gap-3">
+
+        <button id="backLibraryBtn" type="button" class="inline-flex items-center gap-1.5 text-sm font-medium hover:opacity-80" style="color: var(--text-muted);">
+
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+
+          <span>Voltar para a biblioteca</span>
+
+        </button>
+
+
+
+        <div class="flex flex-wrap items-center gap-2">
+
+          <button id="psalmSpeechBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
+
+            <i id="psalmSpeechIcon" data-lucide="volume-2" class="w-4 h-4"></i>
+
+            <span id="psalmSpeechLabel">Ouvir Salmo</span>
+
+          </button>
+
+          <button id="psalmFavChapterBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
+
+            <i id="psalmFavIcon" data-lucide="bookmark" class="w-4 h-4"></i>
+
+            <span id="psalmFavLabel">Salvar nos Favoritos</span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div id="psalmDetailContent"></div>
+
+
+
+      <div class="flex items-center justify-between pt-4 border-t text-sm" style="border-color: var(--border-soft);">
+
+        <button id="prevChapterBtn" type="button" class="btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
+
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+
+          <span>Salmo anterior</span>
+
+        </button>
+
+        <button id="nextChapterBtn" type="button" class="btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
+
+          <span>Próximo Salmo</span>
+
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==================== VIEW: THEMES ==================== -->
+
+    <section id="viewThemes" class="hidden space-y-6 fade-in">
+
+      <div class="max-w-2xl">
+
+        <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Estudos por Temas</h1>
+
+        <p class="text-sm mt-1" style="color: var(--text-muted);">Os 150 Salmos organizados em 11 temas essenciais para guiar sua leitura conforme o momento.</p>
+
+      </div>
+
+      <div id="themesCatalogGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+    </section>
+
+
+
+    <!-- ==================== VIEW: PLANS ==================== -->
+
+    <section id="viewPlans" class="hidden space-y-8 fade-in">
+
+      <div class="max-w-2xl space-y-2">
+
+        <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Planos da Plataforma SALMOS</h1>
+
+        <p class="text-sm sm:text-base" style="color: var(--text-muted);">Comece no plano gratuito e desbloqueie a jornada completa quando quiser. (O checkout real via Mercado Pago será conectado na Fase 8.)</p>
+
+      </div>
+
+
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+
+        <!-- Free -->
+
+        <div class="surface-card rounded-3xl p-6 flex flex-col justify-between gap-6">
+
+          <div class="space-y-4">
+
+            <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">Gratuito</span>
+
+            <div>
+
+              <span class="font-serif-brand text-4xl font-semibold" style="color: var(--green-dark);">R$ 0</span>
+
+              <span class="text-sm" style="color: var(--text-muted);">/mês</span>
+
+            </div>
+
+            <p class="text-xs sm:text-sm" style="color: var(--text-muted);">Ideal para conhecer a plataforma e criar o hábito de leitura diária.</p>
+
+            <ul class="space-y-2 text-sm pt-2">
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Salmo do dia e biblioteca básica</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Estudos introdutórios abertos</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Navegação pelos 11 temas</span></li>
+
+            </ul>
+
+          </div>
+
+          <button data-plan-select="Gratuito" type="button" class="plan-select-btn btn-outline w-full py-2.5 rounded-xl text-sm font-semibold">
+
+            Criar conta gratuita
+
+          </button>
+
+        </div>
+
+
+
+        <!-- Monthly -->
+
+        <div class="surface-card rounded-3xl p-6 flex flex-col justify-between gap-6">
+
+          <div class="space-y-4">
+
+            <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--green-moss);">Premium Mensal</span>
+
+            <div>
+
+              <span class="font-serif-brand text-4xl font-semibold" style="color: var(--green-dark);">R$ 19,90</span>
+
+              <span class="text-sm" style="color: var(--text-muted);">/mês</span>
+
+            </div>
+
+            <p class="text-xs sm:text-sm" style="color: var(--text-muted);">Acesso completo aos estudos aprofundados com flexibilidade mensal.</p>
+
+            <ul class="space-y-2 text-sm pt-2">
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Todos os estudos versículo por versículo</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Diário espiritual e favoritos ilimitados</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Planos de leitura guiados e áudios</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Cancele quando quiser, sem multa</span></li>
+
+            </ul>
+
+          </div>
+
+          <button data-plan-select="Premium Mensal (R$ 19,90/mês)" type="button" class="plan-select-btn btn-primary w-full py-2.5 rounded-xl text-sm font-semibold">
+
+            Escolher Mensal
+
+          </button>
+
+        </div>
+
+
+
+        <!-- Annual -->
+
+        <div class="rounded-3xl p-6 flex flex-col justify-between gap-6 text-white shadow-md" style="background-color: var(--green-dark);">
+
+          <div class="space-y-4">
+
+            <div class="flex items-center justify-between gap-2">
+
+              <span class="text-xs font-semibold uppercase tracking-wider" style="color: #E2BA72;">Premium Anual</span>
+
+              <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full" style="background-color: rgba(226, 186, 114, 0.18); color: #E2BA72;">Economize 37%</span>
+
+            </div>
+
+            <div>
+
+              <span class="font-serif-brand text-4xl font-semibold">R$ 149,90</span>
+
+              <span class="text-sm text-stone-300">/ano</span>
+
+              <span class="block text-xs text-stone-300 mt-1">Equivalente a R$ 12,49 por mês</span>
+
+            </div>
+
+            <p class="text-xs sm:text-sm text-stone-300">Para quem quer transformar o estudo dos Salmos em rotina anual com bônus.</p>
+
+            <ul class="space-y-2 text-sm pt-2">
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Tudo do plano Premium Mensal</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>E-book Devocional de 30 Dias incluso</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Caderno de Oração em PDF para imprimir</span></li>
+
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Acesso antecipado ao Assistente de IA</span></li>
+
+            </ul>
+
+          </div>
+
+          <button data-plan-select="Premium Anual (R$ 149,90/ano)" type="button" class="plan-select-btn w-full py-2.5 rounded-xl text-sm font-semibold transition" style="background-color: #E2BA72; color: #1E2E25;">
+
+            Escolher Anual
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="surface-sand rounded-2xl p-5 border flex flex-col sm:flex-row sm:items-center justify-between gap-4" style="border-color: var(--border-soft);">
+
+        <div>
+
+          <h3 class="font-semibold text-base" style="color: var(--green-dark);">Planos para Igrejas, Pequenos Grupos e Professores</h3>
+
+          <p class="text-xs sm:text-sm mt-0.5" style="color: var(--text-muted);">Licenças coletivas com guias de discussão para células e escolas bíblicas (disponível na Fase 10).</p>
+
+        </div>
+
+        <button data-plan-select="Interesse Institucional (Igreja/Grupo)" type="button" class="plan-select-btn btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shrink-0">
+
+          Registrar interesse
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==================== VIEW: ACCOUNT (AUTH + PROFILE) ==================== -->
+
+    <section id="viewAccount" class="hidden space-y-6 fade-in">
+
+      <!-- Auth Forms (shown when logged out) -->
+
+      <div id="authSection" class="max-w-md mx-auto surface-card rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
+
+        <div class="space-y-1 text-center">
+
+          <h1 id="authHeading" class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Entrar na sua conta</h1>
+
+          <p class="text-xs" style="color: var(--text-muted);">MVP local — na Fase 6 esta área será conectada ao banco de dados Supabase.</p>
+
+        </div>
+
+
+
+        <div class="grid grid-cols-3 gap-1 p-1 rounded-xl surface-sand text-xs font-medium">
+
+          <button data-auth-mode="login" type="button" class="auth-tab-btn py-2 rounded-lg transition">Login</button>
+
+          <button data-auth-mode="signup" type="button" class="auth-tab-btn py-2 rounded-lg transition">Cadastro</button>
+
+          <button data-auth-mode="reset" type="button" class="auth-tab-btn py-2 rounded-lg transition">Recuperar</button>
+
+        </div>
+
+
+
+        <form id="authForm" class="space-y-4">
+
+          <div id="authNameWrap" class="hidden space-y-1">
+
+            <label for="authName" class="text-xs font-medium block">Seu nome</label>
+
+            <input id="authName" type="text" placeholder="Ex.: Maria Silva" class="w-full px-3.5 py-2.5 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);" />
+
+          </div>
+
+          <div class="space-y-1">
+
+            <label for="authEmail" class="text-xs font-medium block">E-mail</label>
+
+            <input id="authEmail" type="email" required placeholder="voce@exemplo.com" class="w-full px-3.5 py-2.5 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);" />
+
+          </div>
+
+          <div id="authPassWrap" class="space-y-1">
+
+            <label for="authPass" class="text-xs font-medium block">Senha</label>
+
+            <input id="authPass" type="password" placeholder="Mínimo 6 caracteres" class="w-full px-3.5 py-2.5 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);" />
+
+          </div>
+
+          <button id="authSubmitBtn" type="submit" class="btn-primary w-full py-2.5 rounded-xl text-sm font-semibold">
+
+            Entrar
+
+          </button>
+
+        </form>
+
+      </div>
+
+
+
+      <!-- Profile Dashboard (shown when logged in) -->
+
+      <div id="profileSection" class="hidden space-y-6">
+
+        <div class="surface-card rounded-3xl p-6 flex flex-wrap items-center justify-between gap-4">
+
+          <div class="flex items-center gap-4">
+
+            <div id="profileAvatar" class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-serif-brand text-xl font-semibold" style="background-color: var(--green-moss);">M</div>
+
+            <div>
+
+              <h1 id="profileName" class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Usuário</h1>
+
+              <p id="profileEmail" class="text-xs sm:text-sm" style="color: var(--text-muted);"></p>
+
+              <span class="inline-block mt-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full surface-sand" style="color: var(--gold);">Plano Gratuito (MVP Local)</span>
+
+            </div>
+
+          </div>
+
+          <button id="logoutBtn" type="button" class="btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold">
+
+            Sair da conta
+
+          </button>
+
+        </div>
+
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+          <div class="surface-card rounded-3xl p-6 space-y-4">
+
+            <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Salmos e Versículos Favoritos</h2>
+
+            <div id="profileFavoritesList" class="space-y-3"></div>
+
+          </div>
+
+
+
+          <div class="surface-card rounded-3xl p-6 space-y-4">
+
+            <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Minhas Reflexões Salvas</h2>
+
+            <div id="profileNotesList" class="space-y-3"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  &lt;/main&gt;
+
+
+
+  &lt;!-- FOOTER --&gt;
+
+  &lt;footer class=&quot;border-t mt-12&quot; style=&quot;background-color: var(--bg-sand); border-color: var(--border-soft);&quot;&gt;
+
+    &lt;div class=&quot;max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs&quot; style=&quot;color: var(--text-muted);&quot;&gt;
+
+      &lt;div&gt;
+
+        &lt;span class=&quot;font-serif-brand font-semibold tracking-[0.12em] text-sm&quot; style=&quot;color: var(--green-dark);&quot;&gt;SALMOS&lt;/span&gt;
+
+        &lt;p class=&quot;mt-1&quot;&gt;Uma jornada de profundidade e fé. Textos bíblicos baseados em tradução livre de domínio público.&lt;/p&gt;
+
+      &lt;/div&gt;
+
+      &lt;div class=&quot;flex flex-wrap gap-4&quot;&gt;
+
+        &lt;button data-legal=&quot;terms&quot; type=&quot;button&quot; class=&quot;legal-btn underline hover:opacity-80&quot;&gt;Termos de Uso&lt;/button&gt;
+
+        &lt;button data-legal=&quot;privacy&quot; type=&quot;button&quot; class=&quot;legal-btn underline hover:opacity-80&quot;&gt;Privacidade e LGPD&lt;/button&gt;
+
+        &lt;button data-legal=&quot;cancel&quot; type=&quot;button&quot; class=&quot;legal-btn underline hover:opacity-80&quot;&gt;Cancelamento&lt;/button&gt;
+
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+
+  &lt;/footer&gt;
+
+
+
+  &lt;!-- IN-PAGE LEGAL / INFO MODAL --&gt;
+
+  &lt;div id=&quot;infoModal&quot; class=&quot;fixed inset-0 z-50 hidden items-center justify-center p-4&quot; style=&quot;background-color: rgba(20, 26, 23, 0.55);&quot;&gt;
+
+    &lt;div class=&quot;surface-card rounded-3xl max-w-lg w-full p-6 sm:p-7 space-y-4 shadow-xl&quot;&gt;
+
+      &lt;div class=&quot;flex items-center justify-between gap-3&quot;&gt;
+
+        &lt;h3 id=&quot;modalTitle&quot; class=&quot;font-serif-brand text-xl font-medium&quot; style=&quot;color: var(--green-dark);&quot;&gt;&lt;/h3&gt;
+
+        &lt;button id=&quot;closeModalBtn&quot; type=&quot;button&quot; class=&quot;w-8 h-8 rounded-lg surface-sand flex items-center justify-center&quot;&gt;
+
+          &lt;i data-lucide=&quot;x&quot; class=&quot;w-4 h-4&quot;&gt;&lt;/i&gt;
+
+        &lt;/button&gt;
+
+      &lt;/div&gt;
+
+      &lt;div id=&quot;modalBody&quot; class=&quot;text-sm leading-relaxed space-y-2&quot; style=&quot;color: var(--text-muted);&quot;&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+
+
+  &lt;!-- TOAST --&gt;
+
+  &lt;div id=&quot;toast&quot; class=&quot;fixed bottom-5 right-5 z-50 hidden px-4 py-2.5 rounded-xl text-sm font-medium text-white shadow-lg&quot; style=&quot;background-color: var(--green-dark);&quot;&gt;&lt;/div&gt;
+
+
+
+  &lt;script&gt;
+
+    const THEMES = [
+
+      { name: &quot;Ansiedade&quot;, desc: &quot;Acalmar a mente acelerada e descansar na presença de Deus.&quot;, icon: &quot;wind&quot; },
+
+      { name: &quot;Medo&quot;, desc: &quot;Coragem e segurança espiritual diante das incertezas.&quot;, icon: &quot;shield&quot; },
+
+      { name: &quot;Proteção&quot;, desc: &quot;Abrigo, livramento e cuidado constante na caminhada.&quot;, icon: &quot;umbrella&quot; },
+
+      { name: &quot;Gratidão&quot;, desc: &quot;Reconhecimento pelas bênçãos, respostas e fidelidade.&quot;, icon: &quot;heart&quot; },
+
+      { name: &quot;Esperança&quot;, desc: &quot;Renovação de forças e expectativa de novos começos.&quot;, icon: &quot;sunrise&quot; },
+
+      { name: &quot;Fé&quot;, desc: &quot;Confiança firme quando o caminho ainda não está claro.&quot;, icon: &quot;flame&quot; },
+
+      { name: &quot;Sabedoria&quot;, desc: &quot;Direção prática para escolhas, trabalho e vida diária.&quot;, icon: &quot;compass&quot; },
+
+      { name: &quot;Família&quot;, desc: &quot;Edificação do lar, geração seguinte e harmonia.&quot;, icon: &quot;home&quot; },
+
+      { name: &quot;Perdão&quot;, desc: &quot;Sinceridade, cura da culpa e restauração interior.&quot;, icon: &quot;sparkles&quot; },
+
+      { name: &quot;Louvor&quot;, desc: &quot;Adoração, júbilo e exaltação à grandeza de Deus.&quot;, icon: &quot;music&quot; },
+
+      { name: &quot;Momentos difíceis&quot;, desc: &quot;Lamento honesto, consolo e socorro nas provações.&quot;, icon: &quot;anchor&quot; }
+
+    ];
+
+
+
+    // 6 Complete Deep Studies (MVP Lot 1) — Public-domain Almeida / Bíblia Livre style wording
+
+    const FULL_STUDIES = {
+
+      1: {
+
+        title: &quot;Os Dois Caminhos da Vida&quot;,
+
+        themes: [&quot;Sabedoria&quot;, &quot;Fé&quot;, &quot;Família&quot;],
+
+        author: &quot;Anônimo&quot;,
+
+        genre: &quot;Salmo de Sabedoria&quot;,
+
+        context: &quot;O Salmo 1 funciona como a porta de entrada de todo o Saltério. Antes de apresentar orações de lamento ou louvor, ele coloca o leitor diante de uma escolha diária: enraizar a vida na sabedoria de Deus ou ser levado pela instabilidade do momento.&quot;,
+
+        overview: &quot;O capítulo contrasta duas imagens fortes da natureza: a árvore plantada junto a canais de irrigação (estável, fértil e resistente) e a palha seca que qualquer vento dispersa.&quot;,
+
+        teachings: [
+
+          &quot;As companhias e conselhos que ouvimos moldam gradualmente nossos passos.&quot;,
+
+          &quot;Meditar na Palavra não é tarefa pesada, mas fonte de prazer e estabilidade.&quot;,
+
+          &quot;Frutos verdadeiros acontecem &#39;no seu tempo&#39;, exigindo constância.&quot;
+
+        ],
+
+        applications: [
+
+          &quot;Reserve 10 minutos fixos do dia para leitura calma, sem celular por perto.&quot;,
+
+          &quot;Avalie quais vozes ou redes sociais têm drenado sua paz nesta semana.&quot;
+
+        ],
+
+        questions: [
+
+          &quot;Em que áreas da sua vida você se sente mais parecido com a árvore firme ou com a palha levada pelo vento?&quot;,
+
+          &quot;Qual pequeno hábito pode aproximar suas raízes das &#39;águas tranquilas&#39; hoje?&quot;
+
+        ],
+
+        prayer: &quot;Senhor, dá-me sabedoria para escolher bem meus caminhos e companhias. Planta minha vida junto à Tua Palavra para que eu dê bons frutos no tempo certo. Amém.&quot;,
+
+        references: [&quot;Jeremias 17:7-8&quot;, &quot;Josué 1:8&quot;, &quot;Mateus 7:24-27&quot;],
+
+        verses: [
+
+          { text: &quot;Bem-aventurado o homem que não anda segundo o conselho dos ímpios, nem se detém no caminho dos pecadores, nem se assenta na roda dos escarnecedores.&quot;, note: &quot;Observe a progressão: andar → deter-se → assentar-se. Pequenas concessões viram hábitos se não forem percebidas.&quot; },
+
+          { text: &quot;Antes tem o seu prazer na lei do Senhor, e na sua lei medita de dia e de noite.&quot;, note: &quot;No hebraico, &#39;meditar&#39; (hagah) remete a murmurar ou refletir em voz baixa — ruminar a Palavra ao longo da rotina.&quot; },
+
+          { text: &quot;Pois será como a árvore plantada junto a ribeiros de águas, a qual dá o seu fruto no seu tempo; as suas folhas não cairão, e tudo quanto fizer prosperará.&quot;, note: &quot;A árvore é &#39;plantada&#39; (transplantada com cuidado) junto a canais de água: sua força vem da fonte que a alimenta.&quot; },
+
+          { text: &quot;Não são assim os ímpios; mas são como a moinha que o vento espalha.&quot;, note: &quot;A moinha (palha leve da debulha) não tem peso nem raiz — símbolo de uma vida sem direção firme.&quot; },
+
+          { text: &quot;Por isso os ímpios não subsistirão no juízo, nem os pecadores na congregação dos justos.&quot;, note: &quot;O contraste aponta para a permanência: aquilo que é construído sem verdade não resiste ao teste do tempo.&quot; },
+
+          { text: &quot;Porque o Senhor conhece o caminho dos justos; porém o caminho dos ímpios perecerá.&quot;, note: &quot;&#39;Conhecer&#39; na Bíblia indica cuidado íntimo e acompanhamento ativo, não apenas informação.&quot; }
+
+        ]
+
+      },
+
+      23: {
+
+        title: &quot;O Senhor é o Meu Pastor&quot;,
+
+        themes: [&quot;Ansiedade&quot;, &quot;Proteção&quot;, &quot;Esperança&quot;, &quot;Fé&quot;],
+
+        author: &quot;Davi&quot;,
+
+        genre: &quot;Salmo de Confiança&quot;,
+
+        context: &quot;Escrito por Davi, que passou a juventude cuidando de ovelhas nas colinas áridas da Judeia. O texto usa duas figuras clássicas do Oriente Antigo: o pastor que protege o rebanho e o anfitrião generoso que garante abrigo seguro.&quot;,
+
+        overview: &quot;Um dos textos mais amados da Bíblia. Ele conduz o leitor da paz dos pastos verdejantes até a travessia do vale escuro, mostrando que o verdadeiro descanso não é ausência de problemas, mas a presença constante do Pastor.&quot;,
+
+        teachings: [
+
+          &quot;A suficiência de Deus (&#39;nada me faltará&#39;) acalma o coração ansioso.&quot;,
+
+          &quot;Mesmo no vale escuro, o salmista passa a falar com Deus (&#39;Tu estás comigo&#39;) em vez de apenas falar sobre Ele.&quot;,
+
+          &quot;A bondade e a misericórdia não esperam passivamente: elas &#39;seguem&#39; (acompanham) o peregrino.&quot;
+
+        ],
+
+        applications: [
+
+          &quot;Quando a ansiedade apertar hoje, releia o versículo 1 pausadamente três vezes.&quot;,
+
+          &quot;Escreva um motivo concreto pelo qual você já viu cuidado de Deus na sua história.&quot;
+
+        ],
+
+        questions: [
+
+          &quot;Qual área da sua rotina hoje mais precisa de &#39;águas tranquilas&#39;?&quot;,
+
+          &quot;O que muda ao atravessar um &#39;vale&#39; lembrando que você não caminha sozinho?&quot;
+
+        ],
+
+        prayer: &quot;Senhor, acalma minha mente acelerada hoje. Guia meus passos por caminhos retos, restaura minhas forças e ensina-me a confiar na Tua presença em cada estação. Amém.&quot;,
+
+        references: [&quot;João 10:11-15&quot;, &quot;Ezequiel 34:11-16&quot;, &quot;Filipenses 4:6-7&quot;],
+
+        verses: [
+
+          { text: &quot;O Senhor é o meu pastor; nada me faltará.&quot;, note: &quot;A frase abre com relacionamento pessoal (&#39;meu pastor&#39;): a provisão flui de quem cuida, não da nossa ansiedade.&quot; },
+
+          { text: &quot;Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas.&quot;, note: &quot;Ovelhas só se deitam quando estão livres de medo e fome. Deus conduz com mansidão, não com pressa.&quot; },
+
+          { text: &quot;Refrigera a minha alma; guia-me pelas veredas da justiça, por amor do seu nome.&quot;, note: &quot;&#39;Refrigerar a alma&#39; significa restaurar a vida e trazer de volta ao caminho certo quando nos desviamos.&quot; },
+
+          { text: &quot;Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam.&quot;, note: &quot;A vara defendia contra predadores; o cajado puxava a ovelha de volta. Proteção e correção andam juntas.&quot; },
+
+          { text: &quot;Preparas uma mesa perante mim na presença dos meus inimigos, unges a minha cabeça com óleo, o meu cálice transborda.&quot;, note: &quot;A cena muda para um banquete de honra: mesmo sob pressão externa, há paz e abundância interior.&quot; },
+
+          { text: &quot;Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do Senhor por longos dias.&quot;, note: &quot;O salmo fecha com certeza serena: comunhão contínua com Deus hoje e no futuro.&quot; }
+
+        ]
+
+      },
+
+      32: {
+
+        title: &quot;A Alegria do Perdão&quot;,
+
+        themes: [&quot;Perdão&quot;, &quot;Sabedoria&quot;, &quot;Momentos difíceis&quot;],
+
+        author: &quot;Davi&quot;,
+
+        genre: &quot;Salmo Penitencial e de Sabedoria&quot;,
+
+        context: &quot;Associado pela tradição ao período após o arrependimento de Davi. Ele descreve com realismo como guardar culpa em silêncio desgasta o corpo e o ânimo — e como a confissão sincera restaura a paz.&quot;,
+
+        overview: &quot;O salmo mostra o caminho completo da restauração: o peso do silêncio, o alívio do perdão recebido e a promessa de direção sábia para recomeçar.&quot;,
+
+        teachings: [
+
+          &quot;Esconder erros aumenta o peso emocional; a sinceridade diante de Deus abre espaço para cura.&quot;,
+
+          &quot;O perdão de Deus não apenas apaga o passado, mas devolve direção clara para o futuro.&quot;,
+
+          &quot;A verdadeira alegria nasce de um coração transparente.&quot;
+
+        ],
+
+        applications: [
+
+          &quot;Tire um momento de silêncio para entregar em oração qualquer culpa antiga que ainda rouba sua paz.&quot;,
+
+          &quot;Peça direção prática antes de tomar uma decisão difícil esta semana.&quot;
+
+        ],
+
+        questions: [
+
+          &quot;Há algo que você tem evitado encarar com sinceridade diante de Deus?&quot;,
+
+          &quot;Como a promessa do versículo 8 (&#39;instruir-te-ei&#39;) traz alívio para suas dúvidas atuais?&quot;
+
+        ],
+
+        prayer: &quot;Senhor, tiro de mim o peso do silêncio e da culpa. Recebo o Teu perdão, a Tua misericórdia e a Tua direção para recomeçar com o coração leve. Amém.&quot;,
+
+        references: [&quot;Romanos 4:6-8&quot;, &quot;1 João 1:9&quot;, &quot;Provérbios 28:13&quot;],
+
+        verses: [
+
+          { text: &quot;Bem-aventurado aquele cuja transgressão é perdoada, e cujo pecado é coberto.&quot;, note: &quot;A felicidade aqui não é perfeição sem erros, mas a graça de ser perdoado e restaurado.&quot; },
+
+          { text: &quot;Bem-aventurado o homem a quem o Senhor não imputa maldade, e em cujo espírito não há engano.&quot;, note: &quot;Sinceridade interior (&#39;sem engano&#39;) é a chave para receber paz real.&quot; },
+
+          { text: &quot;Quando eu guardei silêncio, envelheceram os meus ossos pelo meu bramido em todo o dia.&quot;, note: &quot;Davi descreve o impacto psicossomático da culpa não resolvida: cansaço profundo e peso constante.&quot; },
+
+          { text: &quot;Porque de dia e de noite a tua mão pesava sobre mim; o meu humor se tornou em sequidão de estio.&quot;, note: &quot;O desconforto da consciência era, na verdade, o cuidado de Deus chamando Davi de volta.&quot; },
+
+          { text: &quot;Confessei-te o meu pecado, e a minha maldade não encobri. Dizia eu: Confessarei ao Senhor as minhas transgressões; e tu perdoaste a maldade do meu pecado.&quot;, note: &quot;Note a rapidez da graça: assim que há confissão honesta, vem o perdão imediato.&quot; },
+
+          { text: &quot;Por isso, todo aquele que é santo orará a ti, a tempo de te poder achar; até no transbordar de muitas águas, estas não lhe chegarão.&quot;, note: &quot;A experiência pessoal de Davi vira encorajamento para todos buscarem a Deus sem adiar.&quot; },
+
+          { text: &quot;Tu és o lugar em que me escondo; tu me preservas da angústia; tu me cinges de alegres cantos de livramento.&quot;, note: &quot;Deus deixa de ser alguém de quem nos escondemos e passa a ser o lugar em que nos abrigamos.&quot; },
+
+          { text: &quot;Instruir-te-ei, e ensinar-te-ei o caminho que deves seguir; guiar-te-ei com os meus olhos.&quot;, note: &quot;Deus promete guiar com proximidade e atenção (&#39;com os meus olhos&#39;), não à distância.&quot; }
+
+        ]
+
+      },
+
+      46: {
+
+        title: &quot;Deus é o Nosso Refúgio&quot;,
+
+        themes: [&quot;Medo&quot;, &quot;Momentos difíceis&quot;, &quot;Proteção&quot;, &quot;Fé&quot;],
+
+        author: &quot;Filhos de Corá&quot;,
+
+        genre: &quot;Salmo de Confiança&quot;,
+
+        context: &quot;Composto pelos Filhos de Corá, família de músicos do templo de Jerusalém. O salmo contrapõe o terror de terremotos, mares agitados e guerras com a serenidade de um rio calmo que abastece a cidade.&quot;,
+
+        overview: &quot;Um hino de coragem para dias de instabilidade. Ele culmina no famoso convite &#39;Aquietai-vos e sabei que eu sou Deus&#39;, chamando o leitor a soltar o controle ansioso.&quot;,
+
+        teachings: [
+
+          &quot;Deus não é um socorro distante, mas &#39;bem presente na angústia&#39;.&quot;,
+
+          &quot;Mesmo quando estruturas externas tremem, a paz interior pode permanecer firme.&quot;,
+
+          &quot;&#39;Aquietar-se&#39; significa descansar da agitação interior confiando na soberania divina.&quot;
+
+        ],
+
+        applications: [
+
+          &quot;Identifique uma preocupação fora do seu controle hoje e entregue-a conscientemente em oração.&quot;,
+
+          &quot;Faça uma pausa de 2 minutos em silêncio absoluto lendo o versículo 10.&quot;
+
+        ],
+
+        questions: [
+
+          &quot;O que tem parecido &#39;abalado&#39; na sua rotina recentemente?&quot;,
+
+          &quot;O que impede você de &#39;aquietar&#39; a mente nos momentos de pressão?&quot;
+
+        ],
+
+        prayer: &quot;Deus, nosso refúgio e fortaleza, acalma o ruído das preocupações dentro de mim. Ensina-me a descansar sabendo que Tu continuas no controle. Amém.&quot;,
+
+        references: [&quot;Isaías 41:10&quot;, &quot;Marcos 4:39-40&quot;, &quot;Romanos 8:31&quot;],
+
+        verses: [
+
+          { text: &quot;Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia.&quot;, note: &quot;A expressão &#39;bem presente&#39; transmite a ideia de algo testado, comprovado e imediatamente disponível.&quot; },
+
+          { text: &quot;Pelo que não temeremos, ainda que a terra se mude, e ainda que os montes se transportem para o meio dos mares.&quot;, note: &quot;Mesmo o que parece mais sólido (a terra e os montes) pode mudar — nossa segurança precisa estar acima disso.&quot; },
+
+          { text: &quot;Ainda que as águas rujam e se perturbem, ainda que os montes se abalem pela sua braveza.&quot;, note: &quot;No imaginário antigo, o mar agitado simbolizava caos e forças imprevisíveis.&quot; },
+
+          { text: &quot;Há um rio cujas correntes alegram a cidade de Deus, o santuário das moradas do Altíssimo.&quot;, note: &quot;Em contraste com o mar violento, o rio tranquilo representa a presença serena e contínua de Deus.&quot; },
+
+          { text: &quot;Deus está no meio dela; não se abalará. Deus a ajudará, já ao romper da manhã.&quot;, note: &quot;&#39;Ao romper da manhã&#39; simboliza o fim da noite longa e a chegada pontual do livramento.&quot; },
+
+          { text: &quot;O Senhor dos Exércitos está conosco; o Deus de Jacó é o nosso refúgio.&quot;, note: &quot;O refrão une poder (&#39;Senhor dos Exércitos&#39;) e graça pessoal (&#39;Deus de Jacó&#39;, um homem imperfeito acolhido por Deus).&quot; },
+
+          { text: &quot;Aquietai-vos e sabei que eu sou Deus; serei exaltado entre os gentios; serei exaltado sobre a terra.&quot;, note: &quot;&#39;Aquietai-vos&#39; significa literalmente &#39;baixem as mãos&#39; — parar de lutar na ansiedade e confiar.&quot; }
+
+        ]
+
+      },
+
+      91: {
+
+        title: &quot;O Abrigo do Altíssimo&quot;,
+
+        themes: [&quot;Proteção&quot;, &quot;Medo&quot;, &quot;Ansiedade&quot;, &quot;Fé&quot;],
+
+        author: &quot;Anônimo (tradição associa a Moisés)&quot;,
+
+        genre: &quot;Salmo de Confiança&quot;,
+
+        context: &quot;Um dos salmos mais lidos em tempos de crise e viagem. Sua estrutura alterna vozes: abre com a declaração pessoal de fé, segue com palavras de encorajamento e termina com a resposta direta de Deus.&quot;,
+
+        overview: &quot;O Salmo 91 não funciona como amuleto mágico, mas como retrato de quem vive em comunhão contínua (&#39;habita&#39;) com Deus, encontrando abrigo contra o medo noturno e os perigos do dia.&quot;,
+
+        teachings: [
+
+          &quot;Habitar no abrigo do Altíssimo fala de constância diária, não de visita apressada.&quot;,
+
+          &quot;As imagens de &#39;asas&#39;, &#39;escudo&#39; e &#39;fortaleza&#39; combinam ternura materna e proteção firme.&quot;,
+
+          &quot;Nos versículos finais, Deus promete estar &#39;com ele na angústia&#39; — presença real mesmo nas lutas.&quot;
+
+        ],
+
+        applications: [
+
+          &quot;Transforme os versículos 1 e 2 em sua primeira oração ao acordar nesta semana.&quot;,
+
+          &quot;Troque pensamentos de medo por uma declaração consciente de confiança em Deus.&quot;
+
+        ],
+
+        questions: [
+
+          &quot;Qual é a diferença prática entre &#39;visitar&#39; Deus no desespero e &#39;habitar&#39; na Sua presença?&quot;,
+
+          &quot;Qual imagem deste Salmo (asas, escudo, refúgio) mais fala ao seu coração hoje?&quot;
+
+        ],
+
+        prayer: &quot;Deus Altíssimo, coloco minha vida, minha família e meus caminhos sob o Teu abrigo. Livra-me do medo paralisante e ensina-me a habitar em Ti todos os dias. Amém.&quot;,
+
+        references: [&quot;Mateus 4:6&quot;, &quot;Lucas 13:34&quot;, &quot;Salmo 121:7-8&quot;],
+
+        verses: [
+
+          { text: &quot;Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará.&quot;, note: &quot;&#39;Habitar&#39; indica permanência. A sombra, no deserto bíblico, era sinônimo de alívio vital e proteção.&quot; },
+
+          { text: &quot;Direi do Senhor: Ele é o meu Deus, o meu refúgio, a minha fortaleza, e nele confiarei.&quot;, note: &quot;A fé se torna pessoal: não basta saber sobre o refúgio, é preciso declarar confiança nele.&quot; },
+
+          { text: &quot;Ele te cobrirá com as suas penas, e debaixo das suas asas te confiarás; a sua verdade será o teu escudo e broquel.&quot;, note: &quot;Uma das metáforas mais ternas da Bíblia: Deus como ave que protege os filhotes sob as asas.&quot; },
+
+          { text: &quot;Não terás medo do terror de noite, nem da seta que voa de dia.&quot;, note: &quot;Cobre tanto os medos invisíveis da madrugada quanto os desafios concretos do dia a dia.&quot; },
+
+          { text: &quot;Porque tu, ó Senhor, és o meu refúgio. No Altíssimo fizeste a tua habitação.&quot;, note: &quot;O centro do salmo reforça que a segurança está na escolha diária de confiar em Deus.&quot; },
+
+          { text: &quot;Porque aos seus anjos dará ordem a teu respeito, para te guardarem em todos os teus caminhos.&quot;, note: &quot;Promessa de cuidado providencial ao longo da caminhada fiel (não para imprudência, como Jesus lembrou em Mt 4).&quot; },
+
+          { text: &quot;Ele me invocará, e eu lhe responderei; estarei com ele na angústia; dela o retirarei e o glorificarei.&quot;, note: &quot;Aqui a voz muda para o próprio Deus falando: Ele não promete ausência de angústia, mas presença e livramento nela.&quot; }
+
+        ]
+
+      },
+
+      121: {
+
+        title: &quot;O Socorro que Vem do Alto&quot;,
+
+        themes: [&quot;Proteção&quot;, &quot;Esperança&quot;, &quot;Medo&quot;, &quot;Família&quot;],
+
+        author: &quot;Anônimo&quot;,
+
+        genre: &quot;Cântico de Romagem&quot;,
+
+        context: &quot;Parte dos Cânticos de Romagem (Salmos 120 a 134), cantados pelos peregrinos enquanto subiam pelas estradas montanhosas até Jerusalém — caminhos longos, quentes de dia, frios à noite e cercados de riscos.&quot;,
+
+        overview: &quot;Um diálogo encorajador que lembra o viajante cansado de que o Guarda de Israel nunca cochila, cuidando da entrada e da saída em cada fase da vida.&quot;,
+
+        teachings: [
+
+          &quot;Olhar acima dos problemas (&#39;montes&#39;) nos reconecta ao Criador dos céus e da terra.&quot;,
+
+          &quot;Podemos descansar à noite porque Deus não dorme nem perde o controle.&quot;,
+
+          &quot;O cuidado de Deus abrange tanto os grandes momentos quanto o ir e vir cotidiano.&quot;
+
+        ],
+
+        applications: [
+
+          &quot;Ao sair de casa ou começar o trabalho hoje, ore o versículo 8 (&#39;guarda a minha entrada e saída&#39;).&quot;,
+
+          &quot;Lembre-se antes de dormir: você pode descansar porque Deus continua acordado.&quot;
+
+        ],
+
+        questions: [
+
+          &quot;Para onde você costuma olhar primeiro quando precisa de socorro?&quot;,
+
+          &quot;Que preocupação você pode soltar hoje sabendo que o Guarda de Israel não dorme?&quot;
+
+        ],
+
+        prayer: &quot;Criador dos céus e da terra, ergo meus olhos para Ti. Guarda minha entrada e minha saída hoje, protege minha família e renova minhas forças no caminho. Amém.&quot;,
+
+        references: [&quot;Isaías 40:28-31&quot;, &quot;Salmo 127:1&quot;, &quot;Mateus 28:20&quot;],
+
+        verses: [
+
+          { text: &quot;Levantarei os meus olhos para os montes, de onde vem o meu socorro.&quot;, note: &quot;Os montes traziam tanto o cansaço da subida quanto o medo de perigos no caminho — gerando a pergunta: de onde virá ajuda?&quot; },
+
+          { text: &quot;O meu socorro vem do Senhor que fez o céu e a terra.&quot;, note: &quot;A resposta eleva o olhar acima dos próprios montes: quem ajuda é o Criador de tudo.&quot; },
+
+          { text: &quot;Não deixará vacilar o teu pé; aquele que te guarda não tosquenejará.&quot;, note: &quot;Em trilhas íngremes, um passo em falso era grave. Deus firma os passos do peregrino.&quot; },
+
+          { text: &quot;Eis que não tosquenejará nem dormirá o guarda de Israel.&quot;, note: &quot;Diferente dos sentinelas humanos que se cansam, a vigilância de Deus é ininterrupta.&quot; },
+
+          { text: &quot;O Senhor é quem te guarda; o Senhor é a tua sombra à tua direita.&quot;, note: &quot;Estar &#39;à direita&#39; era a posição do protetor e aliado mais próximo.&quot; },
+
+          { text: &quot;O sol não te molestará de dia nem a lua de noite.&quot;, note: &quot;Linguagem poética (merismo) significando proteção integral, 24 horas por dia.&quot; },
+
+          { text: &quot;O Senhor te guardará de todo o mal; guardará a tua alma.&quot;, note: &quot;O cuidado alcança o mais profundo do ser (&#39;a tua alma&#39;), preservando a vida e a fé.&quot; },
+
+          { text: &quot;O Senhor guardará a tua entrada e a tua saída, desde agora e para sempre.&quot;, note: &quot;&#39;Entrada e saída&#39; resume toda a rotina diária — do começo ao fim de cada jornada.&quot; }
+
+        ]
+
+      }
+
+    };
+
+
+
+    // Thematic mapping for all 150 Psalms so every chapter is organized cleanly
+
+    const THEME_CYCLE = THEMES.map(t =&gt; t.name);
+
+    const PSALMS_150 = Array.from({ length: 150 }, (_, i) =&gt; {
+
+      const num = i + 1;
+
+      if (FULL_STUDIES[num]) {
+
+        return {
+
+          id: num,
+
+          ready: true,
+
+          title: FULL_STUDIES[num].title,
+
+          themes: FULL_STUDIES[num].themes,
+
+          author: FULL_STUDIES[num].author,
+
+          genre: FULL_STUDIES[num].genre
+
+        };
+
+      }
+
+      const primaryTheme = THEME_CYCLE[i % THEME_CYCLE.length];
+
+      return {
+
+        id: num,
+
+        ready: false,
+
+        title: `Salmo ${num}`,
+
+        themes: [primaryTheme],
+
+        author: &quot;Em catalogação&quot;,
+
+        genre: &quot;Estudo em produção&quot;
+
+      };
+
+    });
+
+
+
+    const STORAGE_KEY = &quot;salmos_mvp_state_v1&quot;;
+
+    const state = {
+
+      view: &quot;home&quot;,
+
+      activePsalmId: 23,
+
+      libSearch: &quot;&quot;,
+
+      libTheme: &quot;Todos&quot;,
+
+      onlyReady: false,
+
+      authMode: &quot;login&quot;,
+
+      speaking: false,
+
+      user: null,
+
+      favoriteChapters: [],
+
+      favoriteVerses: [],
+
+      notes: {}
+
+    };
+
+
+
+    function loadState() {
+
+      try {
+
+        const raw = localStorage.getItem(STORAGE_KEY);
+
+        if (!raw) return;
+
+        const data = JSON.parse(raw);
+
+        if (data.user) state.user = data.user;
+
+        if (Array.isArray(data.favoriteChapters)) state.favoriteChapters = data.favoriteChapters;
+
+        if (Array.isArray(data.favoriteVerses)) state.favoriteVerses = data.favoriteVerses;
+
+        if (data.notes &amp;&amp; typeof data.notes === &quot;object&quot;) state.notes = data.notes;
+
+      } catch (e) {}
+
+    }
+
+
+
+    function saveState() {
+
+      try {
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+
+          user: state.user,
+
+          favoriteChapters: state.favoriteChapters,
+
+          favoriteVerses: state.favoriteVerses,
+
+          notes: state.notes
+
+        }));
+
+      } catch (e) {}
+
+    }
+
+
+
+    let toastTimer = null;
+
+    function showToast(msg) {
+
+      const t = document.getElementById(&quot;toast&quot;);
+
+      t.textContent = msg;
+
+      t.classList.remove(&quot;hidden&quot;);
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() =&gt; t.classList.add(&quot;hidden&quot;), 2600);
+
+    }
+
+
+
+    function stopSpeech() {
+
+      if (&quot;speechSynthesis&quot; in window) {
+
+        try { window.speechSynthesis.cancel(); } catch (e) {}
+
+      }
+
+      state.speaking = false;
+
+      updateSpeechBtn();
+
+    }
+
+
+
+    function updateSpeechBtn() {
+
+      const label = document.getElementById(&quot;psalmSpeechLabel&quot;);
+
+      const icon = document.getElementById(&quot;psalmSpeechIcon&quot;);
+
+      if (!label || !icon) return;
+
+      label.textContent = state.speaking ? &quot;Parar Áudio&quot; : &quot;Ouvir Salmo&quot;;
+
+      icon.setAttribute(&quot;data-lucide&quot;, state.speaking ? &quot;square&quot; : &quot;volume-2&quot;);
+
+      if (window.lucide) lucide.createIcons();
+
+    }
+
+
+
+    function toggleSpeech() {
+
+      const study = FULL_STUDIES[state.activePsalmId];
+
+      if (!study) {
+
+        showToast(&quot;Áudio disponível para os estudos completos do lote inicial.&quot;);
+
+        return;
+
+      }
+
+      if (!(&quot;speechSynthesis&quot; in window)) {
+
+        showToast(&quot;Leitura em voz alta não disponível neste navegador.&quot;);
+
+        return;
+
+      }
+
+      if (state.speaking) {
+
+        stopSpeech();
+
+        return;
+
+      }
+
+      const text = `Salmo ${state.activePsalmId}. ${study.title}. ` + study.verses.map(v =&gt; v.text).join(&quot; &quot;);
+
+      const utter = new SpeechSynthesisUtterance(text);
+
+      utter.lang = &quot;pt-BR&quot;;
+
+      utter.rate = 0.94;
+
+      utter.onend = () =&gt; { state.speaking = false; updateSpeechBtn(); };
+
+      utter.onerror = () =&gt; { state.speaking = false; updateSpeechBtn(); };
+
+      state.speaking = true;
+
+      updateSpeechBtn();
+
+      window.speechSynthesis.cancel();
+
+      window.speechSynthesis.speak(utter);
+
+    }
+
+
+
+    function escapeHtml(str) {
+
+      return String(str)
+
+        .replace(/&amp;/g, &quot;&amp;amp;&quot;)
+
+        .replace(/&lt;/g, &quot;&amp;lt;&quot;)
+
+        .replace(/&gt;/g, &quot;&amp;gt;&quot;)
+
+        .replace(/&quot;/g, &quot;&amp;quot;&quot;);
+
+    }
+
+
+
+    function setView(viewName) {
+
+      stopSpeech();
+
+      state.view = viewName;
+
+      document.getElementById(&quot;mobileMenu&quot;).classList.add(&quot;hidden&quot;);
+
+      renderAll();
+
+      window.scrollTo({ top: 0, behavior: &quot;smooth&quot; });
+
+    }
+
+
+
+    function openPsalm(id) {
+
+      stopSpeech();
+
+      state.activePsalmId = id;
+
+      state.view = &quot;psalm&quot;;
+
+      renderAll();
+
+      window.scrollTo({ top: 0, behavior: &quot;smooth&quot; });
+
+    }
+
+
+
+    function renderNav() {
+
+      document.querySelectorAll(&quot;.nav-btn&quot;).forEach(btn =&gt; {
+
+        const isCurrent = btn.dataset.nav === state.view || (state.view === &quot;psalm&quot; &amp;&amp; btn.dataset.nav === &quot;library&quot;);
+
+        btn.classList.toggle(&quot;nav-active&quot;, isCurrent);
+
+      });
+
+      const accLabel = document.getElementById(&quot;accountNavLabel&quot;);
+
+      accLabel.textContent = state.user ? state.user.name.split(&quot; &quot;)[0] : &quot;Entrar&quot;;
+
+    }
+
+
+
+    function renderHome() {
+
+      const grid = document.getElementById(&quot;homeThemesGrid&quot;);
+
+      grid.innerHTML = THEMES.slice(0, 8).map(t =&gt; `
+
+        &lt;button type=&quot;button&quot; data-filter-theme=&quot;${t.name}&quot; class=&quot;surface-card rounded-2xl p-4 text-left hover:shadow-sm transition group space-y-1.5&quot;&gt;
+
+          &lt;div class=&quot;flex items-center justify-between&quot;&gt;
+
+            &lt;span class=&quot;w-8 h-8 rounded-lg surface-sand flex items-center justify-center&quot; style=&quot;color: var(--green-moss);&quot;&gt;
+
+              &lt;i data-lucide=&quot;${t.icon}&quot; class=&quot;w-4 h-4&quot;&gt;&lt;/i&gt;
+
+            &lt;/span&gt;
+
+            &lt;i data-lucide=&quot;arrow-up-right&quot; class=&quot;w-3.5 h-3.5 opacity-40 group-hover:opacity-100 transition&quot;&gt;&lt;/i&gt;
+
+          &lt;/div&gt;
+
+          &lt;span class=&quot;font-semibold text-sm block&quot; style=&quot;color: var(--green-dark);&quot;&gt;${t.name}&lt;/span&gt;
+
+          &lt;span class=&quot;text-xs block leading-snug&quot; style=&quot;color: var(--text-muted);&quot;&gt;${t.desc}&lt;/span&gt;
+
+        &lt;/button&gt;
+
+      `).join(&quot;&quot;);
+
+    }
+
+
+
+    function renderLibrary() {
+
+      const pills = document.getElementById(&quot;libThemePills&quot;);
+
+      const allThemes = [&quot;Todos&quot;, ...THEMES.map(t =&gt; t.name)];
+
+      pills.innerHTML = allThemes.map(t =&gt; {
+
+        const active = state.libTheme === t;
+
+        return `
+
+          &lt;button
+
+            type=&quot;button&quot;
+
+            data-lib-theme=&quot;${t}&quot;
+
+            class=&quot;px-3 py-1.5 rounded-full text-xs font-medium border transition&quot;
+
+            style=&quot;${active
+
+              ? &#39;background-color: var(--green-moss); color: #FFFFFF; border-color: var(--green-moss);&#39;
+
+              : &#39;background-color: var(--bg-card); color: var(--text-main); border-color: var(--border-soft);&#39;}&quot;
+
+          &gt;
+
+            ${t}
+
+          &lt;/button&gt;
+
+        `;
+
+      }).join(&quot;&quot;);
+
+
+
+      const q = state.libSearch.trim().toLowerCase();
+
+      const filtered = PSALMS_150.filter(p =&gt; {
+
+        if (state.onlyReady &amp;&amp; !p.ready) return false;
+
+        if (state.libTheme !== &quot;Todos&quot; &amp;&amp; !p.themes.includes(state.libTheme)) return false;
+
+        if (!q) return true;
+
+        const full = FULL_STUDIES[p.id];
+
+        const hay = `salmo ${p.id} ${p.title} ${p.themes.join(&quot; &quot;)} ${full ? full.overview : &quot;&quot;}`.toLowerCase();
+
+        return hay.includes(q);
+
+      });
+
+
+
+      document.getElementById(&quot;libCountText&quot;).textContent =
+
+        `Exibindo ${filtered.length} de 150 Salmos (${filtered.filter(x =&gt; x.ready).length} com estudo completo disponível no MVP).`;
+
+
+
+      const grid = document.getElementById(&quot;libGrid&quot;);
+
+      if (filtered.length === 0) {
+
+        grid.innerHTML = `
+
+          &lt;div class=&quot;col-span-full surface-card rounded-2xl p-8 text-center space-y-2&quot;&gt;
+
+            &lt;p class=&quot;font-serif-brand text-lg&quot;&gt;Nenhum Salmo encontrado para esse filtro.&lt;/p&gt;
+
+            &lt;p class=&quot;text-xs&quot; style=&quot;color: var(--text-muted);&quot;&gt;Tente buscar por número (1 a 150) ou selecione &quot;Todos&quot;.&lt;/p&gt;
+
+          &lt;/div&gt;
+
+        `;
+
+        return;
+
+      }
+
+
+
+      grid.innerHTML = filtered.map(p =&gt; {
+
+        const isFav = state.favoriteChapters.includes(p.id);
+
+        return `
+
+          &lt;button type=&quot;button&quot; data-open-psalm=&quot;${p.id}&quot; class=&quot;surface-card rounded-2xl p-4 text-left hover:shadow-sm transition flex flex-col justify-between gap-3&quot;&gt;
+
+            &lt;div class=&quot;space-y-1.5&quot;&gt;
+
+              &lt;div class=&quot;flex items-center justify-between gap-2&quot;&gt;
+
+                &lt;span class=&quot;text-xs font-semibold px-2.5 py-0.5 rounded-full&quot; style=&quot;${p.ready ? &#39;background-color: var(--green-moss); color: #FFFFFF;&#39; : &#39;background-color: var(--bg-sand); color: var(--text-muted);&#39;}&quot;&gt;
+
+                  Salmo ${p.id}
+
+                &lt;/span&gt;
+
+                &lt;span class=&quot;text-[11px] font-medium&quot; style=&quot;color: ${p.ready ? &#39;var(--gold)&#39; : &#39;var(--text-muted)&#39;};&quot;&gt;
+
+                  ${p.ready ? &#39;Estudo completo&#39; : &#39;Em produção&#39;}
+
+                &lt;/span&gt;
+
+              &lt;/div&gt;
+
+              &lt;h3 class=&quot;font-serif-brand text-base font-medium&quot; style=&quot;color: var(--green-dark);&quot;&gt;${p.title}&lt;/h3&gt;
+
+              &lt;p class=&quot;text-xs&quot; style=&quot;color: var(--text-muted);&quot;&gt;${p.themes.join(&quot; • &quot;)}&lt;/p&gt;
+
+            &lt;/div&gt;
+
+            &lt;div class=&quot;flex items-center justify-between pt-2 border-t text-xs&quot; style=&quot;border-color: var(--border-soft); color: var(--text-muted);&quot;&gt;
+
+              &lt;span&gt;${isFav ? &#39;★ Favorito&#39; : p.genre}&lt;/span&gt;
+
+              &lt;span class=&quot;font-semibold&quot; style=&quot;color: var(--green-moss);&quot;&gt;Abrir →&lt;/span&gt;
+
+            &lt;/div&gt;
+
+          &lt;/button&gt;
+
+        `;
+
+      }).join(&quot;&quot;);
+
+    }
+
+
+
+    function renderPsalmDetail() {
+
+      const id = state.activePsalmId;
+
+      const item = PSALMS_150.find(p =&gt; p.id === id) || PSALMS_150[22];
+
+      const study = FULL_STUDIES[id];
+
+      const container = document.getElementById(&quot;psalmDetailContent&quot;);
+
+
+
+      const isFav = state.favoriteChapters.includes(id);
+
+      document.getElementById(&quot;psalmFavLabel&quot;).textContent = isFav ? &quot;Salvo nos Favoritos&quot; : &quot;Salvar nos Favoritos&quot;;
+
+      document.getElementById(&quot;psalmFavIcon&quot;).setAttribute(&quot;data-lucide&quot;, isFav ? &quot;bookmark-check&quot; : &quot;bookmark&quot;);
+
+
+
+      if (!study) {
+
+        container.innerHTML = `
+
+          &lt;div class=&quot;surface-card rounded-3xl p-8 sm:p-10 text-center max-w-2xl mx-auto space-y-4&quot;&gt;
+
+            &lt;span class=&quot;inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold surface-sand&quot; style=&quot;color: var(--gold);&quot;&gt;
+
+              &lt;i data-lucide=&quot;clock&quot; class=&quot;w-3.5 h-3.5&quot;&gt;&lt;/i&gt;
+
+              &lt;span&gt;Capítulo catalogado • Estudo em produção&lt;/span&gt;
+
+            &lt;/span&gt;
+
+            &lt;h1 class=&quot;font-serif-brand text-3xl font-medium&quot; style=&quot;color: var(--green-dark);&quot;&gt;Salmo ${id}&lt;/h1&gt;
+
+            &lt;p class=&quot;text-sm leading-relaxed&quot; style=&quot;color: var(--text-muted);&quot;&gt;
+
+              O estudo aprofundado versículo por versículo do &lt;strong&gt;Salmo ${id}&lt;/strong&gt; (tema inicial: &lt;strong&gt;${item.themes[0]}&lt;/strong&gt;) ainda não foi publicado. Como prioridade de qualidade teológica e histórica, cada capítulo é revisado antes de ir ao ar nos lotes semanais da Fase 7.
+
+            &lt;/p&gt;
+
+            &lt;div class=&quot;pt-2 flex flex-wrap justify-center gap-2&quot;&gt;
+
+              &lt;button type=&quot;button&quot; data-open-psalm=&quot;23&quot; class=&quot;btn-primary px-4 py-2 rounded-xl text-xs font-semibold&quot;&gt;Ler Salmo 23 (Completo)&lt;/button&gt;
+
+              &lt;button type=&quot;button&quot; data-open-psalm=&quot;91&quot; class=&quot;btn-outline px-4 py-2 rounded-xl text-xs font-semibold&quot;&gt;Ler Salmo 91 (Completo)&lt;/button&gt;
+
+              &lt;button type=&quot;button&quot; data-open-psalm=&quot;121&quot; class=&quot;btn-outline px-4 py-2 rounded-xl text-xs font-semibold&quot;&gt;Ler Salmo 121 (Completo)&lt;/button&gt;
+
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+
+        `;
+
+        if (window.lucide) lucide.createIcons();
+
+        return;
+
+      }
+
+
+
+      const savedNote = state.notes[id] || &quot;&quot;;
+
+      container.innerHTML = `
+
+        &lt;div class=&quot;grid grid-cols-1 lg:grid-cols-12 gap-6 items-start&quot;&gt;
+
+          &lt;!-- Left: Text + Verse by Verse --&gt;
+
+          &lt;div class=&quot;lg:col-span-7 space-y-6&quot;&gt;
+
+            &lt;article class=&quot;surface-card rounded-3xl p-6 sm:p-8 space-y-5&quot;&gt;
+
+              &lt;div class=&quot;space-y-2 border-b pb-5&quot; style=&quot;border-color: var(--border-soft);&quot;&gt;
+
+                &lt;div class=&quot;flex flex-wrap items-center gap-2 text-xs&quot;&gt;
+
+                  ${study.themes.map(t =&gt; `&lt;span class=&quot;px-2.5 py-0.5 rounded-full surface-sand font-medium&quot; style=&quot;color: var(--green-moss);&quot;&gt;${t}&lt;/span&gt;`).join(&quot;&quot;)}
+
+                  &lt;span style=&quot;color: var(--text-muted);&quot;&gt;${study.genre} • Autor: ${study.author}&lt;/span&gt;
+
+                &lt;/div&gt;
+
+                &lt;h1 class=&quot;font-serif-brand text-2xl sm:text-4xl font-medium&quot; style=&quot;color: var(--green-dark);&quot;&gt;Salmo ${id} — ${study.title}&lt;/h1&gt;
+
+                &lt;p class=&quot;text-xs&quot; style=&quot;color: var(--text-muted);&quot;&gt;Clique em qualquer versículo para destacar e salvar nos seus favoritos.&lt;/p&gt;
+
+              &lt;/div&gt;
+
+
+
+              &lt;div class=&quot;space-y-3&quot;&gt;
+
+                ${study.verses.map((v, idx) =&gt; {
+
+                  const key = `${id}:${idx + 1}`;
+
+                  const faved = state.favoriteVerses.some(fv =&gt; fv.key === key);
+
+                  return `
+
+                    &lt;div data-verse-fav=&quot;${key}&quot; class=&quot;verse-row ${faved ? &#39;favorited&#39; : &#39;&#39;} rounded-xl p-3 cursor-pointer space-y-1.5&quot;&gt;
+
+                      &lt;p class=&quot;font-serif-brand text-base sm:text-lg leading-relaxed&quot;&gt;
+
+                        &lt;span class=&quot;font-sans text-xs font-bold mr-2&quot; style=&quot;color: var(--gold);&quot;&gt;${idx + 1}&lt;/span&gt;${v.text}
+
+                      &lt;/p&gt;
+
+                      &lt;p class=&quot;text-xs sm:text-sm pl-5 leading-relaxed&quot; style=&quot;color: var(--text-muted);&quot;&gt;
+
+                        &lt;strong style=&quot;color: var(--green-moss);&quot;&gt;Estudo:&lt;/strong&gt; ${v.note}
+
+                      &lt;/p&gt;
+
+                    &lt;/div&gt;
+
+                  `;
+
+                }).join(&quot;&quot;)}
+
+              &lt;/div&gt;
+
+            &lt;/article&gt;
+
+          &lt;/div&gt;
+
+
+
+          &lt;!-- Right: Structured Study Panel --&gt;
+
+          &lt;aside class=&quot;lg:col-span-5 space-y-4&quot;&gt;
+
+            &lt;div class=&quot;surface-card rounded-3xl p-6 space-y-4 text-sm&quot;&gt;
+
+              &lt;div&gt;
+
+                &lt;h2 class=&quot;text-xs font-semibold uppercase tracking-wider mb-1.5&quot; style=&quot;color: var(--gold);&quot;&gt;Contexto Histórico&lt;/h2&gt;
+
+                &lt;p class=&quot;leading-relaxed&quot; style=&quot;color: var(--text-muted);&quot;&gt;${study.context}&lt;/p&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class=&quot;pt-3 border-t&quot; style=&quot;border-color: var(--border-soft);&quot;&gt;
+
+                &lt;h2 class=&quot;text-xs font-semibold uppercase tracking-wider mb-1.5&quot; style=&quot;color: var(--gold);&quot;&gt;Explicação Geral&lt;/h2&gt;
+
+                &lt;p class=&quot;leading-relaxed&quot; style=&quot;color: var(--text-muted);&quot;&gt;${study.overview}&lt;/p&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class=&quot;pt-3 border-t&quot; style=&quot;border-color: var(--border-soft);&quot;&gt;
+
+                &lt;h2 class=&quot;text-xs font-semibold uppercase tracking-wider mb-1.5&quot; style=&quot;color: var(--gold);&quot;&gt;Principais Ensinamentos&lt;/h2&gt;
+
+                &lt;ul class=&quot;list-disc pl-5 space-y-1.5&quot; style=&quot;color: var(--text-main);&quot;&gt;
+
+                  ${study.teachings.map(t =&gt; `&lt;li&gt;${t}&lt;/li&gt;`).join(&quot;&quot;)}
+
+                &lt;/ul&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class=&quot;pt-3 border-t&quot; style=&quot;border-color: var(--border-soft);&quot;&gt;
+
+                &lt;h2 class=&quot;text-xs font-semibold uppercase tracking-wider mb-1.5&quot; style=&quot;color: var(--gold);&quot;&gt;Aplicações Práticas&lt;/h2&gt;
+
+                &lt;ul class=&quot;list-disc pl-5 space-y-1.5&quot; style=&quot;color: var(--text-main);&quot;&gt;
+
+                  ${study.applications.map(a =&gt; `&lt;li&gt;${a}&lt;/li&gt;`).join(&quot;&quot;)}
+
+                &lt;/ul&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class=&quot;pt-3 border-t&quot; style=&quot;border-color: var(--border-soft);&quot;&gt;
+
+                &lt;h2 class=&quot;text-xs font-semibold uppercase tracking-wider mb-1.5&quot; style=&quot;color: var(--gold);&quot;&gt;Perguntas para Reflexão&lt;/h2&gt;
+
+                &lt;ul class=&quot;list-disc pl-5 space-y-1.5&quot; style=&quot;color: var(--text-muted);&quot;&gt;
+
+                  ${study.questions.map(q =&gt; `&lt;li&gt;${q}&lt;/li&gt;`).join(&quot;&quot;)}
+
+                &lt;/ul&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class=&quot;surface-sand rounded-2xl p-4 space-y-1&quot;&gt;
+
+                &lt;h2 class=&quot;text-xs font-semibold uppercase tracking-wider&quot; style=&quot;color: var(--green-moss);&quot;&gt;Oração Relacionada&lt;/h2&gt;
+
+                &lt;p class=&quot;font-serif-brand italic text-sm leading-relaxed&quot;&gt;${study.prayer}&lt;/p&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class=&quot;pt-2&quot;&gt;
+
+                &lt;h2 class=&quot;text-xs font-semibold uppercase tracking-wider mb-1.5&quot; style=&quot;color: var(--text-muted);&quot;&gt;Referências Bíblicas&lt;/h2&gt;
+
+                &lt;div class=&quot;flex flex-wrap gap-1.5&quot;&gt;
+
+                  ${study.references.map(r =&gt; `&lt;span class=&quot;px-2.5 py-1 rounded-lg surface-sand text-xs font-medium&quot;&gt;${r}&lt;/span&gt;`).join(&quot;&quot;)}
+
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+
+            &lt;/div&gt;
+
+
+
+            &lt;!-- Personal Reflection Box --&gt;
+
+            &lt;div class=&quot;surface-card rounded-3xl p-6 space-y-3&quot;&gt;
+
+              &lt;div class=&quot;flex items-center justify-between&quot;&gt;
+
+                &lt;h2 class=&quot;font-serif-brand text-lg font-medium&quot; style=&quot;color: var(--green-dark);&quot;&gt;Minhas Reflexões&lt;/h2&gt;
+
+                &lt;span id=&quot;psalmNoteSaved&quot; class=&quot;text-xs&quot; style=&quot;color: var(--text-muted);&quot;&gt;Salvo localmente&lt;/span&gt;
+
+              &lt;/div&gt;
+
+              &lt;textarea
+
+                id=&quot;psalmNoteInput&quot;
+
+                rows=&quot;4&quot;
+
+                placeholder=&quot;Escreva o que este Salmo falou ao seu coração ou sua oração pessoal...&quot;
+
+                class=&quot;w-full p-3 rounded-xl text-sm surface-sand border focus:outline-none focus:ring-2&quot;
+
+                style=&quot;border-color: var(--border-soft); --tw-ring-color: var(--green-moss);&quot;
+
+              &gt;${escapeHtml(savedNote)}&lt;/textarea&gt;
+
+            </div>
+
+          </aside>
+
+        </div>
+
+      `;
+
+
+
+      const noteEl = document.getElementById("psalmNoteInput");
+
+      if (noteEl) {
+
+        noteEl.addEventListener("input", () => {
+
+          state.notes[id] = noteEl.value;
+
+          saveState();
+
+          document.getElementById("psalmNoteSaved").textContent = "Salvo agora";
+
+        });
+
+      }
+
+
+
+      if (window.lucide) lucide.createIcons();
+
+    }
+
+
+
+    function renderThemesCatalog() {
+
+      const grid = document.getElementById("themesCatalogGrid");
+
+      grid.innerHTML = THEMES.map(t => {
+
+        const readyOnes = PSALMS_150.filter(p => p.ready && p.themes.includes(t.name));
+
+        const totalInTheme = PSALMS_150.filter(p => p.themes.includes(t.name)).length;
+
+        return `
+
+          <div class="surface-card rounded-3xl p-6 flex flex-col justify-between gap-4">
+
+            <div class="space-y-2">
+
+              <div class="flex items-center justify-between">
+
+                <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
+
+                  <i data-lucide="${t.icon}" class="w-5 h-5"></i>
+
+                </span>
+
+                <span class="text-xs font-medium" style="color: var(--text-muted);">${totalInTheme} Salmos catalogados</span>
+
+              </div>
+
+              <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">${t.name}</h2>
+
+              <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">${t.desc}</p>
+
+            </div>
+
+
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t" style="border-color: var(--border-soft);">
+
+              <div class="flex flex-wrap gap-1.5">
+
+                ${readyOnes.length > 0
+
+                  ? readyOnes.map(p => `<button type="button" data-open-psalm="${p.id}" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-white" style="background-color: var(--green-moss);">Salmo ${p.id}</button>`).join("")
+
+                  : `<span class="text-xs" style="color: var(--text-muted);">Estudos completos nos próximos lotes</span>`}
+
+              </div>
+
+              <button type="button" data-filter-theme="${t.name}" class="text-xs font-semibold underline underline-offset-4" style="color: var(--gold);">
+
+                Filtrar biblioteca
+
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+    }
+
+
+
+    function renderAccount() {
+
+      const authSec = document.getElementById("authSection");
+
+      const profSec = document.getElementById("profileSection");
+
+      const loggedIn = Boolean(state.user);
+
+      authSec.classList.toggle("hidden", loggedIn);
+
+      profSec.classList.toggle("hidden", !loggedIn);
+
+
+
+      if (!loggedIn) {
+
+        const headingMap = {
+
+          login: "Entrar na sua conta",
+
+          signup: "Criar conta gratuita",
+
+          reset: "Recuperar senha"
+
+        };
+
+        const btnMap = {
+
+          login: "Entrar",
+
+          signup: "Criar conta",
+
+          reset: "Enviar link de recuperação"
+
+        };
+
+        document.getElementById("authHeading").textContent = headingMap[state.authMode];
+
+        document.getElementById("authSubmitBtn").textContent = btnMap[state.authMode];
+
+        document.getElementById("authNameWrap").classList.toggle("hidden", state.authMode !== "signup");
+
+        document.getElementById("authPassWrap").classList.toggle("hidden", state.authMode === "reset");
+
+
+
+        document.querySelectorAll(".auth-tab-btn").forEach(btn => {
+
+          const active = btn.dataset.authMode === state.authMode;
+
+          btn.style.backgroundColor = active ? "var(--bg-card)" : "transparent";
+
+          btn.style.color = active ? "var(--green-dark)" : "var(--text-muted)";
+
+          btn.style.fontWeight = active ? "600" : "500";
+
+        });
+
+        return;
+
+      }
+
+
+
+      document.getElementById("profileAvatar").textContent = state.user.name.charAt(0).toUpperCase();
+
+      document.getElementById("profileName").textContent = state.user.name;
+
+      document.getElementById("profileEmail").textContent = state.user.email;
+
+
+
+      const favList = document.getElementById("profileFavoritesList");
+
+      const items = [];
+
+      state.favoriteChapters.forEach(cid => {
+
+        const p = PSALMS_150.find(x => x.id === cid);
+
+        if (p) items.push(`<div class="surface-sand rounded-xl p-3 flex items-center justify-between text-sm"><span><strong>Salmo ${p.id}</strong> — ${p.title}</span><button type="button" data-open-psalm="${p.id}" class="text-xs font-semibold underline">Abrir</button></div>`);
+
+      });
+
+      state.favoriteVerses.forEach(v => {
+
+        items.push(`<div class="surface-sand rounded-xl p-3 space-y-1 text-sm"><p class="font-serif-brand italic">“${v.text}”</p><div class="flex justify-between text-xs"><span style="color: var(--gold); font-weight:600;">Salmo ${v.key}</span><button type="button" data-open-psalm="${v.psalmId}" class="underline font-medium">Abrir</button></div></div>`);
+
+      });
+
+      favList.innerHTML = items.length > 0
+
+        ? items.join("")
+
+        : `<p class="text-sm" style="color: var(--text-muted);">Você ainda não favoritou Salmos ou versículos. Abra qualquer estudo para salvar aqui.</p>`;
+
+
+
+      const notesList = document.getElementById("profileNotesList");
+
+      const noteEntries = Object.entries(state.notes).filter(([, txt]) => txt && txt.trim());
+
+      notesList.innerHTML = noteEntries.length > 0
+
+        ? noteEntries.map(([pid, txt]) => `
+
+            <div class="surface-sand rounded-xl p-3 space-y-1 text-sm">
+
+              <div class="flex justify-between items-center">
+
+                <strong style="color: var(--green-dark);">Salmo ${pid}</strong>
+
+                <button type="button" data-open-psalm="${pid}" class="text-xs underline font-medium">Editar</button>
+
+              </div>
+
+              <p class="text-xs sm:text-sm" style="color: var(--text-muted);">${escapeHtml(txt)}</p>
+
+            </div>
+
+          `).join("")
+
+        : `<p class="text-sm" style="color: var(--text-muted);">Nenhuma reflexão escrita ainda. Use a caixa "Minhas Reflexões" dentro de qualquer estudo completo.</p>`;
+
+    }
+
+
+
+    function openLegalModal(type) {
+
+      const content = {
+
+        terms: {
+
+          title: "Termos de Uso (Estrutura MVP)",
+
+          body: "<p>A plataforma SALMOS oferece recursos digitais de leitura e estudo bíblico pessoal. Os textos bíblicos utilizados nesta versão baseiam-se em traduções em domínio público (Almeida / Bíblia Livre).</p><p>Os comentários e guias de estudo são originais da plataforma e destinados ao uso pessoal ou de pequenos grupos conforme o plano contratado.</p>"
+
+        },
+
+        privacy: {
+
+          title: "Política de Privacidade e LGPD",
+
+          body: "<p>Nesta versão inicial (MVP local), suas anotações e favoritos ficam salvos apenas no navegador do seu dispositivo.</p><p>Na Fase 6, ao conectarmos o banco de dados Supabase, coletaremos apenas nome e e-mail para autenticação, com criptografia e direito total de exclusão de conta conforme a Lei Geral de Proteção de Dados (LGPD).</p>"
+
+        },
+
+        cancel: {
+
+          title: "Política de Cancelamento",
+
+          body: "<p>Quando os planos pagos forem ativados na Fase 8, você poderá cancelar sua assinatura mensal ou anual a qualquer momento diretamente pelo painel do usuário, sem multas ou burocracia, respeitando também o prazo legal de arrependimento de 7 dias.</p>"
+
+        }
+
+      }[type];
+
+      if (!content) return;
+
+      document.getElementById("modalTitle").textContent = content.title;
+
+      document.getElementById("modalBody").innerHTML = content.body;
+
+      const modal = document.getElementById("infoModal");
+
+      modal.classList.remove("hidden");
+
+      modal.classList.add("flex");
+
+    }
+
+
+
+    function closeModal() {
+
+      const modal = document.getElementById("infoModal");
+
+      modal.classList.add("hidden");
+
+      modal.classList.remove("flex");
+
+    }
+
+
+
+    function renderAll() {
+
+      document.getElementById("viewHome").classList.toggle("hidden", state.view !== "home");
+
+      document.getElementById("viewLibrary").classList.toggle("hidden", state.view !== "library");
+
+      document.getElementById("viewPsalm").classList.toggle("hidden", state.view !== "psalm");
+
+      document.getElementById("viewThemes").classList.toggle("hidden", state.view !== "themes");
+
+      document.getElementById("viewPlans").classList.toggle("hidden", state.view !== "plans");
+
+      document.getElementById("viewAccount").classList.toggle("hidden", state.view !== "account");
+
+
+
+      renderNav();
+
+      if (state.view === "home") renderHome();
+
+      if (state.view === "library") renderLibrary();
+
+      if (state.view === "psalm") renderPsalmDetail();
+
+      if (state.view === "themes") renderThemesCatalog();
+
+      if (state.view === "account") renderAccount();
+
+      if (window.lucide) lucide.createIcons();
+
+    }
+
+
+
+    function bindEvents() {
+
+      document.getElementById("logoHomeBtn").addEventListener("click", () => setView("home"));
+
+      document.getElementById("accountNavBtn").addEventListener("click", () => setView("account"));
+
+      document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+
+        document.getElementById("mobileMenu").classList.toggle("hidden");
+
+      });
+
+
+
+      document.querySelectorAll(".nav-btn").forEach(btn => {
+
+        btn.addEventListener("click", () => setView(btn.dataset.nav));
+
+      });
+
+
+
+      document.getElementById("heroExploreBtn").addEventListener("click", () => setView("library"));
+
+      document.getElementById("heroThemesBtn").addEventListener("click", () => setView("themes"));
+
+      document.getElementById("openDailyPsalmBtn").addEventListener("click", () => openPsalm(23));
+
+      document.getElementById("homeSeeAllThemesBtn").addEventListener("click", () => setView("themes"));
+
+      document.getElementById("homeSeePlansBtn").addEventListener("click", () => setView("plans"));
+
+      document.getElementById("backLibraryBtn").addEventListener("click", () => setView("library"));
+
+
+
+      document.getElementById("libSearchInput").addEventListener("input", (e) => {
+
+        state.libSearch = e.target.value;
+
+        renderLibrary();
+
+      });
+
+
+
+      document.getElementById("onlyReadyToggle").addEventListener("change", (e) => {
+
+        state.onlyReady = e.target.checked;
+
+        renderLibrary();
+
+      });
+
+
+
+      document.getElementById("psalmSpeechBtn").addEventListener("click", toggleSpeech);
+
+
+
+      document.getElementById("psalmFavChapterBtn").addEventListener("click", () => {
+
+        const id = state.activePsalmId;
+
+        const idx = state.favoriteChapters.indexOf(id);
+
+        if (idx >= 0) {
+
+          state.favoriteChapters.splice(idx, 1);
+
+          showToast(`Salmo ${id} removido dos favoritos.`);
+
+        } else {
+
+          state.favoriteChapters.push(id);
+
+          showToast(`Salmo ${id} salvo nos favoritos!`);
+
+        }
+
+        saveState();
+
+        renderPsalmDetail();
+
+      });
+
+
+
+      document.getElementById("prevChapterBtn").addEventListener("click", () => {
+
+        const prev = state.activePsalmId > 1 ? state.activePsalmId - 1 : 150;
+
+        openPsalm(prev);
+
+      });
+
+
+
+      document.getElementById("nextChapterBtn").addEventListener("click", () => {
+
+        const next = state.activePsalmId < 150 ? state.activePsalmId + 1 : 1;
+
+        openPsalm(next);
+
+      });
+
+
+
+      document.querySelectorAll(".auth-tab-btn").forEach(btn => {
+
+        btn.addEventListener("click", () => {
+
+          state.authMode = btn.dataset.authMode;
+
+          renderAccount();
+
+        });
+
+      });
+
+
+
+      document.getElementById("authForm").addEventListener("submit", (e) => {
+
+        e.preventDefault();
+
+        const email = document.getElementById("authEmail").value.trim();
+
+        const name = document.getElementById("authName").value.trim();
+
+        const pass = document.getElementById("authPass").value;
+
+
+
+        if (state.authMode === "reset") {
+
+          showToast(`Simulação MVP: instruções enviadas para ${email}.`);
+
+          state.authMode = "login";
+
+          renderAccount();
+
+          return;
+
+        }
+
+        if (pass.length < 6) {
+
+          showToast("Use uma senha com pelo menos 6 caracteres.");
+
+          return;
+
+        }
+
+        state.user = {
+
+          name: state.authMode === "signup" && name ? name : email.split("@")[0],
+
+          email
+
+        };
+
+        saveState();
+
+        showToast("Bem-vindo(a) à plataforma SALMOS!");
+
+        renderAll();
+
+      });
+
+
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+
+        state.user = null;
+
+        saveState();
+
+        showToast("Você saiu da sua conta.");
+
+        renderAll();
+
+      });
+
+
+
+      document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+
+      document.getElementById("infoModal").addEventListener("click", (e) => {
+
+        if (e.target.id === "infoModal") closeModal();
+
+      });
+
+
+
+      document.addEventListener("click", (e) => {
+
+        const openPsalmBtn = e.target.closest("[data-open-psalm]");
+
+        if (openPsalmBtn) {
+
+          openPsalm(Number(openPsalmBtn.dataset.openPsalm));
+
+          return;
+
+        }
+
+
+
+        const filterThemeBtn = e.target.closest("[data-filter-theme]");
+
+        if (filterThemeBtn) {
+
+          state.libTheme = filterThemeBtn.dataset.filterTheme;
+
+          setView("library");
+
+          return;
+
+        }
+
+
+
+        const libThemeBtn = e.target.closest("[data-lib-theme]");
+
+        if (libThemeBtn) {
+
+          state.libTheme = libThemeBtn.dataset.libTheme;
+
+          renderLibrary();
+
+          return;
+
+        }
+
+
+
+        const verseFavRow = e.target.closest("[data-verse-fav]");
+
+        if (verseFavRow) {
+
+          const key = verseFavRow.dataset.verseFav;
+
+          const [pidStr, vNumStr] = key.split(":");
+
+          const pid = Number(pidStr);
+
+          const vIdx = Number(vNumStr) - 1;
+
+          const study = FULL_STUDIES[pid];
+
+          if (!study || !study.verses[vIdx]) return;
+
+          const existing = state.favoriteVerses.findIndex(v => v.key === key);
+
+          if (existing >= 0) {
+
+            state.favoriteVerses.splice(existing, 1);
+
+            showToast(`Destaque removido (Salmo ${key}).`);
+
+          } else {
+
+            state.favoriteVerses.push({ key, psalmId: pid, text: study.verses[vIdx].text });
+
+            showToast(`Salmo ${key} salvo nos favoritos!`);
+
+          }
+
+          saveState();
+
+          renderPsalmDetail();
+
+          return;
+
+        }
+
+
+
+        const planBtn = e.target.closest(".plan-select-btn");
+
+        if (planBtn) {
+
+          const planName = planBtn.dataset.planSelect;
+
+          if (planName === "Gratuito") {
+
+            state.authMode = "signup";
+
+            setView("account");
+
+          } else {
+
+            showToast(`Plano "${planName}" selecionado — checkout real entra na Fase 8.`);
+
+          }
+
+          return;
+
+        }
+
+
+
+        const legalBtn = e.target.closest(".legal-btn");
+
+        if (legalBtn) {
+
+          openLegalModal(legalBtn.dataset.legal);
+
+        }
+
+      });
+
+    }
+
+
+
+    loadState();
+
+    bindEvents();
+
+    renderAll();
+
+  &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+
