@@ -1717,7 +1717,7 @@
         },
         support: {
           title: "Suporte e Atendimento",
-          body: "<p>Dúvidas sobre sua conta, estudos, sugestões ou planos para igrejas e pequenos grupos? Nossa equipe responde em até 1 dia útil.</p><p><strong>E-mail de atendimento:</strong> atendimento@salmosestudo.com.br</p>"
+          body: "<p>Dúvidas sobre sua conta, estudos, sugestões ou planos para igrejas e pequenos grupos? Fale diretamente conosco pelo WhatsApp:</p><p><a href=\"https://wa.me/5551982991513?text=Ol%C3%A1!%20Vim%20pela%20plataforma%20SALMOS%20e%20gostaria%20de%20atendimento.\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"display:inline-block;margin-top:8px;padding:10px 18px;border-radius:12px;background-color:#2F4538;color:#FFFFFF;font-weight:600;text-decoration:none;\">Falar no WhatsApp: (51) 98299-1513</a></p>"
         }
       }[type];
       if (!content) return;
@@ -1941,8 +1941,12 @@
           if (planName === "Gratuito") {
             state.authMode = "signup";
             setView("account");
+          } else if (planName.includes("Institucional")) {
+            window.open("https://wa.me/5551982991513?text=" + encodeURIComponent("Olá! Tenho interesse nos planos da plataforma SALMOS para igreja ou pequeno grupo."), "_blank", "noopener,noreferrer");
           } else {
-            showToast(`Crie sua conta gratuita para garantir acesso antecipado ao plano ${planName}.`); state.authMode = "signup"; setView("account");
+            showToast(`Crie sua conta gratuita para garantir acesso antecipado ao plano ${planName}.`);
+            state.authMode = "signup";
+            setView("account");
           }
           return;
         }
