@@ -187,16 +187,16 @@
             <!-- Quick Stats -->
             <div class="grid grid-cols-3 gap-3 pt-4 border-t" style="border-color: var(--border-soft);">
               <div>
-                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">150</span>
-                <span class="text-xs" style="color: var(--text-muted);">Capítulos indexados</span>
+                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">12</span>
+                <span class="text-xs" style="color: var(--text-muted);">Estudos completos hoje</span>
               </div>
               <div>
                 <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">11</span>
                 <span class="text-xs" style="color: var(--text-muted);">Temas da vida real</span>
               </div>
               <div>
-                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--gold);">12</span>
-                <span class="text-xs" style="color: var(--text-muted);">Estudos completos (Lotes 1 e 2)</span>
+                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--gold);">100%</span>
+                <span class="text-xs" style="color: var(--text-muted);">Livre de anúncios</span>
               </div>
             </div>
           </div>
@@ -300,6 +300,28 @@
         </div>
       </div>
 
+      <!-- Metodologia e Credibilidade -->
+      <div class="surface-sand rounded-3xl p-6 sm:p-8 border space-y-5" style="border-color: var(--border-soft);">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">Transparência e Compromisso</span>
+          <h2 class="font-serif-brand text-2xl sm:text-3xl font-medium mt-1" style="color: var(--green-dark);">Como os estudos da SALMOS são produzidos</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+          <div class="space-y-1.5">
+            <h3 class="font-semibold" style="color: var(--green-dark);">Fidelidade ao texto bíblico</h3>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Utilizamos texto em português baseado na tradução de domínio público (tradição de Almeida / Bíblia Livre), respeitando o contexto histórico e literário de cada Salmo, sem viés polêmico.</p>
+          </div>
+          <div class="space-y-1.5">
+            <h3 class="font-semibold" style="color: var(--green-dark);">Privacidade real (LGPD)</h3>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Suas anotações, favoritos e orações ficam vinculados exclusivamente à sua conta com criptografia e isolamento de acesso. Ninguém além de você lê o seu diário espiritual.</p>
+          </div>
+          <div class="space-y-1.5">
+            <h3 class="font-semibold" style="color: var(--green-dark);">Biblioteca em expansão semanal</h3>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Em vez de publicar textos genéricos às pressas, revisamos cada capítulo em profundidade. Novos estudos completos entram todas as semanas rumo aos 150 Salmos.</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Prévia de Planos na Home -->
       <div class="surface-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="space-y-2 max-w-xl">
@@ -317,7 +339,7 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Biblioteca dos 150 Salmos</h1>
-          <p class="text-sm mt-1" style="color: var(--text-muted);">Pesquise por número (1 a 150), palavra-chave ou tema. Estudos completos estão destacados em verde.</p>
+          <p class="text-sm mt-1" style="color: var(--text-muted);">Comece pelos 12 estudos completos disponíveis agora ou desmarque o filtro para ver o cronograma dos 150 capítulos.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="relative w-full sm:w-64">
@@ -331,8 +353,8 @@
             />
           </div>
           <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl surface-card text-xs font-medium cursor-pointer select-none">
-            <input id="onlyReadyToggle" type="checkbox" class="rounded accent-emerald-800" />
-            <span>Só estudos completos (12)</span>
+            <input id="onlyReadyToggle" type="checkbox" checked class="rounded accent-emerald-800" />
+            <span>Estudos disponíveis agora (12)</span>
           </label>
         </div>
       </div>
@@ -397,7 +419,7 @@
     <section id="viewPlans" class="hidden space-y-8 fade-in">
       <div class="max-w-2xl space-y-2">
         <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Planos da Plataforma SALMOS</h1>
-        <p class="text-sm sm:text-base" style="color: var(--text-muted);">Comece no plano gratuito e desbloqueie a jornada completa quando quiser. (O checkout real via Mercado Pago será conectado na Fase 8.)</p>
+        <p class="text-sm sm:text-base" style="color: var(--text-muted);">Comece gratuitamente e desbloqueie a jornada completa quando fizer sentido para você. Pagamento seguro via Pix ou cartão e garantia incondicional de 7 dias.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
@@ -471,11 +493,51 @@
       <div class="surface-sand rounded-2xl p-5 border flex flex-col sm:flex-row sm:items-center justify-between gap-4" style="border-color: var(--border-soft);">
         <div>
           <h3 class="font-semibold text-base" style="color: var(--green-dark);">Planos para Igrejas, Pequenos Grupos e Professores</h3>
-          <p class="text-xs sm:text-sm mt-0.5" style="color: var(--text-muted);">Licenças coletivas com guias de discussão para células e escolas bíblicas (disponível na Fase 10).</p>
+          <p class="text-xs sm:text-sm mt-0.5" style="color: var(--text-muted);">Licenças coletivas com guias de discussão para células, pequenos grupos e escolas bíblicas.</p>
         </div>
         <button data-plan-select="Interesse Institucional (Igreja/Grupo)" type="button" class="plan-select-btn btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shrink-0">
-          Registrar interesse
+          Solicitar proposta
         </button>
+      </div>
+
+      <!-- Garantia de 7 dias -->
+      <div class="surface-card rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <span class="w-12 h-12 rounded-2xl surface-sand flex items-center justify-center shrink-0" style="color: var(--green-moss);">
+          <i data-lucide="shield-check" class="w-6 h-6"></i>
+        </span>
+        <div class="space-y-1">
+          <h3 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Garantia incondicional de 7 dias</h3>
+          <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+            Experimente os planos pagos sem risco. Se dentro de 7 dias você sentir que a plataforma não ajudou na sua rotina de estudo, devolvemos 100% do valor pago sem burocracia.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="space-y-4">
+        <h2 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Perguntas Frequentes</h2>
+        <div class="space-y-2.5">
+          <details class="surface-card rounded-2xl p-4 text-sm">
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Preciso baixar algum aplicativo no celular?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Não. A plataforma funciona diretamente no navegador do seu celular, tablet ou computador, sem ocupar espaço de memória.</p>
+          </details>
+          <details class="surface-card rounded-2xl p-4 text-sm">
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Minhas anotações e orações ficam privadas?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Sim. Todos os favoritos e reflexões ficam protegidos por login seguro e políticas de isolamento no banco de dados conforme a LGPD — somente você consegue ler o que escreve.</p>
+          </details>
+          <details class="surface-card rounded-2xl p-4 text-sm">
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Qual tradução bíblica é utilizada nos estudos?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Utilizamos texto bíblico em português baseado na tradição de João Ferreira de Almeida em domínio público (Bíblia Livre), unindo fidelidade histórica e clareza na leitura.</p>
+          </details>
+          <details class="surface-card rounded-2xl p-4 text-sm">
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Como funciona o cancelamento?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Você pode cancelar sua assinatura a qualquer momento sem multas ou taxas escondidas. Além disso, todas as compras têm garantia integral de 7 dias.</p>
+          </details>
+          <details class="surface-card rounded-2xl p-4 text-sm">
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Com que frequência entram novos estudos dos 150 Salmos?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Novos estudos completos versículo por versículo são adicionados semanalmente até completar todos os 150 capítulos, sem custo extra para quem já é membro.</p>
+          </details>
+        </div>
       </div>
     </section>
 
@@ -555,6 +617,7 @@
         <button data-legal="terms" type="button" class="legal-btn underline hover:opacity-80">Termos de Uso</button>
         <button data-legal="privacy" type="button" class="legal-btn underline hover:opacity-80">Privacidade e LGPD</button>
         <button data-legal="cancel" type="button" class="legal-btn underline hover:opacity-80">Cancelamento</button>
+        <button data-legal="support" type="button" class="legal-btn underline hover:opacity-80">Suporte e Contato</button>
       </div>
     </div>
   </footer>
@@ -1048,7 +1111,7 @@
       activePsalmId: 23,
       libSearch: "",
       libTheme: "Todos",
-      onlyReady: false,
+      onlyReady: true,
       authMode: "login",
       authLoading: false,
       speaking: false,
@@ -1356,7 +1419,7 @@
       });
 
       document.getElementById("libCountText").textContent =
-        `Exibindo ${filtered.length} de 150 Salmos (${filtered.filter(x => x.ready).length} com estudo completo disponível no MVP).`;
+        `Exibindo ${filtered.length} Salmos (${filtered.filter(x => x.ready).length} com estudo completo disponível agora).`;
 
       const grid = document.getElementById("libGrid");
       if (filtered.length === 0) {
@@ -1413,7 +1476,7 @@
             </span>
             <h1 class="font-serif-brand text-3xl font-medium" style="color: var(--green-dark);">Salmo ${id}</h1>
             <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
-              O estudo aprofundado versículo por versículo do <strong>Salmo ${id}</strong> (tema inicial: <strong>${item.themes[0]}</strong>) ainda não foi publicado. Como prioridade de qualidade teológica e histórica, cada capítulo é revisado antes de ir ao ar nos lotes semanais da Fase 7.
+              O estudo aprofundado versículo por versículo do <strong>Salmo ${id}</strong> (tema inicial: <strong>${item.themes[0]}</strong>) ainda não foi publicado. Como prioridade de qualidade teológica e histórica, cada capítulo passa por revisão histórica e comentário versículo por versículo antes de ser publicado nas nossas atualizações semanais.
             </p>
             <div class="pt-2 flex flex-wrap justify-center gap-2">
               <button type="button" data-open-psalm="23" class="btn-primary px-4 py-2 rounded-xl text-xs font-semibold">Ler Salmo 23 (Completo)</button>
@@ -1650,7 +1713,11 @@
         },
         cancel: {
           title: "Política de Cancelamento",
-          body: "<p>Quando os planos pagos forem ativados na Fase 8, você poderá cancelar sua assinatura mensal ou anual a qualquer momento diretamente pelo painel do usuário, sem multas ou burocracia, respeitando também o prazo legal de arrependimento de 7 dias.</p>"
+          body: "<p>Você pode cancelar sua assinatura mensal ou anual a qualquer momento sem multas ou fidelidade, além de contar com garantia integral de arrependimento de 7 dias após a compra.</p>"
+        },
+        support: {
+          title: "Suporte e Atendimento",
+          body: "<p>Dúvidas sobre sua conta, estudos, sugestões ou planos para igrejas e pequenos grupos? Nossa equipe responde em até 1 dia útil.</p><p><strong>E-mail de atendimento:</strong> atendimento@salmosestudo.com.br</p>"
         }
       }[type];
       if (!content) return;
@@ -1875,7 +1942,7 @@
             state.authMode = "signup";
             setView("account");
           } else {
-            showToast(`Plano "${planName}" selecionado — checkout real entra na Fase 8.`);
+            showToast(`Crie sua conta gratuita para garantir acesso antecipado ao plano ${planName}.`); state.authMode = "signup"; setView("account");
           }
           return;
         }
