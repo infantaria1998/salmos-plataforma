@@ -4,17 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SALMOS — Estudo Completo dos 150 Salmos | Profundidade e Fé</title>
-  <meta name="description" content="Estude os 150 Salmos da Bíblia versículo por versículo com contexto histórico, aplicações práticas, oração guiada, diário espiritual e cartões compartilháveis." />
-  <meta name="keywords" content="estudo dos salmos, salmo 23 explicado, salmo 91 estudo, salmo 121, devocional diário, estudo bíblico online, 150 salmos" />
+  <meta name="description" content="Não apenas leia os Salmos. Descubra o significado de cada versículo, compreenda o contexto histórico, acompanhe sua jornada espiritual e registre suas orações." />
+  <meta name="keywords" content="estudo dos salmos, salmo 23 explicado, salmo 91 estudo, salmo 121, devocional diário, estudo bíblico online, 150 salmos, plano de leitura salmos" />
   <meta name="author" content="SALMOS — Profundidade e Fé" />
+  <meta name="theme-color" content="#2F4538" />
+  <link rel="canonical" href="https://salmos-plataforma.pages.dev/" />
+  <link rel="manifest" href="manifest.json" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:title" content="SALMOS — Uma jornada de profundidade e fé" />
-  <meta property="og:description" content="Estudo versículo por versículo dos 150 Salmos, organizado por temas da vida real (ansiedade, proteção, gratidão, família e esperança)." />
+  <meta property="og:description" content="Estudo versículo por versículo dos Salmos com contexto histórico, planos de leitura guiados, diário espiritual privado e cartões compartilháveis." />
   <meta property="og:url" content="https://salmos-plataforma.pages.dev/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="SALMOS — Estudo dos 150 Salmos" />
-  <meta name="twitter:description" content="Leia, estude versículo por versículo, salve reflexões e gere cartões de versículos prontos para WhatsApp e Instagram." />
+  <meta name="twitter:description" content="Descubra o significado de cada versículo, acompanhe sua jornada espiritual e gere cartões de versículos em PNG." />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
@@ -29,17 +32,17 @@
       --border-soft: #E5DEC9;
       --green-moss: #2F4538;
       --green-dark: #1E2E25;
-      --gold: #B68940;
+      --gold: #A87B32;
       --gold-soft: #FBF3E0;
       --text-main: #1C211E;
-      --text-muted: #5A625D;
+      --text-muted: #555E58;
     }
 
     body.dark-mode {
-      --bg-cream: #151917;
-      --bg-card: #1E2421;
-      --bg-sand: #262E2A;
-      --border-soft: #333D38;
+      --bg-cream: #141816;
+      --bg-card: #1D2320;
+      --bg-sand: #252D29;
+      --border-soft: #323C37;
       --green-moss: #5D826B;
       --green-dark: #E8EDE9;
       --gold: #D8AD5C;
@@ -71,11 +74,11 @@
     .btn-primary {
       background-color: var(--green-moss);
       color: #FFFFFF;
-      transition: background-color 0.2s ease, transform 0.15s ease;
+      transition: background-color 0.2s ease;
     }
 
     .btn-primary:hover {
-      background-color: var(--green-dark);
+      background-color: #23352B;
     }
 
     .btn-outline {
@@ -111,105 +114,111 @@
     }
 
     .fade-in {
-      animation: fadeIn 0.22s ease forwards;
+      animation: fadeIn 0.2s ease forwards;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(5px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      body { background: #FFFFFF !important; color: #000000 !important; }
+      .surface-card, .surface-sand { border: 1px solid #CCCCCC !important; background: #FFFFFF !important; }
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-amber-200 selection:text-stone-900">
-  <!-- HEADER -->
-  <header class="sticky top-0 z-40 border-b" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-      <button id="logoHomeBtn" type="button" class="flex items-center gap-2.5 text-left focus:outline-none">
-        <span class="w-10 h-10 rounded-xl flex items-center justify-center border" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
-          <svg viewBox="0 0 40 40" class="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <header class="sticky top-0 z-40 border-b no-print" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
+      <button id="logoHomeBtn" type="button" class="flex items-center gap-2.5 text-left focus:outline-none shrink-0">
+        <span class="w-9 h-9 rounded-xl flex items-center justify-center border" style="background-color: var(--bg-card); border-color: var(--border-soft);">
+          <svg viewBox="0 0 40 40" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M6 12C11 10.5 16 11.5 20 14.5C24 11.5 29 10.5 34 12V28C29 26.5 24 27.5 20 30.5C16 27.5 11 26.5 6 28V12Z" stroke="#B68940" stroke-width="1.8" stroke-linejoin="round"/>
             <path d="M20 14.5V30.5" stroke="#B68940" stroke-width="1.5"/>
-            <path d="M16 32C18.5 24 23 17 29 10" stroke="#1E2E25" stroke-width="1.7" stroke-linecap="round"/>
-            <path d="M22 19C20 17 20 14.5 21.5 13C23 14.5 23 17 22 19Z" fill="#1E2E25"/>
-            <path d="M25.5 15.5C24.5 13 25.5 11 27.5 10.5C28 12.5 27 14.5 25.5 15.5Z" fill="#1E2E25"/>
-            <path d="M24 21C26.5 20.5 28.5 19 29.5 17C27.5 17 25.5 18.5 24 21Z" fill="#1E2E25"/>
+            <path d="M16 32C18.5 24 23 17 29 10" stroke="#2F4538" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M22 19C20 17 20 14.5 21.5 13C23 14.5 23 17 22 19Z" fill="#2F4538"/>
+            <path d="M25.5 15.5C24.5 13 25.5 11 27.5 10.5C28 12.5 27 14.5 25.5 15.5Z" fill="#2F4538"/>
+            <path d="M24 21C26.5 20.5 28.5 19 29.5 17C27.5 17 25.5 18.5 24 21Z" fill="#2F4538"/>
           </svg>
         </span>
         <div>
-          <span class="font-serif-brand font-semibold tracking-[0.14em] text-base block leading-none" style="color: var(--green-dark);">SALMOS</span>
+          <span class="font-serif-brand font-semibold tracking-[0.14em] text-sm sm:text-base block leading-none" style="color: var(--green-dark);">SALMOS</span>
           <span class="text-[10px] tracking-wider uppercase block mt-0.5" style="color: var(--text-muted);">Profundidade e Fé</span>
         </div>
       </button>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-1 text-sm">
-        <button data-nav="home" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">Início</button>
-        <button data-nav="library" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">150 Salmos</button>
-        <button data-nav="themes" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">Temas</button>
-        <button data-nav="plans" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">Planos</button>
+      <nav aria-label="Navegação principal" class="hidden lg:flex items-center gap-1 text-sm">
+        <button data-nav="home" type="button" class="nav-btn px-2.5 py-1.5 rounded-lg transition">Início</button>
+        <button data-nav="library" type="button" class="nav-btn px-2.5 py-1.5 rounded-lg transition">150 Salmos</button>
+        <button data-nav="readingPlans" type="button" class="nav-btn px-2.5 py-1.5 rounded-lg transition">Planos de Leitura</button>
+        <button data-nav="journey" type="button" class="nav-btn px-2.5 py-1.5 rounded-lg transition">Jornada</button>
+        <button data-nav="journal" type="button" class="nav-btn px-2.5 py-1.5 rounded-lg transition">Diário</button>
+        <button data-nav="themes" type="button" class="nav-btn px-2.5 py-1.5 rounded-lg transition">Temas</button>
+        <button data-nav="plans" type="button" class="nav-btn px-2.5 py-1.5 rounded-lg transition">Assinar</button>
       </nav>
 
-      <div class="flex items-center gap-1.5">
-        <button id="fontMinusBtn" type="button" title="Diminuir letra" class="btn-outline w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center">A-</button>
-        <button id="fontPlusBtn" type="button" title="Aumentar letra" class="btn-outline w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center">A+</button>
-        <button id="darkModeBtn" type="button" title="Modo leitura noturna" class="btn-outline w-8 h-8 rounded-lg flex items-center justify-center"><i id="darkModeIcon" data-lucide="moon" class="w-4 h-4"></i></button>
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button id="fontMinusBtn" type="button" aria-label="Diminuir tamanho da fonte" title="Diminuir letra" class="btn-outline w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center">A-</button>
+        <button id="fontPlusBtn" type="button" aria-label="Aumentar tamanho da fonte" title="Aumentar letra" class="btn-outline w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center">A+</button>
+        <button id="darkModeBtn" type="button" aria-label="Alternar modo noturno" title="Modo leitura noturna" class="btn-outline w-8 h-8 rounded-lg flex items-center justify-center"><i id="darkModeIcon" data-lucide="moon" class="w-4 h-4"></i></button>
         <button id="accountNavBtn" type="button" class="btn-outline px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
           <i data-lucide="user" class="w-4 h-4"></i>
           <span id="accountNavLabel">Entrar</span>
         </button>
-        <button id="mobileMenuBtn" type="button" aria-label="Abrir menu" class="md:hidden w-9 h-9 rounded-xl btn-outline flex items-center justify-center">
+        <button id="mobileMenuBtn" type="button" aria-label="Abrir menu de navegação" class="lg:hidden w-9 h-9 rounded-xl btn-outline flex items-center justify-center">
           <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Nav Drawer -->
-    <div id="mobileMenu" class="hidden md:hidden border-t px-4 py-3 space-y-1" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
+    <div id="mobileMenu" class="hidden lg:hidden border-t px-4 py-3 space-y-1" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
       <button data-nav="home" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Início</button>
       <button data-nav="library" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Biblioteca dos 150 Salmos</button>
+      <button data-nav="readingPlans" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Planos de Leitura Guiados</button>
+      <button data-nav="journey" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Minha Jornada Espiritual</button>
+      <button data-nav="journal" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Diário Espiritual</button>
       <button data-nav="themes" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Estudos por Temas</button>
-      <button data-nav="plans" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Planos</button>
+      <button data-nav="plans" type="button" class="nav-btn w-full text-left px-3 py-2 rounded-lg text-sm block">Planos e Assinatura</button>
     </div>
   </header>
 
   <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-7 sm:py-10">
-    <!-- ==================== VIEW: HOME ==================== -->
     <section id="viewHome" class="space-y-12 fade-in">
-      <!-- Hero -->
       <div class="surface-card rounded-3xl overflow-hidden shadow-sm">
         <div class="grid grid-cols-1 lg:grid-cols-12">
           <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between gap-6">
             <div class="space-y-4">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium surface-sand" style="color: var(--gold);">
                 <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-                <span>Uma jornada de profundidade e fé</span>
+                <span>SALMOS — Uma jornada de profundidade e fé</span>
               </span>
               <h1 class="font-serif-brand text-3xl sm:text-5xl font-medium leading-[1.12]" style="color: var(--green-dark);">
-                Estude os 150 Salmos com clareza, contexto e paz.
+                Não apenas leia os Salmos. Descubra o significado de cada versículo.
               </h1>
               <p class="text-sm sm:text-base leading-relaxed max-w-xl" style="color: var(--text-muted);">
-                Uma plataforma dedicada ao estudo versículo por versículo do Livro de Salmos: contexto histórico confiável, aplicações práticas para o cotidiano e espaço para registrar suas reflexões e orações.
+                Compreenda o contexto histórico, aprofunde sua caminhada com Deus com planos de leitura guiados e registre suas orações em um diário espiritual privado e livre de anúncios.
               </p>
               <div class="flex flex-wrap gap-3 pt-1">
-                <button id="heroExploreBtn" type="button" class="btn-primary px-5 py-3 rounded-xl text-sm font-semibold inline-flex items-center gap-2">
-                  <span>Explorar os 150 Salmos</span>
+                <button id="heroStartFreeBtn" type="button" class="btn-primary px-5 py-3 rounded-xl text-sm font-semibold inline-flex items-center gap-2">
+                  <span>Começar gratuitamente</span>
                   <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
-                <button id="heroThemesBtn" type="button" class="btn-outline px-5 py-3 rounded-xl text-sm font-semibold">
-                  Ver estudos por tema
+                <button id="heroExploreBtn" type="button" class="btn-outline px-5 py-3 rounded-xl text-sm font-semibold">
+                  Explorar os 150 Salmos
                 </button>
               </div>
             </div>
 
-            <!-- Quick Stats -->
             <div class="grid grid-cols-3 gap-3 pt-4 border-t" style="border-color: var(--border-soft);">
               <div>
                 <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">18</span>
                 <span class="text-xs" style="color: var(--text-muted);">Estudos completos hoje</span>
               </div>
               <div>
-                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">11</span>
-                <span class="text-xs" style="color: var(--text-muted);">Temas da vida real</span>
+                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">4</span>
+                <span class="text-xs" style="color: var(--text-muted);">Planos de leitura guiados</span>
               </div>
               <div>
                 <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--gold);">100%</span>
@@ -218,29 +227,42 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between text-white relative overflow-hidden" style="background: linear-gradient(155deg, #2F4538 0%, #1E2E25 100%);">
+          <div class="lg:col-span-5 p-7 sm:p-9 flex flex-col justify-between text-white" style="background: linear-gradient(155deg, #2F4538 0%, #1E2E25 100%);">
             <div class="flex items-center justify-between text-xs tracking-widest uppercase" style="color: #E2BA72;">
-              <span>Livro dos Salmos</span>
-              <span>I — CL</span>
+              <span>Amostra de Estudo</span>
+              <span>Salmo 23:1–2</span>
             </div>
-            <div class="my-8 py-6 border-y space-y-4" style="border-color: rgba(226, 186, 114, 0.28);">
-              <svg viewBox="0 0 64 44" class="w-12 h-9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M8 10C16 7.5 25 9 32 14C39 9 48 7.5 56 10V36C48 33.5 39 35 32 40C25 35 16 33.5 8 36V10Z" stroke="#E2BA72" stroke-width="1.8" stroke-linejoin="round"/>
-                <path d="M32 14V40" stroke="#E2BA72" stroke-width="1.5"/>
-              </svg>
+            <div class="my-6 py-5 border-y space-y-4" style="border-color: rgba(226, 186, 114, 0.28);">
               <p class="font-serif-brand italic text-xl sm:text-2xl leading-relaxed text-stone-100">
-                “Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.”
+                “O Senhor é o meu pastor; nada me faltará. Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas.”
               </p>
-              <p class="text-xs tracking-wider uppercase" style="color: #E2BA72;">Salmo 119:105</p>
+              <div class="rounded-xl p-3.5 text-xs leading-relaxed" style="background-color: rgba(255,255,255,0.08); color: #E8EDE9;">
+                <strong style="color: #E2BA72;">Comentário da plataforma:</strong> Ovelhas só se deitam quando estão livres de medo e fome. A imagem mostra que Deus conduz com mansidão, não com pressa ansiosa.
+              </div>
             </div>
-            <p class="text-xs text-stone-300 leading-relaxed">
-              Leitura limpa, contexto histórico e caderno pessoal reunidos em um único espaço.
-            </p>
+            <div class="flex items-center justify-between text-xs text-stone-300">
+              <span>Texto separado do comentário</span>
+              <button type="button" data-open-psalm="23" class="underline font-semibold" style="color: #E2BA72;">Ler completo →</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Salmo do Dia -->
+      <div id="homeContinueBanner" class="hidden surface-card rounded-2xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
+            <i data-lucide="history" class="w-5 h-5"></i>
+          </span>
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">Continuar de onde você parou</span>
+            <p id="homeContinueText" class="text-sm font-medium"></p>
+          </div>
+        </div>
+        <button id="homeContinueBtn" type="button" class="btn-primary px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold">
+          Retomar estudo
+        </button>
+      </div>
+
       <div class="surface-sand rounded-3xl p-6 sm:p-8 border" style="border-color: var(--border-soft);">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="space-y-2.5 max-w-2xl">
@@ -249,11 +271,9 @@
               <span>Salmo do Dia</span>
             </div>
             <h2 id="dailyPsalmTitle" class="font-serif-brand text-2xl sm:text-3xl font-medium" style="color: var(--green-dark);">Salmo 23 — O Senhor é o Meu Pastor</h2>
-            <p id="dailyPsalmQuote" class="font-serif-brand italic text-base sm:text-lg leading-relaxed" style="color: var(--text-main);">
-              “O Senhor é o meu pastor; nada me faltará. Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas.”
-            </p>
+            <p id="dailyPsalmQuote" class="font-serif-brand italic text-base sm:text-lg leading-relaxed"></p>
             <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
-              Inclui texto completo, contexto histórico, explicação versículo por versículo, perguntas de reflexão e oração guiada.
+              Inclui texto bíblico em domínio público, contexto histórico, estudo versículo por versículo, oração sugerida e estúdio de cartões PNG.
             </p>
           </div>
           <div class="shrink-0">
@@ -265,7 +285,6 @@
         </div>
       </div>
 
-      <!-- Categorias em Destaque -->
       <div class="space-y-5">
         <div class="flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -273,101 +292,82 @@
             <p class="text-sm mt-1" style="color: var(--text-muted);">Escolha um dos 11 temas para encontrar os Salmos relacionados.</p>
           </div>
           <button id="homeSeeAllThemesBtn" type="button" class="text-sm font-semibold underline underline-offset-4" style="color: var(--green-moss);">
-            Ver todos os temas
+            Ver todos os 11 temas
           </button>
         </div>
         <div id="homeThemesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"></div>
       </div>
 
-      <!-- Benefícios -->
-      <div class="space-y-5">
-        <div class="max-w-2xl">
-          <h2 class="font-serif-brand text-2xl sm:text-3xl font-medium" style="color: var(--green-dark);">Mais do que ler versículos soltos</h2>
-          <p class="text-sm mt-1" style="color: var(--text-muted);">Um método simples para criar constância e entender o texto com profundidade.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="surface-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between gap-5">
+          <div class="space-y-2.5">
+            <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">Constância sem pressão</span>
+            <h2 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Minha Jornada Espiritual</h2>
+            <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
+              Acompanhe quantos Salmos você concluiu, seus dias estudados na semana, planos de leitura em andamento e retome sempre de onde parou — tudo privado na sua conta.
+            </p>
+          </div>
+          <button type="button" data-nav="journey" class="nav-trigger btn-outline self-start px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold">
+            Abrir Minha Jornada →
+          </button>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="surface-card rounded-2xl p-5 space-y-2.5">
-            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
-              <i data-lucide="layers" class="w-5 h-5"></i>
-            </span>
-            <h3 class="font-semibold text-base">Versículo por versículo</h3>
-            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Comentários claros que explicam metáforas, estrutura e sentido original sem jargão difícil.</p>
+
+        <div class="surface-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between gap-5">
+          <div class="space-y-2.5">
+            <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">Privacidade LGPD</span>
+            <h2 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Diário Espiritual de Orações</h2>
+            <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
+              Registre reflexões, pedidos de oração e gratidões organizados por categoria, pesquise suas anotações antigas e exporte ou imprima em PDF quando quiser.
+            </p>
           </div>
-          <div class="surface-card rounded-2xl p-5 space-y-2.5">
-            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
-              <i data-lucide="compass" class="w-5 h-5"></i>
-            </span>
-            <h3 class="font-semibold text-base">Contexto histórico</h3>
-            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Autoria, gênero literário (lamento, louvor, sabedoria) e o cenário em que cada Salmo nasceu.</p>
-          </div>
-          <div class="surface-card rounded-2xl p-5 space-y-2.5">
-            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
-              <i data-lucide="notebook-pen" class="w-5 h-5"></i>
-            </span>
-            <h3 class="font-semibold text-base">Aplicação e oração</h3>
-            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Perguntas de reflexão, aplicações práticas e espaço pessoal para salvar seus favoritos e notas.</p>
-          </div>
-          <div class="surface-card rounded-2xl p-5 space-y-2.5">
-            <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
-              <i data-lucide="shield-check" class="w-5 h-5"></i>
-            </span>
-            <h3 class="font-semibold text-base">Ambiente sem distrações</h3>
-            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Leitura limpa, zero banners de anúncios e texto bíblico de domínio público (Almeida / Bíblia Livre).</p>
-          </div>
+          <button type="button" data-nav="journal" class="nav-trigger btn-outline self-start px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold">
+            Abrir Diário Espiritual →
+          </button>
         </div>
       </div>
 
-      <!-- Metodologia e Credibilidade -->
       <div class="surface-sand rounded-3xl p-6 sm:p-8 border space-y-5" style="border-color: var(--border-soft);">
         <div class="max-w-2xl">
-          <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">Transparência e Compromisso</span>
+          <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">Transparência e Rigor</span>
           <h2 class="font-serif-brand text-2xl sm:text-3xl font-medium mt-1" style="color: var(--green-dark);">Como os estudos da SALMOS são produzidos</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
           <div class="space-y-1.5">
-            <h3 class="font-semibold" style="color: var(--green-dark);">Fidelidade ao texto bíblico</h3>
-            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Utilizamos texto em português baseado na tradução de domínio público (tradição de Almeida / Bíblia Livre), respeitando o contexto histórico e literário de cada Salmo, sem viés polêmico.</p>
+            <h3 class="font-semibold" style="color: var(--green-dark);">Tradução clara e legal</h3>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Usamos texto bíblico baseado na tradição de João Ferreira de Almeida em domínio público (Bíblia Livre), sempre separado visualmente dos nossos comentários.</p>
           </div>
           <div class="space-y-1.5">
-            <h3 class="font-semibold" style="color: var(--green-dark);">Privacidade real (LGPD)</h3>
-            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Suas anotações, favoritos e orações ficam vinculados exclusivamente à sua conta com criptografia e isolamento de acesso. Ninguém além de você lê o seu diário espiritual.</p>
+            <h3 class="font-semibold" style="color: var(--green-dark);">Isolamento real de dados</h3>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Suas anotações, progresso e favoritos são protegidos por políticas de acesso por usuário no banco de dados (Row Level Security no Supabase).</p>
           </div>
           <div class="space-y-1.5">
-            <h3 class="font-semibold" style="color: var(--green-dark);">Biblioteca em expansão semanal</h3>
-            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Em vez de publicar textos genéricos às pressas, revisamos cada capítulo em profundidade. Novos estudos completos entram todas as semanas rumo aos 150 Salmos.</p>
+            <h3 class="font-semibold" style="color: var(--green-dark);">Expansão contínua com qualidade</h3>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Nunca publicamos capítulos vazios como se fossem estudos prontos: cada novo Salmo passa por revisão histórica antes de entrar na biblioteca.</p>
           </div>
         </div>
       </div>
 
-      <!-- Prévia de Planos na Home -->
       <div class="surface-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="space-y-2 max-w-xl">
           <h2 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Comece gratuitamente e evolua no seu ritmo</h2>
-          <p class="text-sm" style="color: var(--text-muted);">Acesse o Salmo do dia e os estudos introdutórios sem custo, ou conheça os planos Premium (mensal R$ 19,90 e anual R$ 149,90).</p>
+          <p class="text-sm" style="color: var(--text-muted);">Acesse o Salmo do dia, planos guiados e biblioteca gratuita hoje mesmo, ou conheça os planos Premium (R$ 19,90/mês e R$ 149,90/ano).</p>
         </div>
         <button id="homeSeePlansBtn" type="button" class="btn-primary px-5 py-3 rounded-xl text-sm font-semibold shrink-0">
-          Ver planos e benefícios
+          Ver planos e FAQ
         </button>
       </div>
     </section>
 
-    <!-- ==================== VIEW: 150 PSALMS LIBRARY ==================== -->
     <section id="viewLibrary" class="hidden space-y-6 fade-in">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Biblioteca dos 150 Salmos</h1>
-          <p class="text-sm mt-1" style="color: var(--text-muted);">Comece pelos 18 estudos completos disponíveis agora ou desmarque o filtro para ver o cronograma dos 150 capítulos.</p>
+          <p class="text-sm mt-1" style="color: var(--text-muted);">Explore os 18 estudos completos disponíveis agora ou desmarque o filtro para visualizar todos os 150 capítulos indexados.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="relative w-full sm:w-64">
             <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" style="color: var(--text-muted);"></i>
-            <input
-              id="libSearchInput"
-              type="text"
-              placeholder="Buscar nº (ex: 91) ou tema..."
-              class="w-full pl-9 pr-3 py-2 text-sm rounded-xl surface-card focus:outline-none focus:ring-2"
-              style="--tw-ring-color: var(--green-moss);"
-            />
+            <input id="libSearchInput" type="text" aria-label="Buscar Salmo" placeholder="Buscar nº (ex: 91) ou palavra..." class="w-full pl-9 pr-3 py-2 text-sm rounded-xl surface-card focus:outline-none focus:ring-2" style="--tw-ring-color: var(--green-moss);" />
           </div>
           <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl surface-card text-xs font-medium cursor-pointer select-none">
             <input id="onlyReadyToggle" type="checkbox" checked class="rounded accent-emerald-800" />
@@ -381,22 +381,25 @@
       <div id="libGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
 
-    <!-- ==================== VIEW: INDIVIDUAL PSALM ==================== -->
     <section id="viewPsalm" class="hidden space-y-6 fade-in">
-      <div class="flex flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center justify-between gap-3 no-print">
         <button id="backLibraryBtn" type="button" class="inline-flex items-center gap-1.5 text-sm font-medium hover:opacity-80" style="color: var(--text-muted);">
           <i data-lucide="arrow-left" class="w-4 h-4"></i>
           <span>Voltar para a biblioteca</span>
         </button>
 
         <div class="flex flex-wrap items-center gap-2">
+          <button id="psalmCompleteBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold inline-flex items-center gap-1.5">
+            <i id="psalmCompleteIcon" data-lucide="check-circle-2" class="w-4 h-4"></i>
+            <span id="psalmCompleteLabel">Concluir Estudo</span>
+          </button>
           <button id="psalmSpeechBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
             <i id="psalmSpeechIcon" data-lucide="volume-2" class="w-4 h-4"></i>
-            <span id="psalmSpeechLabel">Ouvir Salmo</span>
+            <span id="psalmSpeechLabel">Ouvir</span>
           </button>
           <button id="psalmFavChapterBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
             <i id="psalmFavIcon" data-lucide="bookmark" class="w-4 h-4"></i>
-            <span id="psalmFavLabel">Salvar nos Favoritos</span>
+            <span id="psalmFavLabel">Favoritar</span>
           </button>
           <button id="openCardModalBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
             <i data-lucide="image" class="w-4 h-4"></i>
@@ -411,7 +414,7 @@
 
       <div id="psalmDetailContent"></div>
 
-      <div class="flex items-center justify-between pt-4 border-t text-sm" style="border-color: var(--border-soft);">
+      <div class="flex items-center justify-between pt-4 border-t text-sm no-print" style="border-color: var(--border-soft);">
         <button id="prevChapterBtn" type="button" class="btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
           <i data-lucide="chevron-left" class="w-4 h-4"></i>
           <span>Salmo anterior</span>
@@ -423,7 +426,114 @@
       </div>
     </section>
 
-    <!-- ==================== VIEW: THEMES ==================== -->
+    <section id="viewReadingPlans" class="hidden space-y-6 fade-in">
+      <div class="max-w-2xl">
+        <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Planos de Leitura Guiados</h1>
+        <p class="text-sm mt-1" style="color: var(--text-muted);">Trilhas estruturadas dia a dia com os estudos completos da plataforma. Marque cada dia concluído e retome sempre de onde parou.</p>
+      </div>
+      <div id="readingPlansGrid" class="space-y-6"></div>
+    </section>
+
+    <section id="viewJourney" class="hidden space-y-6 fade-in">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Minha Jornada Espiritual</h1>
+          <p id="journeyHeadline" class="text-sm mt-1" style="color: var(--text-muted);"></p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <label for="weeklyGoalSelect" style="color: var(--text-muted);">Meta semanal:</label>
+          <select id="weeklyGoalSelect" class="surface-card px-3 py-1.5 rounded-xl font-semibold focus:outline-none">
+            <option value="3">3 dias/semana</option>
+            <option value="5" selected>5 dias/semana</option>
+            <option value="7">7 dias/semana</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="journeyStatsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 surface-card rounded-3xl p-6 space-y-4">
+          <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Últimos 7 dias de estudo</h2>
+          <div id="journeyWeekCalendar" class="grid grid-cols-7 gap-2 text-center"></div>
+          <div class="pt-3 border-t" style="border-color: var(--border-soft);">
+            <h3 class="text-xs font-semibold uppercase tracking-wider mb-3" style="color: var(--gold);">Histórico recente</h3>
+            <div id="journeyHistoryList" class="space-y-2"></div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 surface-card rounded-3xl p-6 space-y-4">
+          <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Progresso nos Planos</h2>
+          <div id="journeyPlansProgress" class="space-y-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="viewJournal" class="hidden space-y-6 fade-in">
+      <div class="flex flex-wrap items-end justify-between gap-4 no-print">
+        <div>
+          <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Diário Espiritual</h1>
+          <p class="text-sm mt-1" style="color: var(--text-muted);">Suas reflexões e orações pessoais organizadas por categoria, privadas e sincronizadas na sua conta.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button id="exportJournalTxtBtn" type="button" class="btn-outline px-3.5 py-2 rounded-xl text-xs font-semibold inline-flex items-center gap-1.5">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Baixar .txt</span>
+          </button>
+          <button id="printJournalBtn" type="button" class="btn-primary px-3.5 py-2 rounded-xl text-xs font-semibold inline-flex items-center gap-1.5">
+            <i data-lucide="printer" class="w-4 h-4"></i>
+            <span>Imprimir / PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="surface-card rounded-3xl p-6 space-y-4 no-print">
+        <h2 class="font-serif-brand text-lg font-medium" style="color: var(--green-dark);">Registrar nova reflexão ou oração</h2>
+        <form id="journalForm" class="grid grid-cols-1 md:grid-cols-12 gap-3">
+          <div class="md:col-span-4">
+            <label for="journalPsalmSelect" class="text-xs font-medium block mb-1">Salmo relacionado</label>
+            <select id="journalPsalmSelect" class="w-full px-3 py-2 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);"></select>
+          </div>
+          <div class="md:col-span-4">
+            <label for="journalCategorySelect" class="text-xs font-medium block mb-1">Categoria</label>
+            <select id="journalCategorySelect" class="w-full px-3 py-2 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);">
+              <option value="Reflexão">Reflexão</option>
+              <option value="Oração">Oração Pessoal</option>
+              <option value="Gratidão">Gratidão</option>
+              <option value="Estudo">Anotação de Estudo</option>
+            </select>
+          </div>
+          <div class="md:col-span-4">
+            <label for="journalVerseInput" class="text-xs font-medium block mb-1">Versículo (opcional)</label>
+            <input id="journalVerseInput" type="text" placeholder="Ex.: v. 1 ou v. 4" class="w-full px-3 py-2 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);" />
+          </div>
+          <div class="md:col-span-12">
+            <label for="journalTextInput" class="text-xs font-medium block mb-1">Sua anotação</label>
+            <textarea id="journalTextInput" rows="3" required placeholder="Escreva sua oração, pedido ou aprendizado..." class="w-full p-3 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);"></textarea>
+          </div>
+          <div class="md:col-span-12 flex justify-end">
+            <button type="submit" class="btn-primary px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold">Salvar no Diário</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 no-print">
+        <div class="relative w-full sm:w-72">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" style="color: var(--text-muted);"></i>
+          <input id="journalSearchInput" type="text" placeholder="Pesquisar nas anotações..." class="w-full pl-9 pr-3 py-2 text-sm rounded-xl surface-card focus:outline-none" />
+        </div>
+        <select id="journalFilterCat" class="surface-card px-3 py-2 rounded-xl text-xs font-medium focus:outline-none">
+          <option value="Todas">Todas as categorias</option>
+          <option value="Reflexão">Reflexão</option>
+          <option value="Oração">Oração Pessoal</option>
+          <option value="Gratidão">Gratidão</option>
+          <option value="Estudo">Anotação de Estudo</option>
+        </select>
+      </div>
+
+      <div id="journalEntriesList" class="space-y-3"></div>
+    </section>
+
     <section id="viewThemes" class="hidden space-y-6 fade-in">
       <div class="max-w-2xl">
         <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Estudos por Temas</h1>
@@ -432,27 +542,25 @@
       <div id="themesCatalogGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
     </section>
 
-    <!-- ==================== VIEW: PLANS ==================== -->
     <section id="viewPlans" class="hidden space-y-8 fade-in">
       <div class="max-w-2xl space-y-2">
         <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Planos da Plataforma SALMOS</h1>
-        <p class="text-sm sm:text-base" style="color: var(--text-muted);">Comece gratuitamente e desbloqueie a jornada completa quando fizer sentido para você. Pagamento seguro via Pix ou cartão e garantia incondicional de 7 dias.</p>
+        <p class="text-sm sm:text-base" style="color: var(--text-muted);">Transparência total sobre o que já está liberado hoje e o que entra na assinatura Premium quando o checkout oficial for ativado.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
-        <!-- Free -->
         <div class="surface-card rounded-3xl p-6 flex flex-col justify-between gap-6">
           <div class="space-y-4">
-            <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">Gratuito</span>
+            <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">Gratuito • Disponível agora</span>
             <div>
               <span class="font-serif-brand text-4xl font-semibold" style="color: var(--green-dark);">R$ 0</span>
               <span class="text-sm" style="color: var(--text-muted);">/mês</span>
             </div>
-            <p class="text-xs sm:text-sm" style="color: var(--text-muted);">Ideal para conhecer a plataforma e criar o hábito de leitura diária.</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-muted);">Comece hoje sem cartão de crédito e crie sua rotina nos Salmos.</p>
             <ul class="space-y-2 text-sm pt-2">
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Salmo do dia e biblioteca básica</span></li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Estudos introdutórios abertos</span></li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Navegação pelos 11 temas</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Salmo do dia e 18 estudos completos atuais</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Planos de leitura guiados e Minha Jornada</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Diário espiritual privado e Cartão PNG</span></li>
             </ul>
           </div>
           <button data-plan-select="Gratuito" type="button" class="plan-select-btn btn-outline w-full py-2.5 rounded-xl text-sm font-semibold">
@@ -460,7 +568,6 @@
           </button>
         </div>
 
-        <!-- Monthly -->
         <div class="surface-card rounded-3xl p-6 flex flex-col justify-between gap-6">
           <div class="space-y-4">
             <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--green-moss);">Premium Mensal</span>
@@ -468,21 +575,20 @@
               <span class="font-serif-brand text-4xl font-semibold" style="color: var(--green-dark);">R$ 19,90</span>
               <span class="text-sm" style="color: var(--text-muted);">/mês</span>
             </div>
-            <p class="text-xs sm:text-sm" style="color: var(--text-muted);">Acesso completo aos estudos aprofundados com flexibilidade mensal.</p>
+            <p class="text-xs sm:text-sm" style="color: var(--text-muted);">Acesso contínuo à biblioteca completa em expansão rumo aos 150 Salmos.</p>
             <ul class="space-y-2 text-sm pt-2">
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Todos os estudos versículo por versículo</span></li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Diário espiritual e favoritos ilimitados</span></li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Planos de leitura guiados e áudios</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Acesso a todos os novos lotes dos 150 Salmos</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Diário espiritual sincronizado e favoritos ilimitados</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Planos guiados exclusivos (em expansão)</span></li>
               <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--green-moss);"></i><span>Cancele quando quiser, sem multa</span></li>
             </ul>
           </div>
           <button data-plan-select="Premium Mensal (R$ 19,90/mês)" type="button" class="plan-select-btn btn-primary w-full py-2.5 rounded-xl text-sm font-semibold">
-            Escolher Mensal
+            Garantir acesso antecipado
           </button>
         </div>
 
-        <!-- Annual -->
-        <div class="rounded-3xl p-6 flex flex-col justify-between gap-6 text-white shadow-md" style="background-color: var(--green-dark);">
+        <div class="rounded-3xl p-6 flex flex-col justify-between gap-6 text-white shadow-md" style="background-color: #1E2E25;">
           <div class="space-y-4">
             <div class="flex items-center justify-between gap-2">
               <span class="text-xs font-semibold uppercase tracking-wider" style="color: #E2BA72;">Premium Anual</span>
@@ -493,16 +599,16 @@
               <span class="text-sm text-stone-300">/ano</span>
               <span class="block text-xs text-stone-300 mt-1">Equivalente a R$ 12,49 por mês</span>
             </div>
-            <p class="text-xs sm:text-sm text-stone-300">Para quem quer transformar o estudo dos Salmos em rotina anual com bônus.</p>
+            <p class="text-xs sm:text-sm text-stone-300">Para quem deseja aprofundar o estudo ao longo de todo o ano com economia.</p>
             <ul class="space-y-2 text-sm pt-2">
               <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Tudo do plano Premium Mensal</span></li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>E-book Devocional de 30 Dias incluso</span></li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Caderno de Oração em PDF para imprimir</span></li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Acesso antecipado ao Assistente de IA</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Prioridade nos materiais digitais futuros</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Acesso antecipado ao Assistente Bíblico (em preparação)</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: #E2BA72;"></i><span>Garantia integral de 7 dias</span></li>
             </ul>
           </div>
           <button data-plan-select="Premium Anual (R$ 149,90/ano)" type="button" class="plan-select-btn w-full py-2.5 rounded-xl text-sm font-semibold transition" style="background-color: #E2BA72; color: #1E2E25;">
-            Escolher Anual
+            Garantir acesso antecipado
           </button>
         </div>
       </div>
@@ -510,14 +616,13 @@
       <div class="surface-sand rounded-2xl p-5 border flex flex-col sm:flex-row sm:items-center justify-between gap-4" style="border-color: var(--border-soft);">
         <div>
           <h3 class="font-semibold text-base" style="color: var(--green-dark);">Planos para Igrejas, Pequenos Grupos e Professores</h3>
-          <p class="text-xs sm:text-sm mt-0.5" style="color: var(--text-muted);">Licenças coletivas com guias de discussão para células, pequenos grupos e escolas bíblicas.</p>
+          <p class="text-xs sm:text-sm mt-0.5" style="color: var(--text-muted);">Licenças coletivas para células e escolas bíblicas com atendimento direto.</p>
         </div>
         <button data-plan-select="Interesse Institucional (Igreja/Grupo)" type="button" class="plan-select-btn btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shrink-0">
-          Solicitar proposta
+          Falar no WhatsApp
         </button>
       </div>
 
-      <!-- Garantia de 7 dias -->
       <div class="surface-card rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <span class="w-12 h-12 rounded-2xl surface-sand flex items-center justify-center shrink-0" style="color: var(--green-moss);">
           <i data-lucide="shield-check" class="w-6 h-6"></i>
@@ -525,46 +630,53 @@
         <div class="space-y-1">
           <h3 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Garantia incondicional de 7 dias</h3>
           <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
-            Experimente os planos pagos sem risco. Se dentro de 7 dias você sentir que a plataforma não ajudou na sua rotina de estudo, devolvemos 100% do valor pago sem burocracia.
+            Quando o checkout oficial for ativado, todas as assinaturas terão garantia integral de 7 dias e liberação segura somente após confirmação do provedor de pagamentos.
           </p>
         </div>
       </div>
 
-      <!-- FAQ -->
       <div class="space-y-4">
         <h2 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Perguntas Frequentes</h2>
         <div class="space-y-2.5">
           <details class="surface-card rounded-2xl p-4 text-sm">
             <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Preciso baixar algum aplicativo no celular?</summary>
-            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Não. A plataforma funciona diretamente no navegador do seu celular, tablet ou computador, sem ocupar espaço de memória.</p>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Não. A plataforma funciona no navegador e pode ser adicionada à tela inicial do celular como aplicativo leve (PWA).</p>
           </details>
           <details class="surface-card rounded-2xl p-4 text-sm">
-            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Minhas anotações e orações ficam privadas?</summary>
-            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Sim. Todos os favoritos e reflexões ficam protegidos por login seguro e políticas de isolamento no banco de dados conforme a LGPD — somente você consegue ler o que escreve.</p>
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Minhas orações e reflexões ficam privadas?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Sim. No banco de dados (Supabase), cada registro é isolado por políticas de segurança por usuário (RLS), impedindo que outra pessoa acesse suas anotações.</p>
           </details>
           <details class="surface-card rounded-2xl p-4 text-sm">
-            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Qual tradução bíblica é utilizada nos estudos?</summary>
-            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Utilizamos texto bíblico em português baseado na tradição de João Ferreira de Almeida em domínio público (Bíblia Livre), unindo fidelidade histórica e clareza na leitura.</p>
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Qual tradução bíblica é utilizada?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Tradução em português baseada na tradição de João Ferreira de Almeida em domínio público (Bíblia Livre), sempre separada dos comentários da plataforma.</p>
           </details>
           <details class="surface-card rounded-2xl p-4 text-sm">
-            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Como funciona o cancelamento?</summary>
-            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Você pode cancelar sua assinatura a qualquer momento sem multas ou taxas escondidas. Além disso, todas as compras têm garantia integral de 7 dias.</p>
-          </details>
-          <details class="surface-card rounded-2xl p-4 text-sm">
-            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Com que frequência entram novos estudos dos 150 Salmos?</summary>
-            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Novos estudos completos versículo por versículo são adicionados semanalmente até completar todos os 150 capítulos, sem custo extra para quem já é membro.</p>
+            <summary class="font-semibold cursor-pointer" style="color: var(--green-dark);">Como funciona o cancelamento e reembolso?</summary>
+            <p class="mt-2 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">Sem fidelidade nem multas: você poderá cancelar a qualquer momento e conta com 7 dias de reembolso integral após a contratação.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- ==================== VIEW: ACCOUNT (AUTH + PROFILE) ==================== -->
     <section id="viewAccount" class="hidden space-y-6 fade-in">
-      <!-- Auth Forms (shown when logged out) -->
+      <div id="recoverySection" class="hidden max-w-md mx-auto surface-card rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
+        <div class="space-y-1 text-center">
+          <h1 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Definir nova senha</h1>
+          <p class="text-xs" style="color: var(--text-muted);">Digite sua nova senha abaixo para concluir a recuperação da sua conta.</p>
+        </div>
+        <form id="newPasswordForm" class="space-y-4">
+          <div class="space-y-1">
+            <label for="newPassInput" class="text-xs font-medium block">Nova senha</label>
+            <input id="newPassInput" type="password" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full px-3.5 py-2.5 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);" />
+          </div>
+          <button type="submit" class="btn-primary w-full py-2.5 rounded-xl text-sm font-semibold">Salvar nova senha</button>
+        </form>
+      </div>
+
       <div id="authSection" class="max-w-md mx-auto surface-card rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
         <div class="space-y-1 text-center">
           <h1 id="authHeading" class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Entrar na sua conta</h1>
-          <p class="text-xs" style="color: var(--text-muted);">Sua conta, favoritos e reflexões ficam salvos na nuvem com proteção LGPD.</p>
+          <p class="text-xs" style="color: var(--text-muted);">Sua jornada, favoritos e diário espiritual sincronizados com segurança.</p>
         </div>
 
         <div class="grid grid-cols-3 gap-1 p-1 rounded-xl surface-sand text-xs font-medium">
@@ -586,26 +698,21 @@
             <label for="authPass" class="text-xs font-medium block">Senha</label>
             <input id="authPass" type="password" placeholder="Mínimo 6 caracteres" class="w-full px-3.5 py-2.5 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);" />
           </div>
-          <button id="authSubmitBtn" type="submit" class="btn-primary w-full py-2.5 rounded-xl text-sm font-semibold">
-            Entrar
-          </button>
+          <button id="authSubmitBtn" type="submit" class="btn-primary w-full py-2.5 rounded-xl text-sm font-semibold">Entrar</button>
         </form>
       </div>
 
-      <!-- Profile Dashboard (shown when logged in) -->
       <div id="profileSection" class="hidden space-y-6">
         <div class="surface-card rounded-3xl p-6 flex flex-wrap items-center justify-between gap-4">
           <div class="flex items-center gap-4">
-            <div id="profileAvatar" class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-serif-brand text-xl font-semibold" style="background-color: var(--green-moss);">M</div>
+            <div id="profileAvatar" class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-serif-brand text-xl font-semibold" style="background-color: var(--green-moss);">U</div>
             <div>
               <h1 id="profileName" class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">Usuário</h1>
               <p id="profileEmail" class="text-xs sm:text-sm" style="color: var(--text-muted);"></p>
               <span id="profilePlanBadge" class="inline-block mt-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full surface-sand" style="color: var(--gold);">Plano Gratuito • Sincronizado na Nuvem</span>
             </div>
           </div>
-          <button id="logoutBtn" type="button" class="btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold">
-            Sair da conta
-          </button>
+          <button id="logoutBtn" type="button" class="btn-outline px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold">Sair da conta</button>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -615,7 +722,10 @@
           </div>
 
           <div class="surface-card rounded-3xl p-6 space-y-4">
-            <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Minhas Reflexões Salvas</h2>
+            <div class="flex items-center justify-between">
+              <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Anotações Recentes</h2>
+              <button type="button" data-nav="journal" class="nav-trigger text-xs font-semibold underline" style="color: var(--green-moss);">Abrir Diário completo</button>
+            </div>
             <div id="profileNotesList" class="space-y-3"></div>
           </div>
         </div>
@@ -623,28 +733,26 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="border-t mt-12" style="background-color: var(--bg-sand); border-color: var(--border-soft);">
+  <footer class="border-t mt-12 no-print" style="background-color: var(--bg-sand); border-color: var(--border-soft);">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs" style="color: var(--text-muted);">
       <div>
         <span class="font-serif-brand font-semibold tracking-[0.12em] text-sm" style="color: var(--green-dark);">SALMOS</span>
-        <p class="mt-1">Uma jornada de profundidade e fé. Textos bíblicos baseados em tradução livre de domínio público.</p>
+        <p class="mt-1">Uma jornada de profundidade e fé. Textos bíblicos baseados em tradução livre de domínio público (Almeida / Bíblia Livre).</p>
       </div>
       <div class="flex flex-wrap gap-4">
         <button data-legal="terms" type="button" class="legal-btn underline hover:opacity-80">Termos de Uso</button>
         <button data-legal="privacy" type="button" class="legal-btn underline hover:opacity-80">Privacidade e LGPD</button>
         <button data-legal="cancel" type="button" class="legal-btn underline hover:opacity-80">Cancelamento</button>
-        <button data-legal="support" type="button" class="legal-btn underline hover:opacity-80">Suporte e Contato</button>
+        <button data-legal="support" type="button" class="legal-btn underline hover:opacity-80">Suporte e WhatsApp</button>
       </div>
     </div>
   </footer>
 
-  <!-- IN-PAGE LEGAL / INFO MODAL -->
-  <div id="infoModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background-color: rgba(20, 26, 23, 0.55);">
+  <div id="infoModal" role="dialog" aria-modal="true" class="fixed inset-0 z-50 hidden items-center justify-center p-4 no-print" style="background-color: rgba(20, 26, 23, 0.58);">
     <div class="surface-card rounded-3xl max-w-lg w-full p-6 sm:p-7 space-y-4 shadow-xl">
       <div class="flex items-center justify-between gap-3">
         <h3 id="modalTitle" class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);"></h3>
-        <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-lg surface-sand flex items-center justify-center">
+        <button id="closeModalBtn" type="button" aria-label="Fechar janela" class="w-8 h-8 rounded-lg surface-sand flex items-center justify-center">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
@@ -652,32 +760,50 @@
     </div>
   </div>
 
-  <!-- VERSE CARD GENERATOR MODAL -->
-  <div id="cardModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background-color: rgba(20, 26, 23, 0.6);">
-    <div class="surface-card rounded-3xl max-w-md w-full p-6 space-y-4 shadow-xl max-h-[92vh] overflow-y-auto">
+  <div id="cardModal" role="dialog" aria-modal="true" class="fixed inset-0 z-50 hidden items-center justify-center p-4 no-print" style="background-color: rgba(20, 26, 23, 0.62);">
+    <div class="surface-card rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-xl max-h-[92vh] overflow-y-auto">
       <div class="flex items-center justify-between gap-3">
         <div>
-          <h3 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Gerar Cartão de Versículo</h3>
-          <p class="text-xs" style="color: var(--text-muted);">Pronto para Status do WhatsApp, Stories e Pinterest.</p>
+          <h3 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">Estúdio de Cartões de Versículos</h3>
+          <p class="text-xs" style="color: var(--text-muted);">Gere imagens nítidas para Feed, Stories, WhatsApp e Pinterest.</p>
         </div>
-        <button id="closeCardModalBtn" type="button" class="w-8 h-8 rounded-lg surface-sand flex items-center justify-center">
+        <button id="closeCardModalBtn" type="button" aria-label="Fechar estúdio de cartões" class="w-8 h-8 rounded-lg surface-sand flex items-center justify-center">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
       <div class="space-y-1.5">
-        <label for="cardVerseSelect" class="text-xs font-semibold uppercase tracking-wider block" style="color: var(--text-muted);">Escolha o versículo</label>
+        <label for="cardVerseSelect" class="text-xs font-semibold uppercase tracking-wider block" style="color: var(--text-muted);">Versículo</label>
         <select id="cardVerseSelect" class="w-full p-2.5 rounded-xl text-xs sm:text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);"></select>
       </div>
 
       <div class="grid grid-cols-3 gap-2">
-        <button data-card-theme="cream" type="button" class="card-theme-btn py-2 px-2 rounded-xl text-xs font-semibold border">Creme</button>
-        <button data-card-theme="moss" type="button" class="card-theme-btn py-2 px-2 rounded-xl text-xs font-semibold border">Verde-Musgo</button>
-        <button data-card-theme="night" type="button" class="card-theme-btn py-2 px-2 rounded-xl text-xs font-semibold border">Noite Serena</button>
+        <button data-card-format="square" type="button" class="card-fmt-btn py-2 px-2 rounded-xl text-xs font-semibold border">Quadrado 1:1</button>
+        <button data-card-format="story" type="button" class="card-fmt-btn py-2 px-2 rounded-xl text-xs font-semibold border">Stories 9:16</button>
+        <button data-card-format="pinterest" type="button" class="card-fmt-btn py-2 px-2 rounded-xl text-xs font-semibold border">Pinterest 2:3</button>
       </div>
 
-      <div class="rounded-2xl overflow-hidden border" style="border-color: var(--border-soft);">
-        <canvas id="shareCardCanvas" width="1080" height="1080" class="w-full h-auto block"></canvas>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <button data-card-theme="cream" type="button" class="card-theme-btn py-1.5 px-2 rounded-xl text-xs font-semibold border">Creme</button>
+        <button data-card-theme="moss" type="button" class="card-theme-btn py-1.5 px-2 rounded-xl text-xs font-semibold border">Verde-Musgo</button>
+        <button data-card-theme="night" type="button" class="card-theme-btn py-1.5 px-2 rounded-xl text-xs font-semibold border">Noite</button>
+        <button data-card-theme="dawn" type="button" class="card-theme-btn py-1.5 px-2 rounded-xl text-xs font-semibold border">Amanhecer</button>
+      </div>
+
+      <div class="flex items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-2">
+          <span style="color: var(--text-muted);">Fonte:</span>
+          <button data-card-font="serif" type="button" class="card-font-btn px-2.5 py-1 rounded-lg border font-medium">Serifa</button>
+          <button data-card-font="sans" type="button" class="card-font-btn px-2.5 py-1 rounded-lg border font-medium">Moderna</button>
+        </div>
+        <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+          <input id="cardBrandToggle" type="checkbox" checked class="rounded accent-emerald-800" />
+          <span style="color: var(--text-muted);">Assinatura SALMOS</span>
+        </label>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden border flex justify-center bg-stone-900/5" style="border-color: var(--border-soft);">
+        <canvas id="shareCardCanvas" width="1080" height="1080" class="max-h-80 w-auto h-auto block"></canvas>
       </div>
 
       <div class="grid grid-cols-2 gap-2">
@@ -693,8 +819,7 @@
     </div>
   </div>
 
-  <!-- TOAST -->
-  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden px-4 py-2.5 rounded-xl text-sm font-medium text-white shadow-lg" style="background-color: var(--green-dark);"></div>
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 right-5 z-50 hidden px-4 py-2.5 rounded-xl text-sm font-medium text-white shadow-lg no-print" style="background-color: #1E2E25;"></div>
 
   <script>
     const THEMES = [
@@ -711,7 +836,6 @@
       { name: "Momentos difíceis", desc: "Lamento honesto, consolo e socorro nas provações.", icon: "anchor" }
     ];
 
-    // 6 Complete Deep Studies (MVP Lot 1) — Public-domain Almeida / Bíblia Livre style wording
     const FULL_STUDIES = {
       1: {
         title: "Os Dois Caminhos da Vida",
@@ -1277,7 +1401,61 @@
       }
     };
 
-    // Thematic mapping for all 150 Psalms so every chapter is organized cleanly
+    const READING_PLANS = [
+      {
+        id: "confianca-7",
+        title: "7 Dias de Confiança e Paz Interior",
+        tier: "Gratuito",
+        goal: "Acalmar a mente ansiosa e firmar a segurança diária em Deus.",
+        days: [
+          { day: 1, psalmId: 23, focus: "Descansar na suficiência do Bom Pastor." },
+          { day: 2, psalmId: 4, focus: "Entregar as preocupações antes de dormir." },
+          { day: 3, psalmId: 27, focus: "Trocar o medo pela certeza de quem é a sua luz." },
+          { day: 4, psalmId: 46, focus: "Aquietar a alma quando tudo parece agitado." },
+          { day: 5, psalmId: 91, focus: "Habitar diariamente no abrigo do Altíssimo." },
+          { day: 6, psalmId: 121, focus: "Lembrar que o Guarda de Israel nunca dorme." },
+          { day: 7, psalmId: 37, focus: "Soltar a pressa comparativa e descansar no Senhor." }
+        ]
+      },
+      {
+        id: "dificeis-5",
+        title: "5 Dias para Momentos Difíceis e Recomeço",
+        tier: "Gratuito",
+        goal: "Encontrar sinceridade na oração, perdão real e força para continuar semeando.",
+        days: [
+          { day: 1, psalmId: 34, focus: "Deus perto do coração quebrantado." },
+          { day: 2, psalmId: 32, focus: "Sair do peso do silêncio para a alegria do perdão." },
+          { day: 3, psalmId: 51, focus: "Pedir um coração puro e renovação interior." },
+          { day: 4, psalmId: 130, focus: "Esperar o amanhecer com confiança firme." },
+          { day: 5, psalmId: 126, focus: "Perseverar na semeadura mesmo em lágrimas." }
+        ]
+      },
+      {
+        id: "gratidao-5",
+        title: "5 Dias de Gratidão, Sabedoria e Família",
+        tier: "Gratuito",
+        goal: "Alinhar escolhas, rotina familiar e gratidão prática ao longo da semana.",
+        days: [
+          { day: 1, psalmId: 1, focus: "Plantar raízes profundas junto às águas." },
+          { day: 2, psalmId: 100, focus: "Servir com alegria e entrar com gratidão." },
+          { day: 3, psalmId: 103, focus: "Não esquecer nenhum dos benefícios recebidos." },
+          { day: 4, psalmId: 127, focus: "Equilibrar trabalho, descanso e cuidado da casa." },
+          { day: 5, psalmId: 138, focus: "Confiar que Deus aperfeiçoará o que começou." }
+        ]
+      },
+      {
+        id: "jornada-18",
+        title: "Jornada Completa dos 18 Estudos Atuais",
+        tier: "Gratuito",
+        goal: "Percorrer todos os estudos aprofundados já publicados na plataforma em ordem equilibrada.",
+        days: Object.keys(FULL_STUDIES).map(Number).sort((a, b) => a - b).map((pid, idx) => ({
+          day: idx + 1,
+          psalmId: pid,
+          focus: FULL_STUDIES[pid].title
+        }))
+      }
+    ];
+
     const THEME_CYCLE = THEMES.map(t => t.name);
     const PSALMS_150 = Array.from({ length: 150 }, (_, i) => {
       const num = i + 1;
@@ -1291,14 +1469,13 @@
           genre: FULL_STUDIES[num].genre
         };
       }
-      const primaryTheme = THEME_CYCLE[i % THEME_CYCLE.length];
       return {
         id: num,
         ready: false,
         title: `Salmo ${num}`,
-        themes: [primaryTheme],
+        themes: [THEME_CYCLE[i % THEME_CYCLE.length]],
         author: "Em catalogação",
-        genre: "Estudo em produção"
+        genre: "Em revisão"
       };
     });
 
@@ -1308,7 +1485,7 @@
       ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
       : null;
 
-    const STORAGE_KEY = "salmos_mvp_state_v1";
+    const STORAGE_KEY = "salmos_platform_v5";
     const state = {
       view: "home",
       activePsalmId: 23,
@@ -1317,29 +1494,45 @@
       onlyReady: true,
       authMode: "login",
       authLoading: false,
+      recoveryMode: false,
       speaking: false,
-      cardTheme: "cream",
-      cardVerseIdx: 0,
       fontSize: 17,
       darkMode: false,
+      cardTheme: "cream",
+      cardFormat: "square",
+      cardFont: "serif",
+      cardShowBrand: true,
+      cardVerseIdx: 0,
+      weeklyGoal: 5,
+      journalSearch: "",
+      journalCatFilter: "Todas",
       user: null,
       favoriteChapters: [],
       favoriteVerses: [],
-      notes: {}
+      notes: {},
+      journalEntries: [],
+      completedPsalms: {},
+      planProgress: {},
+      recentHistory: []
     };
 
     let noteSaveTimer = null;
 
     function loadLocalState() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("salmos_mvp_state_v1");
         if (!raw) return;
-        const data = JSON.parse(raw);
-        if (Array.isArray(data.favoriteChapters)) state.favoriteChapters = data.favoriteChapters;
-        if (Array.isArray(data.favoriteVerses)) state.favoriteVerses = data.favoriteVerses;
-        if (data.notes && typeof data.notes === "object") state.notes = data.notes;
-        if (typeof data.darkMode === "boolean") state.darkMode = data.darkMode;
-        if (typeof data.fontSize === "number") state.fontSize = Math.min(24, Math.max(14, data.fontSize));
+        const d = JSON.parse(raw);
+        if (Array.isArray(d.favoriteChapters)) state.favoriteChapters = d.favoriteChapters;
+        if (Array.isArray(d.favoriteVerses)) state.favoriteVerses = d.favoriteVerses;
+        if (d.notes && typeof d.notes === "object") state.notes = d.notes;
+        if (Array.isArray(d.journalEntries)) state.journalEntries = d.journalEntries;
+        if (d.completedPsalms && typeof d.completedPsalms === "object") state.completedPsalms = d.completedPsalms;
+        if (d.planProgress && typeof d.planProgress === "object") state.planProgress = d.planProgress;
+        if (Array.isArray(d.recentHistory)) state.recentHistory = d.recentHistory;
+        if (typeof d.darkMode === "boolean") state.darkMode = d.darkMode;
+        if (typeof d.fontSize === "number") state.fontSize = Math.min(24, Math.max(14, d.fontSize));
+        if (typeof d.weeklyGoal === "number") state.weeklyGoal = d.weeklyGoal;
       } catch (e) {}
     }
 
@@ -1349,8 +1542,13 @@
           favoriteChapters: state.favoriteChapters,
           favoriteVerses: state.favoriteVerses,
           notes: state.notes,
+          journalEntries: state.journalEntries,
+          completedPsalms: state.completedPsalms,
+          planProgress: state.planProgress,
+          recentHistory: state.recentHistory.slice(0, 15),
           darkMode: state.darkMode,
-          fontSize: state.fontSize
+          fontSize: state.fontSize,
+          weeklyGoal: state.weeklyGoal
         }));
       } catch (e) {}
     }
@@ -1392,109 +1590,134 @@
         if (Array.isArray(favs)) {
           favs.forEach(row => {
             if (row.verse_number === null || row.verse_number === undefined) {
-              if (!state.favoriteChapters.includes(row.psalm_id)) {
-                state.favoriteChapters.push(row.psalm_id);
-              }
+              if (!state.favoriteChapters.includes(row.psalm_id)) state.favoriteChapters.push(row.psalm_id);
             } else {
-              state.favoriteVerses.push({
-                key: `${row.psalm_id}:${row.verse_number}`,
-                psalmId: row.psalm_id,
-                text: row.verse_text || ""
-              });
+              state.favoriteVerses.push({ key: `${row.psalm_id}:${row.verse_number}`, psalmId: row.psalm_id, text: row.verse_text || "" });
             }
           });
         }
 
         const { data: refs } = await supabaseClient
           .from("reflections")
-          .select("psalm_id, content")
+          .select("psalm_id, content, updated_at")
           .eq("user_id", authUser.id);
 
         state.notes = {};
         if (Array.isArray(refs)) {
           refs.forEach(row => {
             state.notes[row.psalm_id] = row.content || "";
+            if (row.content && row.content.trim() && !state.journalEntries.some(e => e.psalmId === row.psalm_id && e.text === row.content)) {
+              state.journalEntries.push({
+                id: `cloud-${row.psalm_id}`,
+                psalmId: row.psalm_id,
+                category: "Reflexão",
+                verseRef: "",
+                text: row.content,
+                date: (row.updated_at || new Date().toISOString()).slice(0, 10)
+              });
+            }
           });
         }
+
+        try {
+          const { data: rp } = await supabaseClient.from("reading_progress").select("psalm_id, completed_at").eq("user_id", authUser.id);
+          if (Array.isArray(rp)) {
+            rp.forEach(r => { state.completedPsalms[r.psalm_id] = (r.completed_at || new Date().toISOString()).slice(0, 10); });
+          }
+        } catch (e) {}
+
+        try {
+          const { data: pp } = await supabaseClient.from("plan_progress").select("plan_id, day_number").eq("user_id", authUser.id);
+          if (Array.isArray(pp)) {
+            pp.forEach(r => {
+              if (!Array.isArray(state.planProgress[r.plan_id])) state.planProgress[r.plan_id] = [];
+              if (!state.planProgress[r.plan_id].includes(r.day_number)) state.planProgress[r.plan_id].push(r.day_number);
+            });
+          }
+        } catch (e) {}
       } catch (e) {
-        showToast("Conectado, mas houve atraso ao carregar dados da nuvem.");
+        showToast("Conectado, mas houve atraso ao carregar alguns dados.");
       }
+      saveLocalState();
       renderAll();
     }
 
     async function syncChapterFavorite(psalmId, shouldAdd) {
-      if (!supabaseClient || !state.user || !state.user.id) {
-        saveLocalState();
-        return;
-      }
+      saveLocalState();
+      if (!supabaseClient || !state.user || !state.user.id) return;
       try {
         if (shouldAdd) {
-          await supabaseClient.from("favorites").insert({
-            user_id: state.user.id,
-            psalm_id: psalmId,
-            verse_number: null,
-            verse_text: null
-          });
+          await supabaseClient.from("favorites").insert({ user_id: state.user.id, psalm_id: psalmId, verse_number: null, verse_text: null });
         } else {
-          await supabaseClient
-            .from("favorites")
-            .delete()
-            .eq("user_id", state.user.id)
-            .eq("psalm_id", psalmId)
-            .is("verse_number", null);
+          await supabaseClient.from("favorites").delete().eq("user_id", state.user.id).eq("psalm_id", psalmId).is("verse_number", null);
         }
-      } catch (e) {
-        showToast("Erro ao sincronizar favorito na nuvem.");
-      }
+      } catch (e) {}
     }
 
     async function syncVerseFavorite(psalmId, verseNum, verseText, shouldAdd) {
-      if (!supabaseClient || !state.user || !state.user.id) {
-        saveLocalState();
-        return;
-      }
+      saveLocalState();
+      if (!supabaseClient || !state.user || !state.user.id) return;
       try {
         if (shouldAdd) {
-          await supabaseClient.from("favorites").insert({
-            user_id: state.user.id,
-            psalm_id: psalmId,
-            verse_number: verseNum,
-            verse_text: verseText
-          });
+          await supabaseClient.from("favorites").insert({ user_id: state.user.id, psalm_id: psalmId, verse_number: verseNum, verse_text: verseText });
         } else {
-          await supabaseClient
-            .from("favorites")
-            .delete()
-            .eq("user_id", state.user.id)
-            .eq("psalm_id", psalmId)
-            .eq("verse_number", verseNum);
+          await supabaseClient.from("favorites").delete().eq("user_id", state.user.id).eq("psalm_id", psalmId).eq("verse_number", verseNum);
         }
-      } catch (e) {
-        showToast("Erro ao sincronizar versículo na nuvem.");
-      }
+      } catch (e) {}
     }
 
     async function syncReflection(psalmId, content) {
+      saveLocalState();
       const statusEl = document.getElementById("psalmNoteSaved");
       if (!supabaseClient || !state.user || !state.user.id) {
-        saveLocalState();
         if (statusEl) statusEl.textContent = "Salvo neste navegador";
         return;
       }
       if (statusEl) statusEl.textContent = "Salvando na nuvem...";
       try {
-        const { error } = await supabaseClient
-          .from("reflections")
-          .upsert({
-            user_id: state.user.id,
-            psalm_id: psalmId,
-            content: content,
-            updated_at: new Date().toISOString()
-          }, { onConflict: "user_id,psalm_id" });
+        const { error } = await supabaseClient.from("reflections").upsert({
+          user_id: state.user.id,
+          psalm_id: psalmId,
+          content: content,
+          updated_at: new Date().toISOString()
+        }, { onConflict: "user_id,psalm_id" });
         if (statusEl) statusEl.textContent = error ? "Erro ao salvar" : "Salvo na nuvem ✓";
       } catch (e) {
         if (statusEl) statusEl.textContent = "Erro ao salvar";
       }
+    }
+
+    async function syncCompletedPsalm(psalmId, isCompleted) {
+      saveLocalState();
+      if (!supabaseClient || !state.user || !state.user.id) return;
+      try {
+        if (isCompleted) {
+          await supabaseClient.from("reading_progress").upsert({
+            user_id: state.user.id,
+            psalm_id: psalmId,
+            completed_at: new Date().toISOString()
+          }, { onConflict: "user_id,psalm_id" });
+        } else {
+          await supabaseClient.from("reading_progress").delete().eq("user_id", state.user.id).eq("psalm_id", psalmId);
+        }
+      } catch (e) {}
+    }
+
+    async function syncPlanDay(planId, dayNum, isDone) {
+      saveLocalState();
+      if (!supabaseClient || !state.user || !state.user.id) return;
+      try {
+        if (isDone) {
+          await supabaseClient.from("plan_progress").upsert({
+            user_id: state.user.id,
+            plan_id: planId,
+            day_number: dayNum,
+            completed_at: new Date().toISOString()
+          }, { onConflict: "user_id,plan_id,day_number" });
+        } else {
+          await supabaseClient.from("plan_progress").delete().eq("user_id", state.user.id).eq("plan_id", planId).eq("day_number", dayNum);
+        }
+      } catch (e) {}
     }
 
     let toastTimer = null;
@@ -1503,7 +1726,30 @@
       t.textContent = msg;
       t.classList.remove("hidden");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => t.classList.add("hidden"), 3200);
+      toastTimer = setTimeout(() => t.classList.add("hidden"), 3000);
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function copyTextSafe(text, successMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast(successMsg || "Copiado!")).catch(() => fallbackCopy(text, successMsg));
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); showToast(successMsg || "Copiado!"); } catch (e) {}
+      document.body.removeChild(ta);
     }
 
     function stopSpeech() {
@@ -1511,67 +1757,116 @@
         try { window.speechSynthesis.cancel(); } catch (e) {}
       }
       state.speaking = false;
-      updateSpeechBtn();
-    }
-
-    function updateSpeechBtn() {
-      const label = document.getElementById("psalmSpeechLabel");
-      const icon = document.getElementById("psalmSpeechIcon");
-      if (!label || !icon) return;
-      label.textContent = state.speaking ? "Parar Áudio" : "Ouvir Salmo";
-      icon.setAttribute("data-lucide", state.speaking ? "square" : "volume-2");
-      applyDisplayPrefs();
-      if (window.lucide) lucide.createIcons();
+      const lbl = document.getElementById("psalmSpeechLabel");
+      const ic = document.getElementById("psalmSpeechIcon");
+      if (lbl && ic) {
+        lbl.textContent = "Ouvir";
+        ic.setAttribute("data-lucide", "volume-2");
+        if (window.lucide) lucide.createIcons();
+      }
     }
 
     function toggleSpeech() {
       const study = FULL_STUDIES[state.activePsalmId];
-      if (!study) {
-        showToast("Áudio disponível para os estudos completos do lote inicial.");
-        return;
-      }
-      if (!("speechSynthesis" in window)) {
-        showToast("Leitura em voz alta não disponível neste navegador.");
-        return;
-      }
-      if (state.speaking) {
-        stopSpeech();
-        return;
-      }
-      const text = `Salmo ${state.activePsalmId}. ${study.title}. ` + study.verses.map(v => v.text).join(" ");
-      const utter = new SpeechSynthesisUtterance(text);
+      if (!study) { showToast("Áudio disponível nos 18 estudos completos."); return; }
+      if (!("speechSynthesis" in window)) { showToast("Leitura em voz alta não suportada neste navegador."); return; }
+      if (state.speaking) { stopSpeech(); return; }
+      const utter = new SpeechSynthesisUtterance(`Salmo ${state.activePsalmId}. ${study.title}. ` + study.verses.map(v => v.text).join(" "));
       utter.lang = "pt-BR";
       utter.rate = 0.94;
-      utter.onend = () => { state.speaking = false; updateSpeechBtn(); };
-      utter.onerror = () => { state.speaking = false; updateSpeechBtn(); };
+      utter.onend = stopSpeech;
+      utter.onerror = stopSpeech;
       state.speaking = true;
-      updateSpeechBtn();
+      document.getElementById("psalmSpeechLabel").textContent = "Parar";
+      document.getElementById("psalmSpeechIcon").setAttribute("data-lucide", "square");
+      if (window.lucide) lucide.createIcons();
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utter);
     }
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+    function getDailyPsalmId() {
+      const ids = Object.keys(FULL_STUDIES).map(Number).sort((a, b) => a - b);
+      const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+      return ids[dayOfYear % ids.length] || 23;
+    }
+
+    function recordHistory(psalmId) {
+      const today = new Date().toISOString().slice(0, 10);
+      state.recentHistory = state.recentHistory.filter(h => h.psalmId !== psalmId);
+      state.recentHistory.unshift({ psalmId, date: today });
+      state.recentHistory = state.recentHistory.slice(0, 15);
+      saveLocalState();
+    }
+
+    function navigateTo(hash, skipHashUpdate) {
+      stopSpeech();
+      document.getElementById("mobileMenu").classList.add("hidden");
+      if (!skipHashUpdate && window.location.hash !== hash) {
+        window.location.hash = hash;
+        return;
+      }
+      const clean = (hash || "#/").replace(/^#/, "");
+      const psalmMatch = clean.match(/^\/salmo\/(\d+)$/);
+      if (psalmMatch) {
+        const num = Math.min(150, Math.max(1, Number(psalmMatch[1])));
+        state.activePsalmId = num;
+        state.view = "psalm";
+        recordHistory(num);
+        document.title = `Salmo ${num} — Estudo Completo | SALMOS`;
+      } else if (clean === "/biblioteca") {
+        state.view = "library";
+        document.title = "Biblioteca dos 150 Salmos | SALMOS";
+      } else if (clean === "/planos-leitura") {
+        state.view = "readingPlans";
+        document.title = "Planos de Leitura Guiados | SALMOS";
+      } else if (clean === "/jornada") {
+        state.view = "journey";
+        document.title = "Minha Jornada Espiritual | SALMOS";
+      } else if (clean === "/diario") {
+        state.view = "journal";
+        document.title = "Diário Espiritual | SALMOS";
+      } else if (clean === "/temas") {
+        state.view = "themes";
+        document.title = "Estudos por Temas | SALMOS";
+      } else if (clean === "/planos") {
+        state.view = "plans";
+        document.title = "Planos e Assinatura | SALMOS";
+      } else if (clean === "/conta") {
+        state.view = "account";
+        document.title = "Minha Conta | SALMOS";
+      } else {
+        state.view = "home";
+        document.title = "SALMOS — Estudo Completo dos 150 Salmos | Profundidade e Fé";
+      }
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function setView(viewName) {
-      stopSpeech();
-      state.view = viewName;
-      document.getElementById("mobileMenu").classList.add("hidden");
-      renderAll();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const map = {
+        home: "#/",
+        library: "#/biblioteca",
+        readingPlans: "#/planos-leitura",
+        journey: "#/jornada",
+        journal: "#/diario",
+        themes: "#/temas",
+        plans: "#/planos",
+        account: "#/conta"
+      };
+      navigateTo(map[viewName] || "#/");
     }
 
     function openPsalm(id) {
-      stopSpeech();
-      state.activePsalmId = id;
-      state.view = "psalm";
-      renderAll();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigateTo(`#/salmo/${id}`);
+    }
+
+    function applyDisplayPrefs() {
+      document.body.classList.toggle("dark-mode", state.darkMode);
+      const dmIcon = document.getElementById("darkModeIcon");
+      if (dmIcon) dmIcon.setAttribute("data-lucide", state.darkMode ? "sun" : "moon");
+      document.querySelectorAll(".verse-biblical-text").forEach(el => {
+        el.style.fontSize = `${state.fontSize}px`;
+      });
     }
 
     function renderNav() {
@@ -1579,35 +1874,30 @@
         const isCurrent = btn.dataset.nav === state.view || (state.view === "psalm" && btn.dataset.nav === "library");
         btn.classList.toggle("nav-active", isCurrent);
       });
-      const accLabel = document.getElementById("accountNavLabel");
-      accLabel.textContent = state.user ? state.user.name.split(" ")[0] : "Entrar";
-    }
-
-    function getDailyPsalmId() {
-      const readyIds = Object.keys(FULL_STUDIES).map(Number).sort((a, b) => a - b);
-      const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-      return readyIds[dayOfYear % readyIds.length] || 23;
-    }
-
-    function applyDisplayPrefs() {
-      document.body.classList.toggle("dark-mode", state.darkMode);
-      const dmIcon = document.getElementById("darkModeIcon");
-      if (dmIcon) dmIcon.setAttribute("data-lucide", state.darkMode ? "sun" : "moon");
-      document.querySelectorAll(".verse-row p.font-serif-brand").forEach(el => {
-        el.style.fontSize = `${state.fontSize}px`;
-      });
+      document.getElementById("accountNavLabel").textContent = state.user ? state.user.name.split(" ")[0] : "Entrar";
     }
 
     function renderHome() {
       const dailyId = getDailyPsalmId();
-      const dailyStudy = FULL_STUDIES[dailyId];
-      if (dailyStudy) {
-        document.getElementById("dailyPsalmTitle").textContent = `Salmo ${dailyId} — ${dailyStudy.title}`;
-        document.getElementById("dailyPsalmQuote").textContent = `“${dailyStudy.verses[0].text}”`;
+      const ds = FULL_STUDIES[dailyId];
+      if (ds) {
+        document.getElementById("dailyPsalmTitle").textContent = `Salmo ${dailyId} — ${ds.title}`;
+        document.getElementById("dailyPsalmQuote").textContent = `“${ds.verses[0].text}”`;
         document.getElementById("openDailyPsalmBtn").dataset.dailyId = String(dailyId);
       }
-      const grid = document.getElementById("homeThemesGrid");
-      grid.innerHTML = THEMES.slice(0, 8).map(t => `
+
+      const contBanner = document.getElementById("homeContinueBanner");
+      if (state.recentHistory.length > 0) {
+        const last = state.recentHistory[0];
+        const info = PSALMS_150.find(p => p.id === last.psalmId);
+        contBanner.classList.remove("hidden");
+        document.getElementById("homeContinueText").textContent = `Salmo ${last.psalmId} — ${info ? info.title : ""}`;
+        document.getElementById("homeContinueBtn").dataset.openPsalm = String(last.psalmId);
+      } else {
+        contBanner.classList.add("hidden");
+      }
+
+      document.getElementById("homeThemesGrid").innerHTML = THEMES.slice(0, 8).map(t => `
         <button type="button" data-filter-theme="${t.name}" class="surface-card rounded-2xl p-4 text-left hover:shadow-sm transition group space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="w-8 h-8 rounded-lg surface-sand flex items-center justify-center" style="color: var(--green-moss);">
@@ -1622,22 +1912,10 @@
     }
 
     function renderLibrary() {
-      const pills = document.getElementById("libThemePills");
       const allThemes = ["Todos", ...THEMES.map(t => t.name)];
-      pills.innerHTML = allThemes.map(t => {
+      document.getElementById("libThemePills").innerHTML = allThemes.map(t => {
         const active = state.libTheme === t;
-        return `
-          <button
-            type="button"
-            data-lib-theme="${t}"
-            class="px-3 py-1.5 rounded-full text-xs font-medium border transition"
-            style="${active
-              ? 'background-color: var(--green-moss); color: #FFFFFF; border-color: var(--green-moss);'
-              : 'background-color: var(--bg-card); color: var(--text-main); border-color: var(--border-soft);'}"
-          >
-            ${t}
-          </button>
-        `;
+        return `<button type="button" data-lib-theme="${t}" class="px-3 py-1.5 rounded-full text-xs font-medium border transition" style="${active ? 'background-color: var(--green-moss); color: #FFFFFF; border-color: var(--green-moss);' : 'background-color: var(--bg-card); color: var(--text-main); border-color: var(--border-soft);'}">${t}</button>`;
       }).join("");
 
       const q = state.libSearch.trim().toLowerCase();
@@ -1646,35 +1924,28 @@
         if (state.libTheme !== "Todos" && !p.themes.includes(state.libTheme)) return false;
         if (!q) return true;
         const full = FULL_STUDIES[p.id];
-        const hay = `salmo ${p.id} ${p.title} ${p.themes.join(" ")} ${full ? full.overview : ""}`.toLowerCase();
-        return hay.includes(q);
+        return `salmo ${p.id} ${p.title} ${p.themes.join(" ")} ${full ? full.overview : ""}`.toLowerCase().includes(q);
       });
 
       document.getElementById("libCountText").textContent =
-        `Exibindo ${filtered.length} Salmos (${filtered.filter(x => x.ready).length} com estudo completo disponível agora).`;
+        `Exibindo ${filtered.length} Salmos (${filtered.filter(x => x.ready).length} com estudo completo disponível).`;
 
       const grid = document.getElementById("libGrid");
       if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full surface-card rounded-2xl p-8 text-center space-y-2">
-            <p class="font-serif-brand text-lg">Nenhum Salmo encontrado para esse filtro.</p>
-            <p class="text-xs" style="color: var(--text-muted);">Tente buscar por número (1 a 150) ou selecione "Todos".</p>
-          </div>
-        `;
+        grid.innerHTML = `<div class="col-span-full surface-card rounded-2xl p-8 text-center space-y-2"><p class="font-serif-brand text-lg">Nenhum Salmo encontrado para esse filtro.</p></div>`;
         return;
       }
 
       grid.innerHTML = filtered.map(p => {
+        const isDone = Boolean(state.completedPsalms[p.id]);
         const isFav = state.favoriteChapters.includes(p.id);
         return `
           <button type="button" data-open-psalm="${p.id}" class="surface-card rounded-2xl p-4 text-left hover:shadow-sm transition flex flex-col justify-between gap-3">
             <div class="space-y-1.5">
               <div class="flex items-center justify-between gap-2">
-                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full" style="${p.ready ? 'background-color: var(--green-moss); color: #FFFFFF;' : 'background-color: var(--bg-sand); color: var(--text-muted);'}">
-                  Salmo ${p.id}
-                </span>
-                <span class="text-[11px] font-medium" style="color: ${p.ready ? 'var(--gold)' : 'var(--text-muted)'};">
-                  ${p.ready ? 'Estudo completo' : 'Em produção'}
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full" style="${p.ready ? 'background-color: var(--green-moss); color: #FFFFFF;' : 'background-color: var(--bg-sand); color: var(--text-muted);'}">Salmo ${p.id}</span>
+                <span class="text-[11px] font-semibold" style="color: ${isDone ? 'var(--green-moss)' : p.ready ? 'var(--gold)' : 'var(--text-muted)'};">
+                  ${isDone ? '✓ Concluído' : p.ready ? 'Gratuito • Completo' : 'Em revisão'}
                 </span>
               </div>
               <h3 class="font-serif-brand text-base font-medium" style="color: var(--green-dark);">${p.title}</h3>
@@ -1695,8 +1966,13 @@
       const study = FULL_STUDIES[id];
       const container = document.getElementById("psalmDetailContent");
 
+      const isDone = Boolean(state.completedPsalms[id]);
+      document.getElementById("psalmCompleteLabel").textContent = isDone ? "Concluído ✓" : "Concluir Estudo";
+      document.getElementById("psalmCompleteBtn").style.backgroundColor = isDone ? "var(--green-moss)" : "var(--bg-card)";
+      document.getElementById("psalmCompleteBtn").style.color = isDone ? "#FFFFFF" : "var(--green-dark)";
+
       const isFav = state.favoriteChapters.includes(id);
-      document.getElementById("psalmFavLabel").textContent = isFav ? "Salvo nos Favoritos" : "Salvar nos Favoritos";
+      document.getElementById("psalmFavLabel").textContent = isFav ? "Salvo" : "Favoritar";
       document.getElementById("psalmFavIcon").setAttribute("data-lucide", isFav ? "bookmark-check" : "bookmark");
 
       if (!study) {
@@ -1704,25 +1980,30 @@
           <div class="surface-card rounded-3xl p-8 sm:p-10 text-center max-w-2xl mx-auto space-y-4">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold surface-sand" style="color: var(--gold);">
               <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-              <span>Capítulo catalogado • Estudo em produção</span>
+              <span>Capítulo indexado • Em revisão editorial</span>
             </span>
             <h1 class="font-serif-brand text-3xl font-medium" style="color: var(--green-dark);">Salmo ${id}</h1>
             <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
-              O estudo aprofundado versículo por versículo do <strong>Salmo ${id}</strong> (tema inicial: <strong>${item.themes[0]}</strong>) ainda não foi publicado. Como prioridade de qualidade teológica e histórica, cada capítulo passa por revisão histórica e comentário versículo por versículo antes de ser publicado nas nossas atualizações semanais.
+              O estudo versículo por versículo do <strong>Salmo ${id}</strong> (tema: ${item.themes[0]}) ainda não foi publicado. Preferimos manter transparência e liberar cada capítulo somente após revisão histórica e bíblica.
             </p>
             <div class="pt-2 flex flex-wrap justify-center gap-2">
-              <button type="button" data-open-psalm="23" class="btn-primary px-4 py-2 rounded-xl text-xs font-semibold">Ler Salmo 23 (Completo)</button>
-              <button type="button" data-open-psalm="91" class="btn-outline px-4 py-2 rounded-xl text-xs font-semibold">Ler Salmo 91 (Completo)</button>
-              <button type="button" data-open-psalm="121" class="btn-outline px-4 py-2 rounded-xl text-xs font-semibold">Ler Salmo 121 (Completo)</button>
+              <button type="button" data-open-psalm="23" class="btn-primary px-4 py-2 rounded-xl text-xs font-semibold">Salmo 23</button>
+              <button type="button" data-open-psalm="91" class="btn-outline px-4 py-2 rounded-xl text-xs font-semibold">Salmo 91</button>
+              <button type="button" data-open-psalm="139" class="btn-outline px-4 py-2 rounded-xl text-xs font-semibold">Salmo 139</button>
             </div>
           </div>
         `;
-        if (window.lucide) lucide.createIcons();
         return;
       }
 
+      const related = Object.keys(FULL_STUDIES)
+        .map(Number)
+        .filter(pid => pid !== id && FULL_STUDIES[pid].themes.some(t => study.themes.includes(t)))
+        .slice(0, 3);
+
       const savedNote = state.notes[id] || "";
-      const noteStatusText = state.user ? "Sincronizado na nuvem ✓" : "Salvo neste navegador (faça login para sincronizar)";
+      const noteStatusText = state.user ? "Sincronizado na nuvem ✓" : "Salvo neste navegador";
+
       container.innerHTML = `
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7 space-y-6">
@@ -1730,29 +2011,48 @@
               <div class="space-y-2 border-b pb-5" style="border-color: var(--border-soft);">
                 <div class="flex flex-wrap items-center gap-2 text-xs">
                   ${study.themes.map(t => `<span class="px-2.5 py-0.5 rounded-full surface-sand font-medium" style="color: var(--green-moss);">${t}</span>`).join("")}
-                  <span style="color: var(--text-muted);">${study.genre} • Autor: ${study.author}</span>
+                  <span style="color: var(--text-muted);">${study.genre} • Autoria: ${study.author}</span>
                 </div>
                 <h1 class="font-serif-brand text-2xl sm:text-4xl font-medium" style="color: var(--green-dark);">Salmo ${id} — ${study.title}</h1>
-                <p class="text-xs" style="color: var(--text-muted);">Clique em qualquer versículo para destacar e salvar nos seus favoritos.</p>
+                <p class="text-xs" style="color: var(--text-muted);">Tradução: Almeida / Bíblia Livre (Domínio Público). Clique em um versículo para favoritar ou use o ícone para copiar.</p>
               </div>
 
-              <div class="space-y-3">
+              <div class="space-y-4">
                 ${study.verses.map((v, idx) => {
                   const key = `${id}:${idx + 1}`;
                   const faved = state.favoriteVerses.some(fv => fv.key === key);
                   return `
-                    <div data-verse-fav="${key}" class="verse-row ${faved ? 'favorited' : ''} rounded-xl p-3 cursor-pointer space-y-1.5">
-                      <p class="font-serif-brand text-base sm:text-lg leading-relaxed">
-                        <span class="font-sans text-xs font-bold mr-2" style="color: var(--gold);">${idx + 1}</span>${v.text}
-                      </p>
-                      <p class="text-xs sm:text-sm pl-5 leading-relaxed" style="color: var(--text-muted);">
-                        <strong style="color: var(--green-moss);">Estudo:</strong> ${v.note}
-                      </p>
+                    <div class="verse-row ${faved ? 'favorited' : ''} rounded-2xl p-4 space-y-2.5 border" style="border-color: var(--border-soft);">
+                      <div class="flex items-start justify-between gap-2">
+                        <p data-verse-fav="${key}" class="verse-biblical-text font-serif-brand leading-relaxed cursor-pointer flex-1">
+                          <span class="font-sans text-xs font-bold mr-2" style="color: var(--gold);">${idx + 1}</span>${v.text}
+                        </p>
+                        <button type="button" data-copy-verse="${key}" aria-label="Copiar versículo ${idx + 1}" title="Copiar versículo" class="no-print shrink-0 w-7 h-7 rounded-lg surface-sand flex items-center justify-center opacity-70 hover:opacity-100">
+                          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        </button>
+                      </div>
+                      <div class="surface-sand rounded-xl p-3 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+                        <strong style="color: var(--green-moss);">Comentário da plataforma:</strong> ${v.note}
+                      </div>
                     </div>
                   `;
                 }).join("")}
               </div>
             </article>
+
+            ${related.length > 0 ? `
+              <div class="surface-card rounded-3xl p-6 space-y-3 no-print">
+                <h2 class="font-serif-brand text-lg font-medium" style="color: var(--green-dark);">Salmos relacionados para continuar</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  ${related.map(rid => `
+                    <button type="button" data-open-psalm="${rid}" class="surface-sand rounded-2xl p-3.5 text-left hover:opacity-90 transition">
+                      <span class="text-xs font-semibold block" style="color: var(--gold);">Salmo ${rid}</span>
+                      <span class="font-serif-brand text-sm font-medium block mt-0.5" style="color: var(--green-dark);">${FULL_STUDIES[rid].title}</span>
+                    </button>
+                  `).join("")}
+                </div>
+              </div>
+            ` : ''}
           </div>
 
           <aside class="lg:col-span-5 space-y-4">
@@ -1767,46 +2067,42 @@
               </div>
               <div class="pt-3 border-t" style="border-color: var(--border-soft);">
                 <h2 class="text-xs font-semibold uppercase tracking-wider mb-1.5" style="color: var(--gold);">Principais Ensinamentos</h2>
-                <ul class="list-disc pl-5 space-y-1.5" style="color: var(--text-main);">
-                  ${study.teachings.map(t => `<li>${t}</li>`).join("")}
-                </ul>
+                <ul class="list-disc pl-5 space-y-1.5">${study.teachings.map(t => `<li>${t}</li>`).join("")}</ul>
               </div>
               <div class="pt-3 border-t" style="border-color: var(--border-soft);">
                 <h2 class="text-xs font-semibold uppercase tracking-wider mb-1.5" style="color: var(--gold);">Aplicações Práticas</h2>
-                <ul class="list-disc pl-5 space-y-1.5" style="color: var(--text-main);">
-                  ${study.applications.map(a => `<li>${a}</li>`).join("")}
-                </ul>
+                <ul class="list-disc pl-5 space-y-1.5">${study.applications.map(a => `<li>${a}</li>`).join("")}</ul>
               </div>
               <div class="pt-3 border-t" style="border-color: var(--border-soft);">
                 <h2 class="text-xs font-semibold uppercase tracking-wider mb-1.5" style="color: var(--gold);">Perguntas para Reflexão</h2>
-                <ul class="list-disc pl-5 space-y-1.5" style="color: var(--text-muted);">
-                  ${study.questions.map(q => `<li>${q}</li>`).join("")}
-                </ul>
+                <ul class="list-disc pl-5 space-y-1.5" style="color: var(--text-muted);">${study.questions.map(q => `<li>${q}</li>`).join("")}</ul>
               </div>
               <div class="surface-sand rounded-2xl p-4 space-y-1">
-                <h2 class="text-xs font-semibold uppercase tracking-wider" style="color: var(--green-moss);">Oração Relacionada</h2>
+                <h2 class="text-xs font-semibold uppercase tracking-wider" style="color: var(--green-moss);">Oração Sugerida</h2>
                 <p class="font-serif-brand italic text-sm leading-relaxed">${study.prayer}</p>
               </div>
               <div class="pt-2">
                 <h2 class="text-xs font-semibold uppercase tracking-wider mb-1.5" style="color: var(--text-muted);">Referências Bíblicas</h2>
-                <div class="flex flex-wrap gap-1.5">
-                  ${study.references.map(r => `<span class="px-2.5 py-1 rounded-lg surface-sand text-xs font-medium">${r}</span>`).join("")}
-                </div>
+                <div class="flex flex-wrap gap-1.5">${study.references.map(r => `<span class="px-2.5 py-1 rounded-lg surface-sand text-xs font-medium">${r}</span>`).join("")}</div>
               </div>
             </div>
 
-            <div class="surface-card rounded-3xl p-6 space-y-3">
+            <div class="surface-card rounded-3xl p-6 space-y-3 no-print">
               <div class="flex items-center justify-between gap-2">
                 <h2 class="font-serif-brand text-lg font-medium" style="color: var(--green-dark);">Minhas Reflexões</h2>
-                <span id="psalmNoteSaved" class="text-[11px] text-right" style="color: var(--text-muted);">${noteStatusText}</span>
+                <span id="psalmNoteSaved" class="text-[11px]" style="color: var(--text-muted);">${noteStatusText}</span>
               </div>
-              <textarea
-                id="psalmNoteInput"
-                rows="4"
-                placeholder="Escreva o que este Salmo falou ao seu coração ou sua oração pessoal..."
-                class="w-full p-3 rounded-xl text-sm surface-sand border focus:outline-none focus:ring-2"
-                style="border-color: var(--border-soft); --tw-ring-color: var(--green-moss);"
-              >${escapeHtml(savedNote)}</textarea>
+              <textarea id="psalmNoteInput" rows="4" placeholder="Escreva o que este Salmo falou ao seu coração..." class="w-full p-3 rounded-xl text-sm surface-sand border focus:outline-none" style="border-color: var(--border-soft);">${escapeHtml(savedNote)}</textarea>
+            </div>
+
+            <div class="surface-sand rounded-3xl p-5 border space-y-1.5 no-print" style="border-color: var(--border-soft);">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--gold);">Assistente Bíblico SALMOS</span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full surface-card" style="color: var(--text-muted);">Indisponível no momento</span>
+              </div>
+              <p class="text-xs leading-relaxed" style="color: var(--text-muted);">
+                Espaço reservado para o futuro assistente de perguntas bíblicas com referências verificadas (será liberado após configuração segura da API no servidor).
+              </p>
             </div>
           </aside>
         </div>
@@ -1819,42 +2115,190 @@
           const st = document.getElementById("psalmNoteSaved");
           if (st) st.textContent = state.user ? "Salvando na nuvem..." : "Salvando...";
           clearTimeout(noteSaveTimer);
-          noteSaveTimer = setTimeout(() => {
-            syncReflection(id, noteEl.value);
-          }, 600);
+          noteSaveTimer = setTimeout(() => syncReflection(id, noteEl.value), 600);
         });
       }
+    }
 
-      if (window.lucide) lucide.createIcons();
+    function renderReadingPlans() {
+      const container = document.getElementById("readingPlansGrid");
+      container.innerHTML = READING_PLANS.map(plan => {
+        const doneDays = state.planProgress[plan.id] || [];
+        const pct = Math.round((doneDays.length / plan.days.length) * 100);
+        return `
+          <div class="surface-card rounded-3xl p-6 space-y-5">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div class="space-y-1 max-w-2xl">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="px-2.5 py-0.5 rounded-full surface-sand font-semibold" style="color: var(--green-moss);">${plan.tier}</span>
+                  <span style="color: var(--text-muted);">${plan.days.length} dias</span>
+                </div>
+                <h2 class="font-serif-brand text-2xl font-medium" style="color: var(--green-dark);">${plan.title}</h2>
+                <p class="text-xs sm:text-sm" style="color: var(--text-muted);">${plan.goal}</p>
+              </div>
+              <div class="text-right min-w-[140px]">
+                <span class="text-xs font-semibold block" style="color: var(--green-dark);">${doneDays.length}/${plan.days.length} dias (${pct}%)</span>
+                <div class="w-36 h-2 rounded-full mt-1.5 overflow-hidden surface-sand">
+                  <div class="h-full rounded-full" style="width:${pct}%; background-color: var(--green-moss);"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              ${plan.days.map(d => {
+                const isDone = doneDays.includes(d.day);
+                return `
+                  <div class="surface-sand rounded-2xl p-3.5 flex items-start justify-between gap-2">
+                    <div class="space-y-0.5">
+                      <span class="text-[11px] font-semibold uppercase" style="color: var(--gold);">Dia ${d.day} • Salmo ${d.psalmId}</span>
+                      <p class="text-xs leading-snug" style="color: var(--text-main);">${d.focus}</p>
+                      <button type="button" data-open-psalm="${d.psalmId}" class="text-[11px] font-semibold underline pt-1" style="color: var(--green-moss);">Abrir estudo →</button>
+                    </div>
+                    <button type="button" data-toggle-plan="${plan.id}:${d.day}" aria-label="Marcar dia ${d.day}" class="shrink-0 w-7 h-7 rounded-lg flex items-center justify-center border transition" style="${isDone ? 'background-color: var(--green-moss); color: #FFFFFF; border-color: var(--green-moss);' : 'background-color: var(--bg-card); color: var(--text-muted); border-color: var(--border-soft);'}">
+                      <i data-lucide="check" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderJourney() {
+      const completedCount = Object.keys(state.completedPsalms).length;
+      const datesSet = new Set([
+        ...Object.values(state.completedPsalms),
+        ...state.recentHistory.map(h => h.date)
+      ]);
+      const last7 = [];
+      const dayNames = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+      let studiedThisWeek = 0;
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(Date.now() - i * 86400000);
+        const iso = d.toISOString().slice(0, 10);
+        const active = datesSet.has(iso);
+        if (active) studiedThisWeek++;
+        last7.push({ label: dayNames[d.getDay()], dayNum: d.getDate(), active });
+      }
+
+      document.getElementById("weeklyGoalSelect").value = String(state.weeklyGoal);
+      document.getElementById("journeyHeadline").textContent =
+        `Você estudou ${studiedThisWeek} dia(s) nos últimos 7 dias e concluiu ${completedCount} de 18 Salmos disponíveis.`;
+
+      const notesCount = state.journalEntries.length + Object.values(state.notes).filter(t => t && t.trim()).length;
+      document.getElementById("journeyStatsGrid").innerHTML = `
+        <div class="surface-card rounded-2xl p-4">
+          <span class="text-xs" style="color: var(--text-muted);">Salmos concluídos</span>
+          <strong class="font-serif-brand text-3xl block mt-1" style="color: var(--green-dark);">${completedCount}/18</strong>
+        </div>
+        <div class="surface-card rounded-2xl p-4">
+          <span class="text-xs" style="color: var(--text-muted);">Dias na semana</span>
+          <strong class="font-serif-brand text-3xl block mt-1" style="color: var(--green-dark);">${studiedThisWeek}/${state.weeklyGoal}</strong>
+        </div>
+        <div class="surface-card rounded-2xl p-4">
+          <span class="text-xs" style="color: var(--text-muted);">Versículos salvos</span>
+          <strong class="font-serif-brand text-3xl block mt-1" style="color: var(--gold);">${state.favoriteVerses.length}</strong>
+        </div>
+        <div class="surface-card rounded-2xl p-4">
+          <span class="text-xs" style="color: var(--text-muted);">Reflexões registradas</span>
+          <strong class="font-serif-brand text-3xl block mt-1" style="color: var(--green-dark);">${notesCount}</strong>
+        </div>
+      `;
+
+      document.getElementById("journeyWeekCalendar").innerHTML = last7.map(d => `
+        <div class="rounded-2xl py-3 px-1 border" style="${d.active ? 'background-color: var(--green-moss); color: #FFFFFF; border-color: var(--green-moss);' : 'background-color: var(--bg-sand); color: var(--text-muted); border-color: var(--border-soft);'}">
+          <span class="text-[11px] block">${d.label}</span>
+          <strong class="text-base block mt-0.5">${d.dayNum}</strong>
+        </div>
+      `).join("");
+
+      const histEl = document.getElementById("journeyHistoryList");
+      histEl.innerHTML = state.recentHistory.length > 0
+        ? state.recentHistory.slice(0, 6).map(h => {
+            const p = PSALMS_150.find(x => x.id === h.psalmId);
+            return `
+              <div class="surface-sand rounded-xl px-3.5 py-2.5 flex items-center justify-between text-xs sm:text-sm">
+                <span><strong>Salmo ${h.psalmId}</strong> — ${p ? p.title : ""}</span>
+                <button type="button" data-open-psalm="${h.psalmId}" class="font-semibold underline" style="color: var(--green-moss);">Abrir</button>
+              </div>
+            `;
+          }).join("")
+        : `<p class="text-xs" style="color: var(--text-muted);">Abra qualquer Salmo para começar a registrar seu histórico.</p>`;
+
+      document.getElementById("journeyPlansProgress").innerHTML = READING_PLANS.map(plan => {
+        const done = (state.planProgress[plan.id] || []).length;
+        const pct = Math.round((done / plan.days.length) * 100);
+        return `
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs">
+              <span class="font-medium">${plan.title}</span>
+              <span style="color: var(--text-muted);">${done}/${plan.days.length}</span>
+            </div>
+            <div class="w-full h-2 rounded-full surface-sand overflow-hidden">
+              <div class="h-full rounded-full" style="width:${pct}%; background-color: var(--green-moss);"></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderJournal() {
+      const sel = document.getElementById("journalPsalmSelect");
+      if (sel && sel.options.length === 0) {
+        sel.innerHTML = Object.keys(FULL_STUDIES).map(Number).sort((a, b) => a - b)
+          .map(pid => `<option value="${pid}">Salmo ${pid} — ${FULL_STUDIES[pid].title}</option>`).join("");
+      }
+
+      const q = state.journalSearch.trim().toLowerCase();
+      const cat = state.journalCatFilter;
+      const filtered = state.journalEntries.filter(e => {
+        if (cat !== "Todas" && e.category !== cat) return false;
+        if (!q) return true;
+        return `salmo ${e.psalmId} ${e.category} ${e.verseRef || ""} ${e.text}`.toLowerCase().includes(q);
+      });
+
+      const listEl = document.getElementById("journalEntriesList");
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<div class="surface-card rounded-2xl p-8 text-center text-sm" style="color: var(--text-muted);">Nenhuma anotação encontrada. Use o formulário acima para registrar sua primeira oração ou reflexão.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(e => `
+        <article class="surface-card rounded-2xl p-5 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full surface-sand font-semibold" style="color: var(--green-moss);">${escapeHtml(e.category)}</span>
+              <button type="button" data-open-psalm="${e.psalmId}" class="font-semibold underline" style="color: var(--gold);">Salmo ${e.psalmId}${e.verseRef ? ` (${escapeHtml(e.verseRef)})` : ''}</button>
+              <span style="color: var(--text-muted);">${e.date}</span>
+            </div>
+            <button type="button" data-delete-journal="${e.id}" class="no-print text-xs underline opacity-70 hover:opacity-100" style="color: var(--text-muted);">Excluir</button>
+          </div>
+          <p class="text-sm leading-relaxed whitespace-pre-line">${escapeHtml(e.text)}</p>
+        </article>
+      `).join("");
     }
 
     function renderThemesCatalog() {
-      const grid = document.getElementById("themesCatalogGrid");
-      grid.innerHTML = THEMES.map(t => {
+      document.getElementById("themesCatalogGrid").innerHTML = THEMES.map(t => {
         const readyOnes = PSALMS_150.filter(p => p.ready && p.themes.includes(t.name));
         const totalInTheme = PSALMS_150.filter(p => p.themes.includes(t.name)).length;
         return `
           <div class="surface-card rounded-3xl p-6 flex flex-col justify-between gap-4">
             <div class="space-y-2">
               <div class="flex items-center justify-between">
-                <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);">
-                  <i data-lucide="${t.icon}" class="w-5 h-5"></i>
-                </span>
+                <span class="w-10 h-10 rounded-xl surface-sand flex items-center justify-center" style="color: var(--green-moss);"><i data-lucide="${t.icon}" class="w-5 h-5"></i></span>
                 <span class="text-xs font-medium" style="color: var(--text-muted);">${totalInTheme} Salmos catalogados</span>
               </div>
               <h2 class="font-serif-brand text-xl font-medium" style="color: var(--green-dark);">${t.name}</h2>
               <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">${t.desc}</p>
             </div>
-
             <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t" style="border-color: var(--border-soft);">
               <div class="flex flex-wrap gap-1.5">
-                ${readyOnes.length > 0
-                  ? readyOnes.map(p => `<button type="button" data-open-psalm="${p.id}" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-white" style="background-color: var(--green-moss);">Salmo ${p.id}</button>`).join("")
-                  : `<span class="text-xs" style="color: var(--text-muted);">Estudos completos nos próximos lotes</span>`}
+                ${readyOnes.map(p => `<button type="button" data-open-psalm="${p.id}" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-white" style="background-color: var(--green-moss);">Salmo ${p.id}</button>`).join("")}
               </div>
-              <button type="button" data-filter-theme="${t.name}" class="text-xs font-semibold underline underline-offset-4" style="color: var(--gold);">
-                Filtrar biblioteca
-              </button>
+              <button type="button" data-filter-theme="${t.name}" class="text-xs font-semibold underline" style="color: var(--gold);">Ver na biblioteca</button>
             </div>
           </div>
         `;
@@ -1862,30 +2306,26 @@
     }
 
     function renderAccount() {
-      const authSec = document.getElementById("authSection");
-      const profSec = document.getElementById("profileSection");
-      const loggedIn = Boolean(state.user);
-      authSec.classList.toggle("hidden", loggedIn);
-      profSec.classList.toggle("hidden", !loggedIn);
+      document.getElementById("recoverySection").classList.toggle("hidden", !state.recoveryMode);
+      const loggedIn = Boolean(state.user) && !state.recoveryMode;
+      document.getElementById("authSection").classList.toggle("hidden", loggedIn || state.recoveryMode);
+      document.getElementById("profileSection").classList.toggle("hidden", !loggedIn);
+
+      if (state.recoveryMode) return;
 
       if (!loggedIn) {
-        const headingMap = {
-          login: "Entrar na sua conta",
-          signup: "Criar conta gratuita",
-          reset: "Recuperar senha"
-        };
-        const btnMap = {
+        const hMap = { login: "Entrar na sua conta", signup: "Criar conta gratuita", reset: "Recuperar senha" };
+        const bMap = {
           login: state.authLoading ? "Entrando..." : "Entrar",
-          signup: state.authLoading ? "Criando conta..." : "Criar conta",
+          signup: state.authLoading ? "Criando..." : "Criar conta",
           reset: state.authLoading ? "Enviando..." : "Enviar link de recuperação"
         };
-        document.getElementById("authHeading").textContent = headingMap[state.authMode];
-        const submitBtn = document.getElementById("authSubmitBtn");
-        submitBtn.textContent = btnMap[state.authMode];
-        submitBtn.disabled = state.authLoading;
+        document.getElementById("authHeading").textContent = hMap[state.authMode];
+        const sBtn = document.getElementById("authSubmitBtn");
+        sBtn.textContent = bMap[state.authMode];
+        sBtn.disabled = state.authLoading;
         document.getElementById("authNameWrap").classList.toggle("hidden", state.authMode !== "signup");
         document.getElementById("authPassWrap").classList.toggle("hidden", state.authMode === "reset");
-
         document.querySelectorAll(".auth-tab-btn").forEach(btn => {
           const active = btn.dataset.authMode === state.authMode;
           btn.style.backgroundColor = active ? "var(--bg-card)" : "transparent";
@@ -1898,12 +2338,9 @@
       document.getElementById("profileAvatar").textContent = state.user.name.charAt(0).toUpperCase();
       document.getElementById("profileName").textContent = state.user.name;
       document.getElementById("profileEmail").textContent = state.user.email;
-      const planBadge = document.getElementById("profilePlanBadge");
-      if (planBadge) {
-        planBadge.textContent = state.user.plan === "premium"
-          ? "Plano Premium • Sincronizado na Nuvem"
-          : "Plano Gratuito • Sincronizado na Nuvem";
-      }
+      document.getElementById("profilePlanBadge").textContent = state.user.plan === "premium"
+        ? "Plano Premium • Sincronizado na Nuvem"
+        : "Plano Gratuito • Sincronizado na Nuvem";
 
       const favList = document.getElementById("profileFavoritesList");
       const items = [];
@@ -1914,310 +2351,13 @@
       state.favoriteVerses.forEach(v => {
         items.push(`<div class="surface-sand rounded-xl p-3 space-y-1 text-sm"><p class="font-serif-brand italic">“${escapeHtml(v.text)}”</p><div class="flex justify-between text-xs"><span style="color: var(--gold); font-weight:600;">Salmo ${v.key}</span><button type="button" data-open-psalm="${v.psalmId}" class="underline font-medium">Abrir</button></div></div>`);
       });
-      favList.innerHTML = items.length > 0
-        ? items.join("")
-        : `<p class="text-sm" style="color: var(--text-muted);">Você ainda não favoritou Salmos ou versículos. Abra qualquer estudo para salvar aqui.</p>`;
+      favList.innerHTML = items.length ? items.join("") : `<p class="text-sm" style="color: var(--text-muted);">Nenhum favorito salvo ainda.</p>`;
 
       const notesList = document.getElementById("profileNotesList");
-      const noteEntries = Object.entries(state.notes).filter(([, txt]) => txt && txt.trim());
-      notesList.innerHTML = noteEntries.length > 0
-        ? noteEntries.map(([pid, txt]) => `
-            <div class="surface-sand rounded-xl p-3 space-y-1 text-sm">
-              <div class="flex justify-between items-center">
-                <strong style="color: var(--green-dark);">Salmo ${pid}</strong>
-                <button type="button" data-open-psalm="${pid}" class="text-xs underline font-medium">Editar</button>
-              </div>
-              <p class="text-xs sm:text-sm" style="color: var(--text-muted);">${escapeHtml(txt)}</p>
-            </div>
-          `).join("")
-        : `<p class="text-sm" style="color: var(--text-muted);">Nenhuma reflexão escrita ainda. Use a caixa "Minhas Reflexões" dentro de qualquer estudo completo.</p>`;
-    }
-
-    function openLegalModal(type) {
-      const content = {
-        terms: {
-          title: "Termos de Uso",
-          body: "<p>A plataforma SALMOS oferece recursos digitais de leitura e estudo bíblico pessoal. Os textos bíblicos utilizados baseiam-se em traduções em domínio público (Almeida / Bíblia Livre).</p><p>Os comentários e guias de estudo são originais da plataforma e destinados ao uso pessoal ou de pequenos grupos conforme o plano contratado.</p>"
-        },
-        privacy: {
-          title: "Política de Privacidade e LGPD",
-          body: "<p>Coletamos apenas seu nome e e-mail para autenticação segura via Supabase. Seus favoritos e reflexões pessoais são protegidos por políticas de privacidade em nível de linha (RLS), garantindo que apenas você tenha acesso aos seus dados, conforme a LGPD.</p>"
-        },
-        cancel: {
-          title: "Política de Cancelamento",
-          body: "<p>Você pode cancelar sua assinatura mensal ou anual a qualquer momento sem multas ou fidelidade, além de contar com garantia integral de arrependimento de 7 dias após a compra.</p>"
-        },
-        support: {
-          title: "Suporte e Atendimento",
-          body: "<p>Dúvidas sobre sua conta, estudos, sugestões ou planos para igrejas e pequenos grupos? Fale diretamente conosco pelo WhatsApp:</p><p><a href=\"https://wa.me/5551982991513?text=Ol%C3%A1!%20Vim%20pela%20plataforma%20SALMOS%20e%20gostaria%20de%20atendimento.\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"display:inline-block;margin-top:8px;padding:10px 18px;border-radius:12px;background-color:#2F4538;color:#FFFFFF;font-weight:600;text-decoration:none;\">Falar no WhatsApp: (51) 98299-1513</a></p>"
-        }
-      }[type];
-      if (!content) return;
-      document.getElementById("modalTitle").textContent = content.title;
-      document.getElementById("modalBody").innerHTML = content.body;
-      const modal = document.getElementById("infoModal");
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-    }
-
-    function closeModal() {
-      const modal = document.getElementById("infoModal");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
-
-    function renderAll() {
-      document.getElementById("viewHome").classList.toggle("hidden", state.view !== "home");
-      document.getElementById("viewLibrary").classList.toggle("hidden", state.view !== "library");
-      document.getElementById("viewPsalm").classList.toggle("hidden", state.view !== "psalm");
-      document.getElementById("viewThemes").classList.toggle("hidden", state.view !== "themes");
-      document.getElementById("viewPlans").classList.toggle("hidden", state.view !== "plans");
-      document.getElementById("viewAccount").classList.toggle("hidden", state.view !== "account");
-
-      renderNav();
-      if (state.view === "home") renderHome();
-      if (state.view === "library") renderLibrary();
-      if (state.view === "psalm") renderPsalmDetail();
-      if (state.view === "themes") renderThemesCatalog();
-      if (state.view === "account") renderAccount();
-      if (window.lucide) lucide.createIcons();
-    }
-
-    function bindEvents() {
-      document.getElementById("logoHomeBtn").addEventListener("click", () => setView("home"));
-      document.getElementById("fontMinusBtn").addEventListener("click", () => {
-        state.fontSize = Math.max(14, state.fontSize - 2);
-        saveLocalState();
-        applyDisplayPrefs();
-      });
-      document.getElementById("fontPlusBtn").addEventListener("click", () => {
-        state.fontSize = Math.min(24, state.fontSize + 2);
-        saveLocalState();
-        applyDisplayPrefs();
-      });
-      document.getElementById("darkModeBtn").addEventListener("click", () => {
-        state.darkMode = !state.darkMode;
-        saveLocalState();
-        applyDisplayPrefs();
-        if (window.lucide) lucide.createIcons();
-      });
-      document.getElementById("accountNavBtn").addEventListener("click", () => setView("account"));
-      document.getElementById("mobileMenuBtn").addEventListener("click", () => {
-        document.getElementById("mobileMenu").classList.toggle("hidden");
-      });
-
-      document.querySelectorAll(".nav-btn").forEach(btn => {
-        btn.addEventListener("click", () => setView(btn.dataset.nav));
-      });
-
-      document.getElementById("heroExploreBtn").addEventListener("click", () => setView("library"));
-      document.getElementById("heroThemesBtn").addEventListener("click", () => setView("themes"));
-      document.getElementById("openDailyPsalmBtn").addEventListener("click", (e) => openPsalm(Number(e.currentTarget.dataset.dailyId || getDailyPsalmId())));
-      document.getElementById("homeSeeAllThemesBtn").addEventListener("click", () => setView("themes"));
-      document.getElementById("homeSeePlansBtn").addEventListener("click", () => setView("plans"));
-      document.getElementById("backLibraryBtn").addEventListener("click", () => setView("library"));
-
-      document.getElementById("libSearchInput").addEventListener("input", (e) => {
-        state.libSearch = e.target.value;
-        renderLibrary();
-      });
-
-      document.getElementById("onlyReadyToggle").addEventListener("change", (e) => {
-        state.onlyReady = e.target.checked;
-        renderLibrary();
-      });
-
-      document.getElementById("psalmSpeechBtn").addEventListener("click", toggleSpeech);
-
-      document.getElementById("psalmFavChapterBtn").addEventListener("click", () => {
-        const id = state.activePsalmId;
-        const idx = state.favoriteChapters.indexOf(id);
-        if (idx >= 0) {
-          state.favoriteChapters.splice(idx, 1);
-          syncChapterFavorite(id, false);
-          showToast(`Salmo ${id} removido dos favoritos.`);
-        } else {
-          state.favoriteChapters.push(id);
-          syncChapterFavorite(id, true);
-          showToast(state.user ? `Salmo ${id} salvo na nuvem!` : `Salmo ${id} salvo nos favoritos!`);
-        }
-        renderPsalmDetail();
-      });
-
-      document.getElementById("prevChapterBtn").addEventListener("click", () => {
-        const prev = state.activePsalmId > 1 ? state.activePsalmId - 1 : 150;
-        openPsalm(prev);
-      });
-
-      document.getElementById("nextChapterBtn").addEventListener("click", () => {
-        const next = state.activePsalmId < 150 ? state.activePsalmId + 1 : 1;
-        openPsalm(next);
-      });
-
-      document.querySelectorAll(".auth-tab-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.authMode = btn.dataset.authMode;
-          renderAccount();
-        });
-      });
-
-      document.getElementById("authForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        if (!supabaseClient) {
-          showToast("Erro ao carregar cliente Supabase. Recarregue a página.");
-          return;
-        }
-        const email = document.getElementById("authEmail").value.trim();
-        const name = document.getElementById("authName").value.trim();
-        const pass = document.getElementById("authPass").value;
-
-        state.authLoading = true;
-        renderAccount();
-
-        try {
-          if (state.authMode === "reset") {
-            const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-              redirectTo: window.location.origin
-            });
-            if (error) {
-              showToast(`Erro ao enviar recuperação: ${error.message}`);
-            } else {
-              showToast(`E-mail de recuperação enviado para ${email}!`);
-              state.authMode = "login";
-            }
-          } else if (state.authMode === "signup") {
-            if (pass.length < 6) {
-              showToast("Use uma senha com pelo menos 6 caracteres.");
-            } else {
-              const { data, error } = await supabaseClient.auth.signUp({
-                email,
-                password: pass,
-                options: { data: { full_name: name || email.split("@")[0] } }
-              });
-              if (error) {
-                showToast(`Erro no cadastro: ${error.message}`);
-              } else if (data.session && data.user) {
-                showToast("Conta criada e conectada com sucesso!");
-                await loadCloudUserData(data.user);
-              } else {
-                showToast("Conta criada! Confirme o link no seu e-mail e depois faça login.");
-                state.authMode = "login";
-              }
-            }
-          } else {
-            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
-            if (error) {
-              showToast("E-mail ou senha inválidos (ou confirme seu e-mail).");
-            } else if (data.user) {
-              showToast("Bem-vindo(a) de volta à SALMOS!");
-              await loadCloudUserData(data.user);
-            }
-          }
-        } catch (err) {
-          showToast("Falha de conexão. Tente novamente.");
-        } finally {
-          state.authLoading = false;
-          renderAccount();
-        }
-      });
-
-      document.getElementById("logoutBtn").addEventListener("click", async () => {
-        if (supabaseClient) {
-          try { await supabaseClient.auth.signOut(); } catch (e) {}
-        }
-        state.user = null;
-        state.favoriteChapters = [];
-        state.favoriteVerses = [];
-        state.notes = {};
-        loadLocalState();
-        showToast("Você saiu da sua conta.");
-        renderAll();
-      });
-
-      document.getElementById("closeModalBtn").addEventListener("click", closeModal);
-      document.getElementById("infoModal").addEventListener("click", (e) => {
-        if (e.target.id === "infoModal") closeModal();
-      });
-
-      document.addEventListener("click", (e) => {
-        const openPsalmBtn = e.target.closest("[data-open-psalm]");
-        if (openPsalmBtn) {
-          openPsalm(Number(openPsalmBtn.dataset.openPsalm));
-          return;
-        }
-
-        const filterThemeBtn = e.target.closest("[data-filter-theme]");
-        if (filterThemeBtn) {
-          state.libTheme = filterThemeBtn.dataset.filterTheme;
-          setView("library");
-          return;
-        }
-
-        const libThemeBtn = e.target.closest("[data-lib-theme]");
-        if (libThemeBtn) {
-          state.libTheme = libThemeBtn.dataset.libTheme;
-          renderLibrary();
-          return;
-        }
-
-        const verseFavRow = e.target.closest("[data-verse-fav]");
-        if (verseFavRow) {
-          const key = verseFavRow.dataset.verseFav;
-          const [pidStr, vNumStr] = key.split(":");
-          const pid = Number(pidStr);
-          const vNum = Number(vNumStr);
-          const vIdx = vNum - 1;
-          const study = FULL_STUDIES[pid];
-          if (!study || !study.verses[vIdx]) return;
-          const existing = state.favoriteVerses.findIndex(v => v.key === key);
-          if (existing >= 0) {
-            state.favoriteVerses.splice(existing, 1);
-            syncVerseFavorite(pid, vNum, study.verses[vIdx].text, false);
-            showToast(`Destaque removido (Salmo ${key}).`);
-          } else {
-            state.favoriteVerses.push({ key, psalmId: pid, text: study.verses[vIdx].text });
-            syncVerseFavorite(pid, vNum, study.verses[vIdx].text, true);
-            showToast(state.user ? `Salmo ${key} salvo na nuvem!` : `Salmo ${key} salvo nos favoritos!`);
-          }
-          renderPsalmDetail();
-          return;
-        }
-
-        const planBtn = e.target.closest(".plan-select-btn");
-        if (planBtn) {
-          const planName = planBtn.dataset.planSelect;
-          if (planName === "Gratuito") {
-            state.authMode = "signup";
-            setView("account");
-          } else if (planName.includes("Institucional")) {
-            window.open("https://wa.me/5551982991513?text=" + encodeURIComponent("Olá! Tenho interesse nos planos da plataforma SALMOS para igreja ou pequeno grupo."), "_blank", "noopener,noreferrer");
-          } else {
-            showToast(`Crie sua conta gratuita para garantir acesso antecipado ao plano ${planName}.`);
-            state.authMode = "signup";
-            setView("account");
-          }
-          return;
-        }
-
-        const legalBtn = e.target.closest(".legal-btn");
-        if (legalBtn) {
-          openLegalModal(legalBtn.dataset.legal);
-        }
-      });
-    }
-
-    async function initApp() {
-      loadLocalState();
-      bindEvents();
-      renderAll();
-      if (supabaseClient) {
-        try {
-          const { data } = await supabaseClient.auth.getSession();
-          if (data && data.session && data.session.user) {
-            await loadCloudUserData(data.session.user);
-          }
-        } catch (e) {}
-      }
+      const entries = Object.entries(state.notes).filter(([, t]) => t && t.trim());
+      notesList.innerHTML = entries.length
+        ? entries.slice(0, 5).map(([pid, txt]) => `<div class="surface-sand rounded-xl p-3 space-y-1 text-sm"><div class="flex justify-between"><strong style="color: var(--green-dark);">Salmo ${pid}</strong><button type="button" data-open-psalm="${pid}" class="text-xs underline">Abrir</button></div><p class="text-xs" style="color: var(--text-muted);">${escapeHtml(txt)}</p></div>`).join("")
+        : `<p class="text-sm" style="color: var(--text-muted);">Nenhuma reflexão escrita ainda.</p>`;
     }
 
     function wrapCanvasLines(ctx, text, maxW) {
@@ -2226,12 +2366,8 @@
       let curr = "";
       for (const w of words) {
         const test = curr ? curr + " " + w : w;
-        if (ctx.measureText(test).width > maxW && curr) {
-          lines.push(curr);
-          curr = w;
-        } else {
-          curr = test;
-        }
+        if (ctx.measureText(test).width > maxW && curr) { lines.push(curr); curr = w; }
+        else { curr = test; }
       }
       if (curr) lines.push(curr);
       return lines;
@@ -2241,145 +2377,434 @@
       const canvas = document.getElementById("shareCardCanvas");
       const study = FULL_STUDIES[state.activePsalmId];
       if (!canvas || !study) return;
+
+      const dims = {
+        square: { w: 1080, h: 1080 },
+        story: { w: 1080, h: 1920 },
+        pinterest: { w: 1000, h: 1500 }
+      }[state.cardFormat] || { w: 1080, h: 1080 };
+
+      canvas.width = dims.w;
+      canvas.height = dims.h;
       const ctx = canvas.getContext("2d");
-      const verseObj = study.verses[state.cardVerseIdx] || study.verses[0];
-      const vText = verseObj.text;
+      const vText = (study.verses[state.cardVerseIdx] || study.verses[0]).text;
       const ref = `SALMO ${state.activePsalmId}:${state.cardVerseIdx + 1}`;
 
-      const themes = {
-        cream: { bg1: "#FAF8F3", bg2: "#EFE8D8", text: "#1C211E", accent: "#B68940", muted: "#5A625D" },
+      const palettes = {
+        cream: { bg1: "#FAF8F3", bg2: "#EFE8D8", text: "#1C211E", accent: "#A87B32", muted: "#555E58" },
         moss: { bg1: "#2F4538", bg2: "#1E2E25", text: "#FAF8F3", accent: "#E2BA72", muted: "#C9D4C5" },
-        night: { bg1: "#171B19", bg2: "#0E110F", text: "#F2EFE8", accent: "#D4A85C", muted: "#9AA19C" }
+        night: { bg1: "#171B19", bg2: "#0D100E", text: "#F2EFE8", accent: "#D4A85C", muted: "#9AA19C" },
+        dawn: { bg1: "#F6EFE4", bg2: "#DFD3C3", text: "#232B26", accent: "#2F4538", muted: "#5A625D" }
       };
-      const pal = themes[state.cardTheme] || themes.cream;
+      const pal = palettes[state.cardTheme] || palettes.cream;
 
-      const grad = ctx.createLinearGradient(0, 0, 1080, 1080);
+      const grad = ctx.createLinearGradient(0, 0, dims.w, dims.h);
       grad.addColorStop(0, pal.bg1);
       grad.addColorStop(1, pal.bg2);
       ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 1080, 1080);
+      ctx.fillRect(0, 0, dims.w, dims.h);
 
+      const pad = 56;
       ctx.strokeStyle = pal.accent;
       ctx.lineWidth = 3;
-      ctx.strokeRect(56, 56, 968, 968);
+      ctx.strokeRect(pad, pad, dims.w - pad * 2, dims.h - pad * 2);
 
+      const cx = dims.w / 2;
       ctx.fillStyle = pal.accent;
       ctx.font = "600 26px Inter, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText((study.themes[0] || "SALMOS").toUpperCase(), 540, 155);
+      ctx.fillText((study.themes[0] || "SALMOS").toUpperCase(), cx, pad + 100);
 
       ctx.beginPath();
-      ctx.moveTo(465, 185);
-      ctx.lineTo(615, 185);
+      ctx.moveTo(cx - 75, pad + 130);
+      ctx.lineTo(cx + 75, pad + 130);
       ctx.strokeStyle = pal.accent;
       ctx.lineWidth = 2;
       ctx.stroke();
 
       ctx.fillStyle = pal.text;
       const fSize = vText.length > 150 ? 42 : vText.length > 90 ? 50 : 58;
-      ctx.font = `italic 500 ${fSize}px Lora, Georgia, serif`;
-      const lines = wrapCanvasLines(ctx, `“${vText}”`, 820);
+      const fontFamily = state.cardFont === "sans" ? `500 ${fSize}px Inter, sans-serif` : `italic 500 ${fSize}px Lora, Georgia, serif`;
+      ctx.font = fontFamily;
+      const lines = wrapCanvasLines(ctx, `“${vText}”`, dims.w - 220);
       const lh = fSize * 1.44;
-      const totalH = lines.length * lh;
-      const startY = 535 - totalH / 2 + fSize * 0.4;
-      lines.forEach((line, i) => ctx.fillText(line, 540, startY + i * lh));
+      const startY = dims.h / 2 - (lines.length * lh) / 2 + fSize * 0.4;
+      lines.forEach((line, i) => ctx.fillText(line, cx, startY + i * lh));
 
       ctx.fillStyle = pal.accent;
       ctx.font = "700 32px Inter, sans-serif";
-      ctx.fillText(ref, 540, 875);
+      ctx.fillText(ref, cx, dims.h - pad - 150);
 
-      ctx.fillStyle = pal.muted;
-      ctx.font = "500 22px Inter, sans-serif";
-      ctx.fillText("SALMOS • Estudo Guiado dos 150 Salmos", 540, 955);
+      if (state.cardShowBrand) {
+        ctx.fillStyle = pal.muted;
+        ctx.font = "500 22px Inter, sans-serif";
+        ctx.fillText("SALMOS • salmos-plataforma.pages.dev", cx, dims.h - pad - 70);
+      }
     }
 
-    function updateCardThemeButtons() {
-      document.querySelectorAll(".card-theme-btn").forEach(btn => {
-        const active = btn.dataset.cardTheme === state.cardTheme;
-        btn.style.backgroundColor = active ? "var(--green-moss)" : "var(--bg-card)";
-        btn.style.color = active ? "#FFFFFF" : "var(--text-main)";
-        btn.style.borderColor = active ? "var(--green-moss)" : "var(--border-soft)";
+    function updateCardControls() {
+      document.querySelectorAll(".card-fmt-btn").forEach(b => {
+        const a = b.dataset.cardFormat === state.cardFormat;
+        b.style.backgroundColor = a ? "var(--green-moss)" : "var(--bg-card)";
+        b.style.color = a ? "#FFFFFF" : "var(--text-main)";
+        b.style.borderColor = a ? "var(--green-moss)" : "var(--border-soft)";
+      });
+      document.querySelectorAll(".card-theme-btn").forEach(b => {
+        const a = b.dataset.cardTheme === state.cardTheme;
+        b.style.backgroundColor = a ? "var(--green-moss)" : "var(--bg-card)";
+        b.style.color = a ? "#FFFFFF" : "var(--text-main)";
+        b.style.borderColor = a ? "var(--green-moss)" : "var(--border-soft)";
+      });
+      document.querySelectorAll(".card-font-btn").forEach(b => {
+        const a = b.dataset.cardFont === state.cardFont;
+        b.style.backgroundColor = a ? "var(--green-moss)" : "var(--bg-card)";
+        b.style.color = a ? "#FFFFFF" : "var(--text-main)";
+        b.style.borderColor = a ? "var(--green-moss)" : "var(--border-soft)";
       });
     }
 
     function openCardModal() {
       const study = FULL_STUDIES[state.activePsalmId];
-      if (!study) {
-        showToast("Abra um dos 18 estudos completos para gerar o cartão PNG.");
-        return;
-      }
+      if (!study) { showToast("Abra um dos 18 estudos completos para gerar cartões."); return; }
       state.cardVerseIdx = 0;
-      const select = document.getElementById("cardVerseSelect");
-      select.innerHTML = study.verses.map((v, i) => {
-        const preview = v.text.length > 65 ? v.text.slice(0, 65) + "..." : v.text;
-        return `<option value="${i}">Versículo ${i + 1}: ${escapeHtml(preview)}</option>`;
-      }).join("");
-      updateCardThemeButtons();
+      document.getElementById("cardVerseSelect").innerHTML = study.verses.map((v, i) =>
+        `<option value="${i}">Versículo ${i + 1}: ${escapeHtml(v.text.slice(0, 62))}${v.text.length > 62 ? '...' : ''}</option>`
+      ).join("");
+      updateCardControls();
       drawShareCard();
-      const modal = document.getElementById("cardModal");
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
+      const m = document.getElementById("cardModal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
       if (window.lucide) lucide.createIcons();
     }
 
-    function closeCardModal() {
-      const modal = document.getElementById("cardModal");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
-
-    function copyTextFallback(text) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => showToast("Texto copiado!")).catch(() => {
-          const ta = document.createElement("textarea");
-          ta.value = text;
-          ta.style.position = "fixed";
-          ta.style.opacity = "0";
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand("copy"); showToast("Texto copiado!"); } catch (e) {}
-          document.body.removeChild(ta);
-        });
-      }
-    }
-
-    document.getElementById("openCardModalBtn").addEventListener("click", openCardModal);
-    document.getElementById("closeCardModalBtn").addEventListener("click", closeCardModal);
-    document.getElementById("cardModal").addEventListener("click", (e) => {
-      if (e.target.id === "cardModal") closeCardModal();
-    });
-    document.getElementById("cardVerseSelect").addEventListener("change", (e) => {
-      state.cardVerseIdx = Number(e.target.value);
-      drawShareCard();
-    });
-    document.querySelectorAll(".card-theme-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        state.cardTheme = btn.dataset.cardTheme;
-        updateCardThemeButtons();
-        drawShareCard();
+    function closeAllModals() {
+      ["infoModal", "cardModal"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.classList.add("hidden"); el.classList.remove("flex"); }
       });
-    });
-    document.getElementById("downloadPngCardBtn").addEventListener("click", () => {
-      const canvas = document.getElementById("shareCardCanvas");
-      const a = document.createElement("a");
-      a.download = `salmo-${state.activePsalmId}-${state.cardVerseIdx + 1}.png`;
-      a.href = canvas.toDataURL("image/png");
-      a.click();
-      showToast("Cartão PNG baixado!");
-    });
-    document.getElementById("copyCardTextBtn").addEventListener("click", () => {
-      const study = FULL_STUDIES[state.activePsalmId];
-      if (!study) return;
-      const v = study.verses[state.cardVerseIdx] || study.verses[0];
-      copyTextFallback(`“${v.text}” — Salmo ${state.activePsalmId}:${state.cardVerseIdx + 1}\nEstude completo em: https://salmos-plataforma.pages.dev/`);
-    });
-    document.getElementById("shareWhatsAppBtn").addEventListener("click", () => {
-      const study = FULL_STUDIES[state.activePsalmId];
-      const msg = study
-        ? `Estudo do Salmo ${state.activePsalmId} — ${study.title}: “${study.verses[0].text}” Leia o estudo completo: https://salmos-plataforma.pages.dev/`
-        : `Conheça a plataforma SALMOS — Estudo dos 150 Salmos: https://salmos-plataforma.pages.dev/`;
-      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
-    });
+    }
+
+    function openLegalModal(type) {
+      const content = {
+        terms: {
+          title: "Termos de Uso",
+          body: "<p>A plataforma SALMOS oferece estudos bíblicos digitais e ferramentas pessoais de leitura. Os textos bíblicos utilizam tradução em domínio público (tradição de Almeida / Bíblia Livre) e os comentários são originais da plataforma.</p>"
+        },
+        privacy: {
+          title: "Política de Privacidade e LGPD",
+          body: "<p>Coletamos apenas nome e e-mail para autenticação via Supabase. Seus favoritos, progresso e orações são protegidos por políticas de isolamento por usuário (Row Level Security), garantindo privacidade conforme a LGPD.</p>"
+        },
+        cancel: {
+          title: "Política de Cancelamento e Reembolso",
+          body: "<p>Assinaturas podem ser canceladas a qualquer momento sem multas, com direito à garantia incondicional de reembolso de 7 dias após a compra.</p>"
+        },
+        support: {
+          title: "Suporte e Atendimento",
+          body: "<p>Dúvidas sobre sua conta, estudos ou planos para igrejas e pequenos grupos? Fale diretamente conosco pelo WhatsApp:</p><p><a href=\"https://wa.me/5551982991513?text=Ol%C3%A1!%20Vim%20pela%20plataforma%20SALMOS%20e%20gostaria%20de%20atendimento.\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"display:inline-block;margin-top:8px;padding:10px 18px;border-radius:12px;background-color:#2F4538;color:#FFFFFF;font-weight:600;text-decoration:none;\">Falar no WhatsApp: (51) 98299-1513</a></p>"
+        }
+      }[type];
+      if (!content) return;
+      document.getElementById("modalTitle").textContent = content.title;
+      document.getElementById("modalBody").innerHTML = content.body;
+      const m = document.getElementById("infoModal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
+    }
+
+    function renderAll() {
+      const views = {
+        home: "viewHome",
+        library: "viewLibrary",
+        psalm: "viewPsalm",
+        readingPlans: "viewReadingPlans",
+        journey: "viewJourney",
+        journal: "viewJournal",
+        themes: "viewThemes",
+        plans: "viewPlans",
+        account: "viewAccount"
+      };
+      Object.entries(views).forEach(([k, elId]) => {
+        document.getElementById(elId).classList.toggle("hidden", state.view !== k);
+      });
+
+      renderNav();
+      if (state.view === "home") renderHome();
+      if (state.view === "library") renderLibrary();
+      if (state.view === "psalm") renderPsalmDetail();
+      if (state.view === "readingPlans") renderReadingPlans();
+      if (state.view === "journey") renderJourney();
+      if (state.view === "journal") renderJournal();
+      if (state.view === "themes") renderThemesCatalog();
+      if (state.view === "account") renderAccount();
+      applyDisplayPrefs();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function bindEvents() {
+      window.addEventListener("hashchange", () => navigateTo(window.location.hash, true));
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAllModals(); });
+
+      document.getElementById("logoHomeBtn").addEventListener("click", () => setView("home"));
+      document.getElementById("accountNavBtn").addEventListener("click", () => setView("account"));
+      document.getElementById("mobileMenuBtn").addEventListener("click", () => document.getElementById("mobileMenu").classList.toggle("hidden"));
+      document.getElementById("fontMinusBtn").addEventListener("click", () => { state.fontSize = Math.max(14, state.fontSize - 2); saveLocalState(); applyDisplayPrefs(); });
+      document.getElementById("fontPlusBtn").addEventListener("click", () => { state.fontSize = Math.min(24, state.fontSize + 2); saveLocalState(); applyDisplayPrefs(); });
+      document.getElementById("darkModeBtn").addEventListener("click", () => { state.darkMode = !state.darkMode; saveLocalState(); applyDisplayPrefs(); if (window.lucide) lucide.createIcons(); });
+
+      document.querySelectorAll(".nav-btn, .nav-trigger").forEach(btn => {
+        btn.addEventListener("click", () => setView(btn.dataset.nav));
+      });
+
+      document.getElementById("heroStartFreeBtn").addEventListener("click", () => {
+        if (state.user) setView("readingPlans");
+        else { state.authMode = "signup"; setView("account"); }
+      });
+      document.getElementById("heroExploreBtn").addEventListener("click", () => setView("library"));
+      document.getElementById("openDailyPsalmBtn").addEventListener("click", (e) => openPsalm(Number(e.currentTarget.dataset.dailyId || getDailyPsalmId())));
+      document.getElementById("homeSeeAllThemesBtn").addEventListener("click", () => setView("themes"));
+      document.getElementById("homeSeePlansBtn").addEventListener("click", () => setView("plans"));
+      document.getElementById("backLibraryBtn").addEventListener("click", () => setView("library"));
+
+      document.getElementById("libSearchInput").addEventListener("input", (e) => { state.libSearch = e.target.value; renderLibrary(); });
+      document.getElementById("onlyReadyToggle").addEventListener("change", (e) => { state.onlyReady = e.target.checked; renderLibrary(); });
+
+      document.getElementById("psalmCompleteBtn").addEventListener("click", () => {
+        const id = state.activePsalmId;
+        if (state.completedPsalms[id]) {
+          delete state.completedPsalms[id];
+          syncCompletedPsalm(id, false);
+          showToast(`Salmo ${id} desmarcado.`);
+        } else {
+          state.completedPsalms[id] = new Date().toISOString().slice(0, 10);
+          syncCompletedPsalm(id, true);
+          showToast(`Salmo ${id} concluído na sua jornada!`);
+        }
+        renderPsalmDetail();
+      });
+
+      document.getElementById("psalmSpeechBtn").addEventListener("click", toggleSpeech);
+      document.getElementById("psalmFavChapterBtn").addEventListener("click", () => {
+        const id = state.activePsalmId;
+        const idx = state.favoriteChapters.indexOf(id);
+        if (idx >= 0) { state.favoriteChapters.splice(idx, 1); syncChapterFavorite(id, false); showToast(`Salmo ${id} removido dos favoritos.`); }
+        else { state.favoriteChapters.push(id); syncChapterFavorite(id, true); showToast(`Salmo ${id} salvo nos favoritos!`); }
+        renderPsalmDetail();
+      });
+
+      document.getElementById("prevChapterBtn").addEventListener("click", () => openPsalm(state.activePsalmId > 1 ? state.activePsalmId - 1 : 150));
+      document.getElementById("nextChapterBtn").addEventListener("click", () => openPsalm(state.activePsalmId < 150 ? state.activePsalmId + 1 : 1));
+
+      document.getElementById("weeklyGoalSelect").addEventListener("change", (e) => {
+        state.weeklyGoal = Number(e.target.value);
+        saveLocalState();
+        renderJourney();
+      });
+
+      document.getElementById("journalForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const pid = Number(document.getElementById("journalPsalmSelect").value || 23);
+        const category = document.getElementById("journalCategorySelect").value;
+        const verseRef = document.getElementById("journalVerseInput").value.trim();
+        const text = document.getElementById("journalTextInput").value.trim();
+        if (!text) return;
+        const entry = { id: String(Date.now()), psalmId: pid, category, verseRef, text, date: new Date().toISOString().slice(0, 10) };
+        state.journalEntries.unshift(entry);
+        state.notes[pid] = text;
+        syncReflection(pid, text);
+        document.getElementById("journalVerseInput").value = "";
+        document.getElementById("journalTextInput").value = "";
+        showToast("Anotação salva no seu Diário Espiritual!");
+        renderJournal();
+      });
+
+      document.getElementById("journalSearchInput").addEventListener("input", (e) => { state.journalSearch = e.target.value; renderJournal(); });
+      document.getElementById("journalFilterCat").addEventListener("change", (e) => { state.journalCatFilter = e.target.value; renderJournal(); });
+      document.getElementById("printJournalBtn").addEventListener("click", () => window.print());
+      document.getElementById("exportJournalTxtBtn").addEventListener("click", () => {
+        if (state.journalEntries.length === 0) { showToast("Escreva ao menos uma anotação antes de exportar."); return; }
+        const content = state.journalEntries.map(e => `[${e.date}] ${e.category} — Salmo ${e.psalmId} ${e.verseRef}\n${e.text}\n`).join("\n---\n");
+        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = "meu-diario-salmos.txt"; a.click();
+        URL.revokeObjectURL(url);
+        showToast("Diário exportado em .txt!");
+      });
+
+      document.getElementById("openCardModalBtn").addEventListener("click", openCardModal);
+      document.getElementById("closeCardModalBtn").addEventListener("click", closeAllModals);
+      document.getElementById("closeModalBtn").addEventListener("click", closeAllModals);
+      document.getElementById("infoModal").addEventListener("click", (e) => { if (e.target.id === "infoModal") closeAllModals(); });
+      document.getElementById("cardModal").addEventListener("click", (e) => { if (e.target.id === "cardModal") closeAllModals(); });
+      document.getElementById("cardVerseSelect").addEventListener("change", (e) => { state.cardVerseIdx = Number(e.target.value); drawShareCard(); });
+      document.getElementById("cardBrandToggle").addEventListener("change", (e) => { state.cardShowBrand = e.target.checked; drawShareCard(); });
+      document.querySelectorAll(".card-fmt-btn").forEach(b => b.addEventListener("click", () => { state.cardFormat = b.dataset.cardFormat; updateCardControls(); drawShareCard(); }));
+      document.querySelectorAll(".card-theme-btn").forEach(b => b.addEventListener("click", () => { state.cardTheme = b.dataset.cardTheme; updateCardControls(); drawShareCard(); }));
+      document.querySelectorAll(".card-font-btn").forEach(b => b.addEventListener("click", () => { state.cardFont = b.dataset.cardFont; updateCardControls(); drawShareCard(); }));
+      document.getElementById("downloadPngCardBtn").addEventListener("click", () => {
+        const a = document.createElement("a");
+        a.download = `salmo-${state.activePsalmId}-${state.cardVerseIdx + 1}-${state.cardFormat}.png`;
+        a.href = document.getElementById("shareCardCanvas").toDataURL("image/png");
+        a.click();
+        showToast("Cartão PNG baixado!");
+      });
+      document.getElementById("copyCardTextBtn").addEventListener("click", () => {
+        const study = FULL_STUDIES[state.activePsalmId];
+        if (!study) return;
+        const v = (study.verses[state.cardVerseIdx] || study.verses[0]).text;
+        copyTextSafe(`“${v}” — Salmo ${state.activePsalmId}:${state.cardVerseIdx + 1}\nEstude completo em: https://salmos-plataforma.pages.dev/#/salmo/${state.activePsalmId}`, "Versículo copiado!");
+      });
+      document.getElementById("shareWhatsAppBtn").addEventListener("click", () => {
+        const study = FULL_STUDIES[state.activePsalmId];
+        const msg = study
+          ? `Estudo do Salmo ${state.activePsalmId} — ${study.title}: “${study.verses[0].text}” Leia completo: https://salmos-plataforma.pages.dev/#/salmo/${state.activePsalmId}`
+          : `Conheça a plataforma SALMOS: https://salmos-plataforma.pages.dev/`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+      });
+
+      document.querySelectorAll(".auth-tab-btn").forEach(b => b.addEventListener("click", () => { state.authMode = b.dataset.authMode; renderAccount(); }));
+      document.getElementById("newPasswordForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!supabaseClient) return;
+        const newPassword = document.getElementById("newPassInput").value;
+        const { error } = await supabaseClient.auth.updateUser({ password: newPassword });
+        if (error) { showToast(`Erro ao atualizar senha: ${error.message}`); return; }
+        state.recoveryMode = false;
+        showToast("Senha atualizada com sucesso!");
+        renderAccount();
+      });
+
+      document.getElementById("authForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!supabaseClient) { showToast("Erro ao conectar ao Supabase."); return; }
+        const email = document.getElementById("authEmail").value.trim();
+        const name = document.getElementById("authName").value.trim();
+        const pass = document.getElementById("authPass").value;
+        state.authLoading = true;
+        renderAccount();
+        try {
+          if (state.authMode === "reset") {
+            const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + "/#/conta" });
+            if (error) showToast(`Erro: ${error.message}`);
+            else { showToast(`Link de recuperação enviado para ${email}!`); state.authMode = "login"; }
+          } else if (state.authMode === "signup") {
+            if (pass.length < 6) showToast("Use ao menos 6 caracteres na senha.");
+            else {
+              const { data, error } = await supabaseClient.auth.signUp({ email, password: pass, options: { data: { full_name: name || email.split("@")[0] } } });
+              if (error) showToast(`Erro no cadastro: ${error.message}`);
+              else if (data.session && data.user) { showToast("Conta criada com sucesso!"); await loadCloudUserData(data.user); }
+              else { showToast("Conta criada! Confirme o e-mail e depois faça login."); state.authMode = "login"; }
+            }
+          } else {
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
+            if (error) showToast("E-mail ou senha inválidos (ou confirme seu e-mail).");
+            else if (data.user) { showToast("Bem-vindo(a) à SALMOS!"); await loadCloudUserData(data.user); }
+          }
+        } catch (err) { showToast("Falha de conexão."); }
+        finally { state.authLoading = false; renderAccount(); }
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", async () => {
+        if (supabaseClient) { try { await supabaseClient.auth.signOut(); } catch (e) {} }
+        state.user = null;
+        showToast("Você saiu da sua conta.");
+        renderAll();
+      });
+
+      document.addEventListener("click", (e) => {
+        const openBtn = e.target.closest("[data-open-psalm]");
+        if (openBtn) { openPsalm(Number(openBtn.dataset.openPsalm)); return; }
+
+        const filterThemeBtn = e.target.closest("[data-filter-theme]");
+        if (filterThemeBtn) { state.libTheme = filterThemeBtn.dataset.filterTheme; setView("library"); return; }
+
+        const libThemeBtn = e.target.closest("[data-lib-theme]");
+        if (libThemeBtn) { state.libTheme = libThemeBtn.dataset.libTheme; renderLibrary(); return; }
+
+        const copyV = e.target.closest("[data-copy-verse]");
+        if (copyV) {
+          const [pidStr, vNumStr] = copyV.dataset.copyVerse.split(":");
+          const s = FULL_STUDIES[Number(pidStr)];
+          if (s && s.verses[Number(vNumStr) - 1]) {
+            copyTextSafe(`“${s.verses[Number(vNumStr) - 1].text}” — Salmo ${pidStr}:${vNumStr}`, `Salmo ${pidStr}:${vNumStr} copiado!`);
+          }
+          return;
+        }
+
+        const verseFav = e.target.closest("[data-verse-fav]");
+        if (verseFav) {
+          const key = verseFav.dataset.verseFav;
+          const [pidStr, vNumStr] = key.split(":");
+          const pid = Number(pidStr), vNum = Number(vNumStr);
+          const s = FULL_STUDIES[pid];
+          if (!s || !s.verses[vNum - 1]) return;
+          const pos = state.favoriteVerses.findIndex(v => v.key === key);
+          if (pos >= 0) { state.favoriteVerses.splice(pos, 1); syncVerseFavorite(pid, vNum, s.verses[vNum - 1].text, false); showToast(`Destaque removido (Salmo ${key}).`); }
+          else { state.favoriteVerses.push({ key, psalmId: pid, text: s.verses[vNum - 1].text }); syncVerseFavorite(pid, vNum, s.verses[vNum - 1].text, true); showToast(`Salmo ${key} salvo nos favoritos!`); }
+          renderPsalmDetail();
+          return;
+        }
+
+        const planDayBtn = e.target.closest("[data-toggle-plan]");
+        if (planDayBtn) {
+          const [planId, dayStr] = planDayBtn.dataset.togglePlan.split(":");
+          const dayNum = Number(dayStr);
+          if (!Array.isArray(state.planProgress[planId])) state.planProgress[planId] = [];
+          const idx = state.planProgress[planId].indexOf(dayNum);
+          if (idx >= 0) { state.planProgress[planId].splice(idx, 1); syncPlanDay(planId, dayNum, false); }
+          else { state.planProgress[planId].push(dayNum); syncPlanDay(planId, dayNum, true); showToast(`Dia ${dayNum} concluído!`); }
+          renderReadingPlans();
+          return;
+        }
+
+        const delJournal = e.target.closest("[data-delete-journal]");
+        if (delJournal) {
+          state.journalEntries = state.journalEntries.filter(x => x.id !== delJournal.dataset.deleteJournal);
+          saveLocalState();
+          showToast("Anotação removida.");
+          renderJournal();
+          return;
+        }
+
+        const planBtn = e.target.closest(".plan-select-btn");
+        if (planBtn) {
+          const pn = planBtn.dataset.planSelect;
+          if (pn === "Gratuito") { state.authMode = "signup"; setView("account"); }
+          else if (pn.includes("Institucional")) { window.open("https://wa.me/5551982991513?text=" + encodeURIComponent("Olá! Tenho interesse nos planos da plataforma SALMOS para igreja ou pequeno grupo."), "_blank", "noopener,noreferrer"); }
+          else { showToast(`Crie sua conta gratuita para ser avisado na liberação do ${pn}.`); state.authMode = "signup"; setView("account"); }
+          return;
+        }
+
+        const legalBtn = e.target.closest(".legal-btn");
+        if (legalBtn) openLegalModal(legalBtn.dataset.legal);
+      });
+    }
+
+    async function initApp() {
+      loadLocalState();
+      bindEvents();
+      if (supabaseClient) {
+        supabaseClient.auth.onAuthStateChange((event, session) => {
+          if (event === "PASSWORD_RECOVERY") {
+            state.recoveryMode = true;
+            setView("account");
+          } else if (event === "SIGNED_IN" && session && session.user && (!state.user || state.user.id !== session.user.id)) {
+            loadCloudUserData(session.user);
+          } else if (event === "SIGNED_OUT") {
+            state.user = null;
+            renderAll();
+          }
+        });
+        try {
+          const { data } = await supabaseClient.auth.getSession();
+          if (data && data.session && data.session.user) {
+            await loadCloudUserData(data.session.user);
+          }
+        } catch (e) {}
+      }
+      navigateTo(window.location.hash || "#/", true);
+    }
 
     initApp();
   </script>
