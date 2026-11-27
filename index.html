@@ -11,7 +11,7 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:title" content="SALMOS — Uma jornada de profundidade e fé" />
   <meta property="og:description" content="Estudo versículo por versículo dos 150 Salmos, organizado por temas da vida real (ansiedade, proteção, gratidão, família e esperança)." />
-  <meta property="og:url" content="https://salmos-plataforma.charsdomatheus.workers.dev/" />
+  <meta property="og:url" content="https://salmos-plataforma.pages.dev/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="SALMOS — Estudo dos 150 Salmos" />
   <meta name="twitter:description" content="Leia, estude versículo por versículo, salve reflexões e gere cartões de versículos prontos para WhatsApp e Instagram." />
@@ -35,10 +35,24 @@
       --text-muted: #5A625D;
     }
 
+    body.dark-mode {
+      --bg-cream: #151917;
+      --bg-card: #1E2421;
+      --bg-sand: #262E2A;
+      --border-soft: #333D38;
+      --green-moss: #5D826B;
+      --green-dark: #E8EDE9;
+      --gold: #D8AD5C;
+      --gold-soft: rgba(216, 173, 92, 0.18);
+      --text-main: #EFECE5;
+      --text-muted: #A6B0A9;
+    }
+
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background-color: var(--bg-cream);
       color: var(--text-main);
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     .font-serif-brand {
@@ -108,7 +122,7 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-amber-200 selection:text-stone-900">
   <!-- HEADER -->
-  <header class="sticky top-0 z-40 border-b" style="background-color: rgba(250, 248, 243, 0.94); backdrop-filter: blur(10px); border-color: var(--border-soft);">
+  <header class="sticky top-0 z-40 border-b" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
       <button id="logoHomeBtn" type="button" class="flex items-center gap-2.5 text-left focus:outline-none">
         <span class="w-10 h-10 rounded-xl flex items-center justify-center border" style="background-color: var(--bg-cream); border-color: var(--border-soft);">
@@ -135,7 +149,10 @@
         <button data-nav="plans" type="button" class="nav-btn px-3 py-1.5 rounded-lg transition">Planos</button>
       </nav>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5">
+        <button id="fontMinusBtn" type="button" title="Diminuir letra" class="btn-outline w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center">A-</button>
+        <button id="fontPlusBtn" type="button" title="Aumentar letra" class="btn-outline w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center">A+</button>
+        <button id="darkModeBtn" type="button" title="Modo leitura noturna" class="btn-outline w-8 h-8 rounded-lg flex items-center justify-center"><i id="darkModeIcon" data-lucide="moon" class="w-4 h-4"></i></button>
         <button id="accountNavBtn" type="button" class="btn-outline px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium inline-flex items-center gap-1.5">
           <i data-lucide="user" class="w-4 h-4"></i>
           <span id="accountNavLabel">Entrar</span>
@@ -187,7 +204,7 @@
             <!-- Quick Stats -->
             <div class="grid grid-cols-3 gap-3 pt-4 border-t" style="border-color: var(--border-soft);">
               <div>
-                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">12</span>
+                <span class="font-serif-brand text-xl sm:text-2xl font-semibold block" style="color: var(--green-dark);">18</span>
                 <span class="text-xs" style="color: var(--text-muted);">Estudos completos hoje</span>
               </div>
               <div>
@@ -339,7 +356,7 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 class="font-serif-brand text-3xl sm:text-4xl font-medium" style="color: var(--green-dark);">Biblioteca dos 150 Salmos</h1>
-          <p class="text-sm mt-1" style="color: var(--text-muted);">Comece pelos 12 estudos completos disponíveis agora ou desmarque o filtro para ver o cronograma dos 150 capítulos.</p>
+          <p class="text-sm mt-1" style="color: var(--text-muted);">Comece pelos 18 estudos completos disponíveis agora ou desmarque o filtro para ver o cronograma dos 150 capítulos.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="relative w-full sm:w-64">
@@ -354,7 +371,7 @@
           </div>
           <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl surface-card text-xs font-medium cursor-pointer select-none">
             <input id="onlyReadyToggle" type="checkbox" checked class="rounded accent-emerald-800" />
-            <span>Estudos disponíveis agora (12)</span>
+            <span>Estudos disponíveis agora (18)</span>
           </label>
         </div>
       </div>
@@ -1071,6 +1088,192 @@
           { text: "Andando eu no meio da angústia, tu me reviverás; estenderás a tua mão contra a ira dos meus inimigos, e a tua destra me salvará.", note: "A promessa alcança o exato momento da travessia ('no meio da angústia')." },
           { text: "O Senhor aperfeiçoará o que me toca; a tua benignidade, ó Senhor, dura para sempre; não desampares as obras das tuas mãos.", note: "Versículo-âncora de esperança: Deus conduz ao cumprimento o propósito que começou em nós." }
         ]
+      },
+      27: {
+        title: "O Senhor é a Minha Luz e Salvação",
+        themes: ["Medo", "Fé", "Proteção", "Momentos difíceis"],
+        author: "Davi",
+        genre: "Salmo de Confiança e Coragem",
+        context: "Escrito por Davi em um momento de forte oposição e ameaças externas. O salmo une dois extremos da experiência humana: coragem destemida diante de exércitos e vulnerabilidade sincera ao pedir que Deus não o abandone.",
+        overview: "Um roteiro prático contra o medo: lembrar quem Deus é ('luz e salvação'), cultivar um único desejo central (buscar a presença de Deus) e esperar com coragem pelo agir divino.",
+        teachings: [
+          "O medo perde força quando lembramos quem é a nossa luz e fortaleza.",
+          "Buscar a presença de Deus não é fuga da realidade, mas o lugar onde encontramos abrigo nos dias maus.",
+          "Esperar no Senhor exige coragem ativa ('anima-te, e ele fortalecerá o teu coração')."
+        ],
+        applications: [
+          "Substitua hoje uma frase de medo pela declaração do versículo 1.",
+          "Separe 10 minutos silenciosos apenas para buscar a presença de Deus, sem pressa de pedir coisas."
+        ],
+        questions: [
+          "Qual medo hoje tem parecido grande demais perto da grandeza de Deus?",
+          "O que significa, para você, 'esperar no Senhor com coragem' nesta semana?"
+        ],
+        prayer: "Senhor, Tu és a minha luz e a minha salvação. Dissolve o medo no meu coração, fortalece o meu ânimo e ensina-me a esperar em Ti com coragem. Amém.",
+        references: ["João 8:12", "Isaías 40:31", "Romanos 8:31"],
+        verses: [
+          { text: "O Senhor é a minha luz e a minha salvação; a quem temerei? O Senhor é a força da minha vida; de quem me recearei?", note: "Luz dissipa a confusão; salvação traz livramento; força sustenta no cansaço. Três respostas diretas ao medo." },
+          { text: "Ainda que um exército me cercasse, o meu coração não temeria; ainda que a guerra se levantasse contra mim, nisto confiaria.", note: "Coragem não é ausência de cerco, mas decidir onde o coração vai se apoiar mesmo cercado." },
+          { text: "Uma coisa pedi ao Senhor, e a buscarei: que possa morar na casa do Senhor todos os dias da minha vida, para contemplar a formosura do Senhor.", note: "No meio de muitas pressões, Davi simplifica a vida em um foco central: comunhão constante com Deus." },
+          { text: "Porque no dia da adversidade me esconderá no seu pavilhão; no oculto do seu tabernáculo me esconderá; pôr-me-á sobre uma rocha.", note: "'Sobre uma rocha' simboliza terreno alto e seguro, fora do alcance das águas turbulentas." },
+          { text: "Ainda que meu pai e minha mãe me abandonem, o Senhor me acolherá.", note: "Mesmo quando vínculos humanos falham, o acolhimento de Deus permanece fiel." },
+          { text: "Espera no Senhor, anima-te, e ele fortalecerá o teu coração; espera, pois, no Senhor.", note: "A repetição final reforça que a esperança bíblica é firme, paciente e corajosa." }
+        ]
+      },
+      34: {
+        title: "O Livramento em Meio aos Temores",
+        themes: ["Medo", "Proteção", "Gratidão"],
+        author: "Davi",
+        genre: "Salmo de Ação de Graças e Sabedoria",
+        context: "O título histórico liga este salmo à fuga de Davi diante do rei filisteu Aquis (Abimeleque), em Gate. Depois de escapar de uma situação desesperadora, Davi compõe um cântico de gratidão e ensino.",
+        overview: "Um testemunho vibrante de quem orou no limite do medo e experimentou livramento — lembrando que Deus está perto dos que têm o coração quebrantado.",
+        teachings: [
+          "Louvar a Deus 'em todo o tempo' treina o coração a não depender só de dias fáceis.",
+          "Deus não promete ausência de aflições ao justo, mas promete estar perto e livrar de todas elas.",
+          "A fé verdadeira também se revela na forma como cuidamos das nossas palavras e buscamos a paz."
+        ],
+        applications: [
+          "Compartilhe com alguém hoje um livramento ou cuidado de Deus que marcou a sua vida.",
+          "Vigie suas palavras hoje: evite reclamações destrutivas e escolha falar com paz."
+        ],
+        questions: [
+          "Em que momento recente você sentiu Deus 'perto do coração quebrantado'?",
+          "Como 'provar e ver que o Senhor é bom' na prática do seu dia a dia?"
+        ],
+        prayer: "Senhor, bendigo o Teu nome em todo o tempo. Livra-me dos meus temores, guarda a minha língua e aproxima-Te do meu coração hoje. Amém.",
+        references: ["1 Pedro 3:10-12", "Salmo 147:3", "Filipenses 4:4-6"],
+        verses: [
+          { text: "Louvarei ao Senhor em todo o tempo; o seu louvor estará continuamente na minha boca.", note: "Decisão consciente de gratidão que não espera tudo estar resolvido para começar." },
+          { text: "Busquei ao Senhor, e ele me respondeu; livrou-me de todos os meus temores.", note: "Muitas vezes Deus começa nos livrando primeiro do pânico interior antes mesmo de mudar o cenário." },
+          { text: "O anjo do Senhor acampa-se ao redor dos que o temem, e os livra.", note: "'Acampar-se ao redor' traz a imagem de uma guarda contínua montada em volta de quem confia em Deus." },
+          { text: "Provai e vede que o Senhor é bom; bem-aventurado o homem que nele confia.", note: "Convite à experiência real: a bondade de Deus não é apenas teoria, mas vivência." },
+          { text: "Perto está o Senhor dos que têm o coração quebrantado, e salva os contritos de espírito.", note: "Um dos versículos mais consoladores da Bíblia: a dor sincera atrai a proximidade de Deus." },
+          { text: "Muitas são as aflições do justo, mas o Senhor o livra de todas.", note: "Realismo espiritual: fé não blinda contra dificuldades, mas garante sustentação e livramento." }
+        ]
+      },
+      37: {
+        title: "Descansa no Senhor e Espera Nele",
+        themes: ["Ansiedade", "Sabedoria", "Esperança"],
+        author: "Davi",
+        genre: "Salmo de Sabedoria (Acróstico)",
+        context: "Escrito por Davi na velhice ('Fui moço e agora sou velho'), olhando para décadas de experiência. Ele aconselha quem fica inquieto ou indignado ao ver pessoas desonestas prosperando rápido.",
+        overview: "Um manual contra a inveja, a pressa e a ansiedade comparativa, estruturado em quatro verbos práticos: confia, agrada-te, entrega e descansa no Senhor.",
+        teachings: [
+          "Comparar sua jornada com o sucesso aparente de quem age errado só gera desgaste e ansiedade.",
+          "Entregar o caminho ao Senhor significa soltar a obsessão por controlar o resultado.",
+          "Os passos de quem caminha com integridade são firmados por Deus, mesmo que tropece."
+        ],
+        applications: [
+          "Pare de se comparar nas redes sociais hoje e foque no próximo passo íntegro que está nas suas mãos.",
+          "Pratique os quatro verbos dos versículos 3 a 7 em oração: confiar, agradar-se, entregar e descansar."
+        ],
+        questions: [
+          "O que mais tem tirado a sua paciência ou gerado comparação ultimamente?",
+          "Qual plano ou desejo você precisa 'entregar ao Senhor' sem tentar forçar o tempo?"
+        ],
+        prayer: "Senhor, entrego o meu caminho a Ti e confio na Tua direção. Livra-me da pressa ansiosa e firma os meus passos com paciência e integridade. Amém.",
+        references: ["Mateus 5:5", "Provérbios 3:5-6", "1 Pedro 5:7"],
+        verses: [
+          { text: "Não te indignes por causa dos malfeitores, nem tenhas inveja dos que praticam a iniquidade.", note: "A palavra 'indignar-se' no hebraico sugere literalmente 'esquentar por dentro' — irritação que consome a paz." },
+          { text: "Confia no Senhor e faze o bem; habitarás na terra, e verdadeiramente serás alimentado.", note: "Confiança não é inércia: ela anda junto com continuar fazendo o bem com constância." },
+          { text: "Deleita-te também no Senhor, e te concederá os desejos do teu coração.", note: "Quando o coração encontra prazer em Deus, os próprios desejos são alinhados ao que realmente faz bem." },
+          { text: "Entrega o teu caminho ao Senhor; confia nele, e ele o fará.", note: "'Entregar' tem o sentido original de 'rolar um peso pesado para fora dos ombros' sobre Deus." },
+          { text: "Descansa no Senhor, e espera nele; não te indignes por causa daquele que prospera em seu caminho.", note: "Descansar no Senhor significa silenciar a ansiedade que exige respostas imediatas." },
+          { text: "Os passos de um homem bom são confirmados pelo Senhor, e deleita-se no seu caminho. Ainda que caia, não ficará prostrado, pois o Senhor o sustém com a sua mão.", note: "Realismo cheio de graça: tropeços acontecem, mas a mão de Deus impede a queda definitiva." }
+        ]
+      },
+      51: {
+        title: "Cria em Mim um Coração Puro",
+        themes: ["Perdão", "Momentos difíceis", "Esperança"],
+        author: "Davi",
+        genre: "Salmo Penitencial",
+        context: "O próprio título bíblico situa este salmo após o profeta Natã confrontar Davi por seu grave erro com Bate-Seba. É a oração de arrependimento mais profunda e honesta das Escrituras.",
+        overview: "Davi não tenta dar desculpas nem minimizar o que fez: ele apela exclusivamente à misericórdia de Deus e pede não apenas perdão, mas transformação interior completa ('um coração puro').",
+        teachings: [
+          "Arrependimento verdadeiro assume a responsabilidade sem transferir culpa.",
+          "Deus não se impressiona com aparências externas, mas acolhe um coração quebrantado e sincero.",
+          "A graça de Deus restaura a alegria perdida e transforma pessoas restauradas em apoio para outras."
+        ],
+        applications: [
+          "Se há algo que pesa na consciência, abandone as desculpas e faça a oração do versículo 10 com honestidade.",
+          "Peça a Deus renovação de espírito para recomeçar com humildade."
+        ],
+        questions: [
+          "Por que Davi pede 'cria em mim' (a mesma palavra da criação do mundo) ao falar de um coração puro?",
+          "Qual área do seu caráter você deseja que Deus renove de dentro para fora?"
+        ],
+        prayer: "Ó Deus, segundo a Tua grande misericórdia, limpa o meu coração. Cria em mim um coração puro, renova dentro de mim um espírito reto e devolve-me a alegria da Tua presença. Amém.",
+        references: ["2 Samuel 12:1-13", "1 João 1:9", "Ezequiel 36:26"],
+        verses: [
+          { text: "Tem misericórdia de mim, ó Deus, segundo a tua benignidade; apaga as minhas transgressões, segundo a multidão das tuas misericórdias.", note: "Davi não apela para seus méritos passados, mas unicamente para o caráter misericordioso de Deus." },
+          { text: "Lava-me completamente da minha iniquidade, e purifica-me do meu pecado.", note: "A imagem de lavar roupas encardidas mostra o desejo por limpeza profunda, não superficial." },
+          { text: "Cria em mim, ó Deus, um coração puro, e renova em mim um espírito reto.", note: "O verbo hebraico 'bara' (criar) é usado na Bíblia exclusivamente para a ação criadora de Deus — só Ele pode recriar o coração." },
+          { text: "Não me lances fora da tua presença, e não retires de mim o teu Espírito Santo.", note: "O maior temor de Davi não era perder o trono, mas perder a comunhão com Deus." },
+          { text: "Torna a dar-me a alegria da tua salvação, e sustém-me com um espírito voluntário.", note: "O pecado rouba a alegria espiritual; o perdão devolve leveza e disposição voluntária." },
+          { text: "Os sacrifícios para Deus são o espírito quebrantado; a um coração quebrantado e contrito não desprezarás, ó Deus.", note: "Deus valoriza sinceridade humilde acima de qualquer ritual feito sem coração." }
+        ]
+      },
+      103: {
+        title: "Bendize, Ó Minha Alma, ao Senhor",
+        themes: ["Gratidão", "Louvor", "Perdão"],
+        author: "Davi",
+        genre: "Hino de Louvor e Gratidão",
+        context: "Um dos hinos mais luminosos de Davi. Ele começa falando consigo mesmo ('Bendize, ó minha alma'), lembrando intencionalmente cada benefício de Deus para vencer o esquecimento e a ingratidão.",
+        overview: "Um inventário completo da graça divina: perdão, cura, proteção, compaixão paterna e misericórdia eterna que conhece a nossa fragilidade.",
+        teachings: [
+          "A gratidão precisa ser exercitada: às vezes precisamos lembrar a própria alma de não esquecer o bem recebido.",
+          "Deus não nos trata segundo os nossos erros; Seu perdão afasta a culpa 'quanto está longe o oriente do ocidente'.",
+          "Deus conhece nossa estrutura frágil e se compadece como um pai cuidadoso."
+        ],
+        applications: [
+          "Escreva uma lista curta com 5 'benefícios' (bênçãos concretas) que você não quer esquecer este ano.",
+          "Lembre-se hoje de que Deus conhece seus limites humanos e não exige perfeição robótica."
+        ],
+        questions: [
+          "Quais bênçãos recentes você acabou colocando no 'piloto automático' e esqueceu de agradecer?",
+          "Como a imagem da compaixão paterna no versículo 13 muda a forma como você enxerga Deus?"
+        ],
+        prayer: "Bendize, ó minha alma, ao Senhor, e não te esqueças de nenhum de seus benefícios. Obrigado pelo Teu perdão, pela Tua compaixão e por renovares as minhas forças hoje. Amém.",
+        references: ["Êxodo 34:6-7", "Isaías 40:31", "Miqueias 7:18-19"],
+        verses: [
+          { text: "Bendize, ó minha alma, ao Senhor, e tudo o que há em mim bendiga o seu santo nome.", note: "Davi conduz o próprio interior ao louvor — fé que envolve mente, emoções e vontade." },
+          { text: "Bendize, ó minha alma, ao Senhor, e não te esqueças de nenhum de seus benefícios.", note: "O esquecimento é o maior inimigo da gratidão; lembrar ativamente renova a esperança." },
+          { text: "Ele é o que perdoa todas as tuas iniquidades, que sara todas as tuas enfermidades.", note: "O cuidado de Deus alcança a pessoa por inteiro: perdão espiritual e restauração da vida." },
+          { text: "O Senhor é misericordioso e piedoso; tardio em irar-se e grande em benignidade.", note: "Citação direta da auto-revelação de Deus em Êxodo 34 — o coração da teologia bíblica." },
+          { text: "Quanto está longe o oriente do ocidente, assim afasta de nós as nossas transgressões.", note: "Oriente e ocidente nunca se encontram: imagem poética de um perdão definitivo." },
+          { text: "Assim como um pai se compadece de seus filhos, assim o Senhor se compadece daqueles que o temem. Pois ele conhece a nossa estrutura; lembra-se de que somos pó.", note: "Deus compreende nossos limites físicos e emocionais com ternura e paciência." }
+        ]
+      },
+      139: {
+        title: "Tu Me Sondas e Me Conheces",
+        themes: ["Fé", "Sabedoria", "Esperança", "Família"],
+        author: "Davi",
+        genre: "Salmo de Sabedoria e Meditação",
+        context: "Uma das meditações mais profundas sobre a presença e o conhecimento de Deus. Davi contempla que não existe solidão absoluta nem acaso na nossa existência: somos conhecidos e cuidados desde o ventre.",
+        overview: "Percorre três verdades transformadoras: Deus nos conhece por completo (onisciência), está presente em todo lugar (onipresença) e nos formou com propósito único.",
+        teachings: [
+          "Ser totalmente conhecido por Deus não é motivo de pavor, mas de acolhimento — Ele já sabe tudo e ainda assim nos ama.",
+          "Não existe lugar tão distante ou noite tão escura onde a mão de Deus não possa nos guiar.",
+          "Pedir a Deus que 'sonde o coração' é o caminho mais seguro para crescer em maturidade."
+        ],
+        applications: [
+          "Rejeite hoje pensamentos de inutilidade lembrando que você foi formado de modo admirável e intencional.",
+          "Termine o dia fazendo a oração dos versículos 23 e 24 ('Sonda-me, ó Deus')."
+        ],
+        questions: [
+          "O pensamento de que Deus conhece todos os seus pensamentos traz mais alívio ou desconforto para você? Por quê?",
+          "Que 'caminho eterno' ou ajuste de rota você sente que Deus está mostrando para a sua vida?"
+        ],
+        prayer: "Senhor, obrigado porque me conheces por inteiro e nunca me deixas só. Sonda o meu coração, conhece os meus pensamentos e guia-me pelo caminho eterno. Amém.",
+        references: ["Jeremias 1:5", "Mateus 28:20", "Hebreus 4:13"],
+        verses: [
+          { text: "Senhor, tu me sondaste, e me conheces. Tu sabes o meu assentar e o meu levantar; de longe entendes o meu pensamento.", note: "Deus conhece tanto as grandes decisões quanto os gestos comuns do cotidiano." },
+          { text: "Para onde me irei do teu espírito, ou para onde fugirei da tua face?", note: "Não é uma pergunta de fuga angustiada, mas de assombro diante de uma presença que nunca nos abandona." },
+          { text: "Se tomar as asas da alva, se habitar nas extremidades do mar, até ali a tua mão me guiará e a tua destra me susterá.", note: "Mesmo nos extremos do mapa ou da solidão, a mão de Deus continua segurando e guiando." },
+          { text: "Eu te louvarei, porque de um modo assombroso, e tão maravilhoso fui feito; maravilhosas são as tuas obras.", note: "Afirmação poderosa do valor e da dignidade de cada vida humana." },
+          { text: "Sonda-me, ó Deus, e conhece o meu coração; prova-me, e conhece os meus pensamentos.", note: "Oração corajosa de quem convida Deus a iluminar pontos cegos do próprio coração." },
+          { text: "E vê se há em mim algum caminho mau, e guia-me pelo caminho eterno.", note: "Fechamento prático: o autoconhecimento diante de Deus sempre aponta para um caminho melhor." }
+        ]
       }
     };
 
@@ -1117,6 +1320,8 @@
       speaking: false,
       cardTheme: "cream",
       cardVerseIdx: 0,
+      fontSize: 17,
+      darkMode: false,
       user: null,
       favoriteChapters: [],
       favoriteVerses: [],
@@ -1133,6 +1338,8 @@
         if (Array.isArray(data.favoriteChapters)) state.favoriteChapters = data.favoriteChapters;
         if (Array.isArray(data.favoriteVerses)) state.favoriteVerses = data.favoriteVerses;
         if (data.notes && typeof data.notes === "object") state.notes = data.notes;
+        if (typeof data.darkMode === "boolean") state.darkMode = data.darkMode;
+        if (typeof data.fontSize === "number") state.fontSize = Math.min(24, Math.max(14, data.fontSize));
       } catch (e) {}
     }
 
@@ -1141,7 +1348,9 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
           favoriteChapters: state.favoriteChapters,
           favoriteVerses: state.favoriteVerses,
-          notes: state.notes
+          notes: state.notes,
+          darkMode: state.darkMode,
+          fontSize: state.fontSize
         }));
       } catch (e) {}
     }
@@ -1311,6 +1520,7 @@
       if (!label || !icon) return;
       label.textContent = state.speaking ? "Parar Áudio" : "Ouvir Salmo";
       icon.setAttribute("data-lucide", state.speaking ? "square" : "volume-2");
+      applyDisplayPrefs();
       if (window.lucide) lucide.createIcons();
     }
 
@@ -1373,7 +1583,29 @@
       accLabel.textContent = state.user ? state.user.name.split(" ")[0] : "Entrar";
     }
 
+    function getDailyPsalmId() {
+      const readyIds = Object.keys(FULL_STUDIES).map(Number).sort((a, b) => a - b);
+      const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+      return readyIds[dayOfYear % readyIds.length] || 23;
+    }
+
+    function applyDisplayPrefs() {
+      document.body.classList.toggle("dark-mode", state.darkMode);
+      const dmIcon = document.getElementById("darkModeIcon");
+      if (dmIcon) dmIcon.setAttribute("data-lucide", state.darkMode ? "sun" : "moon");
+      document.querySelectorAll(".verse-row p.font-serif-brand").forEach(el => {
+        el.style.fontSize = `${state.fontSize}px`;
+      });
+    }
+
     function renderHome() {
+      const dailyId = getDailyPsalmId();
+      const dailyStudy = FULL_STUDIES[dailyId];
+      if (dailyStudy) {
+        document.getElementById("dailyPsalmTitle").textContent = `Salmo ${dailyId} — ${dailyStudy.title}`;
+        document.getElementById("dailyPsalmQuote").textContent = `“${dailyStudy.verses[0].text}”`;
+        document.getElementById("openDailyPsalmBtn").dataset.dailyId = String(dailyId);
+      }
       const grid = document.getElementById("homeThemesGrid");
       grid.innerHTML = THEMES.slice(0, 8).map(t => `
         <button type="button" data-filter-theme="${t.name}" class="surface-card rounded-2xl p-4 text-left hover:shadow-sm transition group space-y-1.5">
@@ -1753,6 +1985,22 @@
 
     function bindEvents() {
       document.getElementById("logoHomeBtn").addEventListener("click", () => setView("home"));
+      document.getElementById("fontMinusBtn").addEventListener("click", () => {
+        state.fontSize = Math.max(14, state.fontSize - 2);
+        saveLocalState();
+        applyDisplayPrefs();
+      });
+      document.getElementById("fontPlusBtn").addEventListener("click", () => {
+        state.fontSize = Math.min(24, state.fontSize + 2);
+        saveLocalState();
+        applyDisplayPrefs();
+      });
+      document.getElementById("darkModeBtn").addEventListener("click", () => {
+        state.darkMode = !state.darkMode;
+        saveLocalState();
+        applyDisplayPrefs();
+        if (window.lucide) lucide.createIcons();
+      });
       document.getElementById("accountNavBtn").addEventListener("click", () => setView("account"));
       document.getElementById("mobileMenuBtn").addEventListener("click", () => {
         document.getElementById("mobileMenu").classList.toggle("hidden");
@@ -1764,7 +2012,7 @@
 
       document.getElementById("heroExploreBtn").addEventListener("click", () => setView("library"));
       document.getElementById("heroThemesBtn").addEventListener("click", () => setView("themes"));
-      document.getElementById("openDailyPsalmBtn").addEventListener("click", () => openPsalm(23));
+      document.getElementById("openDailyPsalmBtn").addEventListener("click", (e) => openPsalm(Number(e.currentTarget.dataset.dailyId || getDailyPsalmId())));
       document.getElementById("homeSeeAllThemesBtn").addEventListener("click", () => setView("themes"));
       document.getElementById("homeSeePlansBtn").addEventListener("click", () => setView("plans"));
       document.getElementById("backLibraryBtn").addEventListener("click", () => setView("library"));
@@ -2057,7 +2305,7 @@
     function openCardModal() {
       const study = FULL_STUDIES[state.activePsalmId];
       if (!study) {
-        showToast("Abra um dos 12 estudos completos para gerar o cartão PNG.");
+        showToast("Abra um dos 18 estudos completos para gerar o cartão PNG.");
         return;
       }
       state.cardVerseIdx = 0;
@@ -2123,13 +2371,13 @@
       const study = FULL_STUDIES[state.activePsalmId];
       if (!study) return;
       const v = study.verses[state.cardVerseIdx] || study.verses[0];
-      copyTextFallback(`“${v.text}” — Salmo ${state.activePsalmId}:${state.cardVerseIdx + 1}\nEstude completo em: https://salmos-plataforma.charsdomatheus.workers.dev/`);
+      copyTextFallback(`“${v.text}” — Salmo ${state.activePsalmId}:${state.cardVerseIdx + 1}\nEstude completo em: https://salmos-plataforma.pages.dev/`);
     });
     document.getElementById("shareWhatsAppBtn").addEventListener("click", () => {
       const study = FULL_STUDIES[state.activePsalmId];
       const msg = study
-        ? `Estudo do Salmo ${state.activePsalmId} — ${study.title}: “${study.verses[0].text}” Leia o estudo completo: https://salmos-plataforma.charsdomatheus.workers.dev/`
-        : `Conheça a plataforma SALMOS — Estudo dos 150 Salmos: https://salmos-plataforma.charsdomatheus.workers.dev/`;
+        ? `Estudo do Salmo ${state.activePsalmId} — ${study.title}: “${study.verses[0].text}” Leia o estudo completo: https://salmos-plataforma.pages.dev/`
+        : `Conheça a plataforma SALMOS — Estudo dos 150 Salmos: https://salmos-plataforma.pages.dev/`;
       window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
     });
 
