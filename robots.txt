@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://salmos-plataforma.pages.dev/sitemap.xml
