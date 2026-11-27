@@ -1,0 +1,10 @@
+{
+  "name": "SALMOS — Profundidade e Fé",
+  "short_name": "SALMOS",
+  "description": "Plataforma de estudo versículo por versículo dos 150 Salmos, planos de leitura guiados e diário espiritual.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F3",
+  "theme_color": "#2F4538",
+  "lang": "pt-BR"
+}
